@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/addPhoto_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="150dp"
+        android:background="#C8C8C8"
+        android:padding="5dp"
+        android:src="@drawable/ic_baseline_camera_alt_24" />
+
+    <Button
+        android:id="@+id/addPhoto_btn_upload"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/addPhoto_image"
+        android:layout_marginTop="5dp"
+        android:background="#B5B5B5"
+        android:padding="2dp"
+        android:text="Upload"
+        android:textColor="#424242"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addPhoto_btn_upload"
+        android:layout_marginTop="38dp"
+        android:layout_marginLeft="17dp"
+        android:textSize="16dp"
+        android:textColor="@color/black"
+        android:text="품종" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/plant_species"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="17dp"
+        android:textSize="16dp"
+        android:textColor="@color/black"
+        android:text="별칭" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/plant_name"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="17dp"
+        android:textSize="16dp"
+        android:textColor="@color/black"
+        android:text="키우기 시작한 날짜" />
+
+
+    <EditText
+        android:id="@+id/plant_species"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addPhoto_btn_upload"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="57dp"
+        android:layout_marginRight="15dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="품종을 입력하세요."
+        android:inputType="textPersonName"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/plant_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/plant_species"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="15dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="별칭을 입력하세요."
+        android:inputType="textPersonName"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/plant_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/plant_name"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="15dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="키우기 시작한 날짜를 입력하세요."
+        android:inputType="textPersonName"
+        tools:ignore="TouchTargetSizeCheck" />
+
+
+</RelativeLayout>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="title_search">Search</string>
+    <string name="title_home">Home</string>
+    <string name="title_plan">Plan</string>
+    <string name="title_add_plant">AddPlant</string>
+</resources>
