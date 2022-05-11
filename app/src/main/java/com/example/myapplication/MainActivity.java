@@ -7,6 +7,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+
+import com.example.myapplication.calendar.FragmentPlan;
+import com.example.myapplication.home.FragmentAddPlant;
+import com.example.myapplication.home.FragmentHome;
+import com.example.myapplication.search.FragmentSearch;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
