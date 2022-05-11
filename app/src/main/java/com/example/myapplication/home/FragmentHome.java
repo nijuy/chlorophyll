@@ -14,20 +14,20 @@ import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 
 public class FragmentHome extends Fragment {
-    private View view;
-    private ImageButton add_plant_button;
-    FragmentAddPlant addPlant = new FragmentAddPlant();
+    private View rootView;
+    private ImageButton addButton;
+    FragmentAddPlant fragmentAddPlant = new FragmentAddPlant();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_home, container,false);
-        add_plant_button = (ImageButton) view.findViewById(R.id.add_plant_button);
-        add_plant_button.setOnClickListener(new View.OnClickListener() {
+        rootView = inflater.inflate(R.layout.fragment_home, container,false);
+        addButton = (ImageButton) rootView.findViewById(R.id.add_plant_button);
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).replaceFragment(addPlant);
+                ((MainActivity)getActivity()).replaceFragment(fragmentAddPlant);
             }
         });
-        return view;
+        return rootView;
     }
 }

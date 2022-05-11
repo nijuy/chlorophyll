@@ -9,7 +9,7 @@
         android:id="@+id/addPhoto_image"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="80dp"
         android:background="#C8C8C8"
         android:padding="5dp"
         android:src="@drawable/ic_baseline_camera_alt_24" />
@@ -34,7 +34,7 @@
         android:layout_marginLeft="17dp"
         android:textSize="16dp"
         android:textColor="@color/black"
-        android:text="품종" />
+        android:text="식물명" />
 
     <TextView
         android:layout_width="match_parent"
@@ -44,7 +44,7 @@
         android:layout_marginLeft="17dp"
         android:textSize="16dp"
         android:textColor="@color/black"
-        android:text="별칭" />
+        android:text="애칭" />
 
     <TextView
         android:layout_width="match_parent"
@@ -67,7 +67,7 @@
         android:layout_marginRight="15dp"
         android:layout_weight="1"
         android:ems="10"
-        android:hint="품종을 입력하세요."
+        android:hint="품종을 입력해주세요"
         android:inputType="textPersonName"
         tools:ignore="TouchTargetSizeCheck" />
 
@@ -81,7 +81,7 @@
         android:layout_marginRight="15dp"
         android:layout_weight="1"
         android:ems="10"
-        android:hint="별칭을 입력하세요."
+        android:hint="별칭을 입력해주세요"
         android:inputType="textPersonName"
         tools:ignore="TouchTargetSizeCheck" />
 
@@ -95,7 +95,7 @@
         android:layout_marginRight="15dp"
         android:layout_weight="1"
         android:ems="10"
-        android:hint="키우기 시작한 날짜를 입력하세요."
+        android:hint="언제부터 키우셨나요?"
         android:inputType="textPersonName"
         tools:ignore="TouchTargetSizeCheck" />
 

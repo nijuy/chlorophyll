@@ -20,12 +20,11 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
-    private FragmentManager fm;
+    private FragmentManager fragmentManager;
     private FragmentTransaction ft;
-    private FragmentSearch search;
-    private FragmentHome home;
-    private FragmentPlan plan;
-    private FragmentAddPlant addPlant;
+    private FragmentSearch fragmentSearch;
+    private FragmentHome fragmentHome;
+    private FragmentPlan fragmentPlan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,26 +49,26 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        search = new FragmentSearch();
-        home = new FragmentHome();
-        plan = new FragmentPlan();
+        fragmentSearch = new FragmentSearch();
+        fragmentHome = new FragmentHome();
+        fragmentPlan = new FragmentPlan();
         setFrag(0);
     }
 
     private void setFrag(int n){
-        fm = getSupportFragmentManager();
-        ft = fm.beginTransaction();
+        fragmentManager = getSupportFragmentManager();
+        ft = fragmentManager.beginTransaction();
         switch(n){
             case 0:
-                ft.replace(R.id.main_frame, home);
+                ft.replace(R.id.main_frame, fragmentHome);
                 ft.commit();
                 break;
             case 1:
-                ft.replace(R.id.main_frame, search);
+                ft.replace(R.id.main_frame, fragmentSearch);
                 ft.commit();
                 break;
             case 2:
-                ft.replace(R.id.main_frame, plan);
+                ft.replace(R.id.main_frame, fragmentPlan);
                 ft.commit();
                 break;
         }
