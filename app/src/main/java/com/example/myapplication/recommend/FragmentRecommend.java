@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -53,12 +54,16 @@ public class FragmentRecommend extends Fragment {
         });
 
         btnGetResult.setOnClickListener(view -> {
-            // 결과보기 누르면 할 일 : 쿼리 만들기 -> db로 보내기 -> 결과 받아오기 -> 새 창에서 결과 띄우기
-            result.setText("\n선택한 조건값 확인 :\n");
-            result.append(cond1.getText());
-            result.append(cond2.getText());
-            result.append(cond3.getText());
-            result.append(cond4.getText());
+
+            if(group1.getCheckedRadioButtonId() == -1 | group2.getCheckedRadioButtonId() == -1 | group3.getCheckedRadioButtonId() == -1 | group4.getCheckedRadioButtonId() == -1){
+                Toast.makeText(view.getContext().getApplicationContext(), "선택하지 않은 조건이 있어요!", Toast.LENGTH_SHORT).show();
+            } else {
+                result.setText("\n선택한 조건값 확인 :\n");
+                result.append(cond1.getText());
+                result.append(cond2.getText());
+                result.append(cond3.getText());
+                result.append(cond4.getText());
+            }
         });
 
         group1.setOnCheckedChangeListener((radioGroup, i) -> {
