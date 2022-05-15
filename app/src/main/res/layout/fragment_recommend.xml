@@ -5,7 +5,7 @@
     android:id="@+id/fragment_recommend"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/yellow">
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"

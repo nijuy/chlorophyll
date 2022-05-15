@@ -28,7 +28,7 @@ public class FragmentSearch extends Fragment {
         Button btnRecommend = view.findViewById(R.id.button); //추천 페이지로 가는 버튼 초기화
         btnRecommend.setOnClickListener(view -> {
             FragmentTransaction ft = getChildFragmentManager().beginTransaction();
-            ft.replace(R.id.search_frame, rec);
+            ft.replace(R.id.fragment_search, rec);
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             ft.commit();
 
