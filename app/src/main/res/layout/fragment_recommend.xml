@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="-204dp"
-        tools:layout_editor_absoluteY="-143dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-16dp">
 
         <Button
             android:id="@+id/btn_goSearch"
@@ -214,8 +214,8 @@
             android:id="@+id/group5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:spinnerMode="dropdown"
-            android:popupBackground="@color/teal_500"/>
+            android:popupBackground="@color/teal_500"
+            android:spinnerMode="dropdown" />
 
         <TextView
             android:id="@+id/condition6"
@@ -224,6 +224,39 @@
             android:text="@string/condition6"
             tools:layout_editor_absoluteX="176dp"
             tools:layout_editor_absoluteY="172dp" />
+
+        <RadioGroup
+            android:id="@+id/group6"
+            android:layout_width="408dp"
+            android:layout_height="47dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="2dp"
+            tools:layout_editor_absoluteY="203dp">
+
+            <RadioButton
+                android:id="@+id/condition6_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition6_1" />
+
+            <RadioButton
+                android:id="@+id/condition6_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition6_2" />
+
+            <RadioButton
+                android:id="@+id/condition6_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition6_3" />
+
+            <RadioButton
+                android:id="@+id/condition6_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition6_4" />
+        </RadioGroup>
 
         <Button
             android:id="@+id/btn_getResult"
@@ -273,6 +306,14 @@
             tools:layout_editor_absoluteY="172dp" />
 
         <TextView
+            android:id="@+id/filteringCondition6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/filteringCondition6"
+            tools:layout_editor_absoluteX="176dp"
+            tools:layout_editor_absoluteY="172dp" />
+
+        <TextView
             android:id="@+id/filteringCondition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -281,8 +322,6 @@
             tools:layout_editor_absoluteY="172dp" />
 
     </LinearLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

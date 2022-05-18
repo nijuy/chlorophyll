@@ -29,8 +29,8 @@ public class FragmentRecommend extends Fragment {
         view = inflater.inflate(R.layout.fragment_recommend, container,false);
         Button btnGetResult;
         Button btnBack;
-        TextView result, cond1, cond2, cond3, cond4, cond5;
-        RadioGroup group1, group2, group3, group4;
+        TextView result, cond1, cond2, cond3, cond4, cond5, cond6;
+        RadioGroup group1, group2, group3, group4, group6;
         Spinner group5;
 
         btnBack = view.findViewById(R.id.btn_goSearch); //추천 페이지로 가는 버튼
@@ -42,23 +42,32 @@ public class FragmentRecommend extends Fragment {
         cond3 = view.findViewById(R.id.filteringCondition3);
         cond4 = view.findViewById(R.id.filteringCondition4);
         cond5 = view.findViewById(R.id.filteringCondition5);
+        cond6 = view.findViewById(R.id.filteringCondition6);
 
         group1 = view.findViewById(R.id.group1);
         group2 = view.findViewById(R.id.group2);
         group3 = view.findViewById(R.id.group3);
         group4 = view.findViewById(R.id.group4);
-        group5 = view.findViewById(R.id.group5);
+        group5 = view.findViewById(R.id.group5); //스피너
+        group6 = view.findViewById(R.id.group6);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.condition5_items, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         group5.setAdapter(adapter);
 
+        cond1.setVisibility(View.GONE); //결과보기 아래 조건 확인용 텍스트뷰를 안 보이게 가림
+        cond2.setVisibility(View.GONE);
+        cond3.setVisibility(View.GONE);
+        cond4.setVisibility(View.GONE);
+        cond5.setVisibility(View.GONE);
+        cond6.setVisibility(View.GONE);
+
         btnBack.setOnClickListener(view -> {
             FragmentManager fm = getParentFragmentManager();
             FragmentTransaction ft = getParentFragmentManager().beginTransaction();
 
-            //라디오버튼 선택 다 초기화하기
-            group1.clearCheck(); group2.clearCheck(); group3.clearCheck(); group4.clearCheck();
+            //라디오버튼 선택 초기화하기
+            group1.clearCheck(); group2.clearCheck(); group3.clearCheck(); group4.clearCheck(); group6.clearCheck();
             
             ft.remove(FragmentRecommend.this).commit(); // 지금 띄운 추천 페이지 (this) 지우기
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
@@ -66,12 +75,12 @@ public class FragmentRecommend extends Fragment {
         });
 
         btnGetResult.setOnClickListener(view -> {
-
             if(group1.getCheckedRadioButtonId() == -1 |
                group2.getCheckedRadioButtonId() == -1 |
                group3.getCheckedRadioButtonId() == -1 |
                group4.getCheckedRadioButtonId() == -1 |
-               group5.getSelectedItemPosition() == 0) {
+               group5.getSelectedItemPosition() == 0 |
+               group6.getCheckedRadioButtonId() == -1) {
                 Toast.makeText(view.getContext().getApplicationContext(), "선택하지 않은 조건이 있어요!", Toast.LENGTH_SHORT).show();
             } else {
                 result.setText("선택한 조건값 확인 :\n");
@@ -80,6 +89,7 @@ public class FragmentRecommend extends Fragment {
                 result.append(cond3.getText());
                 result.append(cond4.getText());
                 result.append(cond5.getText());
+                result.append(cond6.getText());
             }
         });
 
@@ -179,6 +189,26 @@ public class FragmentRecommend extends Fragment {
 
             }
         });
+
+        group6.setOnCheckedChangeListener(((radioGroup, i) -> {
+            switch (i){
+                case R.id.condition6_1:
+                    cond6.setText(getString(R.string.condition6_1));
+                    break;
+
+                case R.id.condition6_2:
+                    cond6.setText(getString(R.string.condition6_2));
+                    break;
+
+                case R.id.condition6_3:
+                    cond6.setText(getString(R.string.condition6_3));
+                    break;
+
+                case R.id.condition6_4:
+                    cond6.setText("X");
+                    break;
+            }
+        }));
 
         return view;
     }
