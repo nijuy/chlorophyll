@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_recommend"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="-204dp"
+        tools:layout_editor_absoluteY="-143dp">
+
+        <Button
+            android:id="@+id/btn_goSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
+            android:text="@string/btn_goSearch"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/recommendText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recommendText"
+            tools:layout_editor_absoluteX="176dp"
+            tools:layout_editor_absoluteY="172dp" />
+
+        <TextView
+            android:id="@+id/condition1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/condition1"
+            tools:layout_editor_absoluteX="176dp"
+            tools:layout_editor_absoluteY="172dp" />
+
+        <RadioGroup
+            android:id="@+id/group1"
+            android:layout_width="408dp"
+            android:layout_height="47dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="2dp"
+            tools:layout_editor_absoluteY="203dp">
+
+            <RadioButton
+                android:id="@+id/condition1_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition1_1" />
+
+            <RadioButton
+                android:id="@+id/condition1_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition1_2" />
+
+            <RadioButton
+                android:id="@+id/condition1_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition1_3" />
+
+            <RadioButton
+                android:id="@+id/condition1_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition1_4" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/condition2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/condition2"
+            tools:layout_editor_absoluteX="176dp"
+            tools:layout_editor_absoluteY="172dp" />
+
+        <RadioGroup
+            android:id="@+id/group2"
+            android:layout_width="408dp"
+            android:layout_height="47dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="2dp"
+            tools:layout_editor_absoluteY="203dp">
+
+            <RadioButton
+                android:id="@+id/condition2_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition2_1" />
+
+            <RadioButton
+                android:id="@+id/condition2_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition2_2" />
+
+            <RadioButton
+                android:id="@+id/condition2_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition2_3" />
+
+            <RadioButton
+                android:id="@+id/condition2_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition2_4" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/condition3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/condition3"
+            tools:layout_editor_absoluteX="176dp"
+            tools:layout_editor_absoluteY="172dp" />
+
+        <RadioGroup
+            android:id="@+id/group3"
+            android:layout_width="408dp"
+            android:layout_height="47dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="2dp"
+            tools:layout_editor_absoluteY="203dp">
+
+            <RadioButton
+                android:id="@+id/condition3_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition3_1" />
+
+            <RadioButton
+                android:id="@+id/condition3_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition3_2" />
+
+            <RadioButton
+                android:id="@+id/condition3_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition3_3" />
+
+            <RadioButton
+                android:id="@+id/condition3_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition3_4" />
+
+            <RadioButton
+                android:id="@+id/condition3_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition3_5" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/condition4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/condition4"
+            tools:layout_editor_absoluteX="176dp"
+            tools:layout_editor_absoluteY="172dp" />
+
+        <RadioGroup
+            android:id="@+id/group4"
+            android:layout_width="408dp"
+            android:layout_height="47dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="2dp"
+            tools:layout_editor_absoluteY="203dp">
+
+            <RadioButton
+                android:id="@+id/condition4_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition4_1" />
+
+            <RadioButton
+                android:id="@+id/condition4_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition4_2" />
+
+            <RadioButton
+                android:id="@+id/condition4_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition4_3" />
+
+            <RadioButton
+                android:id="@+id/condition4_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/condition4_4" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/condition5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/condition5"
+            tools:layout_editor_absoluteX="176dp"
+            tools:layout_editor_absoluteY="172dp" />
+
+        <Spinner
+            android:id="@+id/group5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"
+            android:popupBackground="@color/teal_500"/>
+
+        <TextView
+            android:id="@+id/condition6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/condition6"
+            tools:layout_editor_absoluteX="176dp"
+            tools:layout_editor_absoluteY="172dp" />
+
+        <Button
+            android:id="@+id/btn_getResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_getResult" />
+
+
+        <TextView
+            android:id="@+id/filteringCondition1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/filteringCondition1"
+            tools:layout_editor_absoluteX="176dp"
+            tools:layout_editor_absoluteY="172dp" />
+
+        <TextView
+            android:id="@+id/filteringCondition2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/filteringCondition2"
+            tools:layout_editor_absoluteX="176dp"
+            tools:layout_editor_absoluteY="172dp" />
+
+        <TextView
+            android:id="@+id/filteringCondition3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/filteringCondition3"
+            tools:layout_editor_absoluteX="176dp"
+            tools:layout_editor_absoluteY="172dp" />
+
+        <TextView
+            android:id="@+id/filteringCondition4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/filteringCondition4"
+            tools:layout_editor_absoluteX="176dp"
+            tools:layout_editor_absoluteY="172dp" />
+
+        <TextView
+            android:id="@+id/filteringCondition5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/filteringCondition5"
+            tools:layout_editor_absoluteX="176dp"
+            tools:layout_editor_absoluteY="172dp" />
+
+        <TextView
+            android:id="@+id/filteringCondition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/filteringCondition"
+            tools:layout_editor_absoluteX="176dp"
+            tools:layout_editor_absoluteY="172dp" />
+
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
