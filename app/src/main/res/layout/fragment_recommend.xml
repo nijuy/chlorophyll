@@ -264,55 +264,6 @@
             android:layout_height="wrap_content"
             android:text="@string/btn_getResult" />
 
-
-        <TextView
-            android:id="@+id/filteringCondition1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/filteringCondition1"
-            tools:layout_editor_absoluteX="176dp"
-            tools:layout_editor_absoluteY="172dp" />
-
-        <TextView
-            android:id="@+id/filteringCondition2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/filteringCondition2"
-            tools:layout_editor_absoluteX="176dp"
-            tools:layout_editor_absoluteY="172dp" />
-
-        <TextView
-            android:id="@+id/filteringCondition3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/filteringCondition3"
-            tools:layout_editor_absoluteX="176dp"
-            tools:layout_editor_absoluteY="172dp" />
-
-        <TextView
-            android:id="@+id/filteringCondition4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/filteringCondition4"
-            tools:layout_editor_absoluteX="176dp"
-            tools:layout_editor_absoluteY="172dp" />
-
-        <TextView
-            android:id="@+id/filteringCondition5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/filteringCondition5"
-            tools:layout_editor_absoluteX="176dp"
-            tools:layout_editor_absoluteY="172dp" />
-
-        <TextView
-            android:id="@+id/filteringCondition6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/filteringCondition6"
-            tools:layout_editor_absoluteX="176dp"
-            tools:layout_editor_absoluteY="172dp" />
-
         <TextView
             android:id="@+id/filteringCondition"
             android:layout_width="match_parent"

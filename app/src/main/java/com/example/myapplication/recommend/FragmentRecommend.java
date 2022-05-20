@@ -29,20 +29,23 @@ public class FragmentRecommend extends Fragment {
         view = inflater.inflate(R.layout.fragment_recommend, container,false);
         Button btnGetResult;
         Button btnBack;
-        TextView result, cond1, cond2, cond3, cond4, cond5, cond6;
+        TextView result;
+        StringBuilder resultText, cond1, cond2, cond3, cond4, cond5, cond6;
         RadioGroup group1, group2, group3, group4, group6;
         Spinner group5;
 
-        btnBack = view.findViewById(R.id.btn_goSearch); //추천 페이지로 가는 버튼
-        btnGetResult = view.findViewById(R.id.btn_getResult); // 조건 설정 다 하고 누르는 버튼
+        btnBack = view.findViewById(R.id.btn_goSearch);
+        btnGetResult = view.findViewById(R.id.btn_getResult);
 
-        result = view.findViewById(R.id.filteringCondition);
-        cond1 = view.findViewById(R.id.filteringCondition1); // 조건 확인용 텍스트뷰라서 나중에 지우는게 좋을듯
-        cond2 = view.findViewById(R.id.filteringCondition2);
-        cond3 = view.findViewById(R.id.filteringCondition3);
-        cond4 = view.findViewById(R.id.filteringCondition4);
-        cond5 = view.findViewById(R.id.filteringCondition5);
-        cond6 = view.findViewById(R.id.filteringCondition6);
+        result = view.findViewById(R.id.filteringCondition); // 최종 조건 확인용
+
+        resultText = new StringBuilder("select * from plants where ");
+        cond1 = new StringBuilder();
+        cond2 = new StringBuilder();
+        cond3 = new StringBuilder();
+        cond4 = new StringBuilder();
+        cond5 = new StringBuilder();
+        cond6 = new StringBuilder();
 
         group1 = view.findViewById(R.id.group1);
         group2 = view.findViewById(R.id.group2);
@@ -54,13 +57,6 @@ public class FragmentRecommend extends Fragment {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.condition5_items, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         group5.setAdapter(adapter);
-
-        cond1.setVisibility(View.GONE); //결과보기 아래 조건 확인용 텍스트뷰를 안 보이게 가림
-        cond2.setVisibility(View.GONE);
-        cond3.setVisibility(View.GONE);
-        cond4.setVisibility(View.GONE);
-        cond5.setVisibility(View.GONE);
-        cond6.setVisibility(View.GONE);
 
         btnBack.setOnClickListener(view -> {
             FragmentManager fm = getParentFragmentManager();
@@ -83,96 +79,101 @@ public class FragmentRecommend extends Fragment {
                group6.getCheckedRadioButtonId() == -1) {
                 Toast.makeText(view.getContext().getApplicationContext(), "선택하지 않은 조건이 있어요!", Toast.LENGTH_SHORT).show();
             } else {
-                result.setText("선택한 조건값 확인 :\n");
-                result.append(cond1.getText());
-                result.append(cond2.getText());
-                result.append(cond3.getText());
-                result.append(cond4.getText());
-                result.append(cond5.getText());
-                result.append(cond6.getText());
+                resultText.setLength(27); //resultText 초기화 (초기값으로 만듦 - 아래에서 조건을 append로 연결중이라 초기화 필요)
+                resultText.append(new StringBuilder().append("use = \"").append(cond1).append("\" "));
+                resultText.append(new StringBuilder().append("and size = \"").append(cond2).append("\" "));
+                resultText.append(new StringBuilder().append("and flowering = \"").append(cond3).append("\" "));
+                resultText.append(new StringBuilder().append("and difficulty = \"").append(cond4).append("\" "));
+                resultText.append(new StringBuilder().append("and water = ").append(cond5).append(" "));
+                resultText.append(new StringBuilder().append("and sunshine = \"").append(cond6).append("\" "));
+                result.setText(resultText);
             }
         });
 
         group1.setOnCheckedChangeListener((radioGroup, i) -> {
+            cond1.setLength(0); // 초기화
             switch (i){
                 case R.id.condition1_1:
-                    cond1.setText(getString(R.string.condition1_1));
+                    cond1.append(getString(R.string.condition1_1));
                     break;
 
                 case R.id.condition1_2:
-                    cond1.setText(getString(R.string.condition1_2));
+                    cond1.append(getString(R.string.condition1_2));
                     break;
 
                 case R.id.condition1_3:
-                    cond1.setText(getString(R.string.condition1_3));
+                    cond1.append(getString(R.string.condition1_3));
                     break;
 
                 case R.id.condition1_4:
-                    cond1.setText("X");
+                    cond1.append("X");
                     break;
             }
         });
 
         group2.setOnCheckedChangeListener(((radioGroup, i) -> {
+            cond2.setLength(0);
             switch (i){
                 case R.id.condition2_1:
-                    cond2.setText(getString(R.string.condition2_1));
+                    cond2.append(getString(R.string.condition2_1));
                     break;
 
                 case R.id.condition2_2:
-                    cond2.setText(getString(R.string.condition2_2));
+                    cond2.append(getString(R.string.condition2_2));
                     break;
 
                 case R.id.condition2_3:
-                    cond2.setText(getString(R.string.condition2_3));
+                    cond2.append(getString(R.string.condition2_3));
                     break;
 
                 case R.id.condition2_4:
-                    cond2.setText("X");
+                    cond2.append("X");
                     break;
             }
         }));
 
         group3.setOnCheckedChangeListener(((radioGroup, i) -> {
+            cond3.setLength(0);
             switch (i){
                 case R.id.condition3_1:
-                    cond3.setText(getString(R.string.condition3_1));
+                    cond3.append(getString(R.string.condition3_1));
                     break;
 
                 case R.id.condition3_2:
-                    cond3.setText(getString(R.string.condition3_2));
+                    cond3.append(getString(R.string.condition3_2));
                     break;
 
                 case R.id.condition3_3:
-                    cond3.setText(getString(R.string.condition3_3));
+                    cond3.append(getString(R.string.condition3_3));
                     break;
 
                 case R.id.condition3_4:
-                    cond3.setText(getString(R.string.condition3_4));
+                    cond3.append(getString(R.string.condition3_4));
                     break;
 
                 case R.id.condition3_5:
-                    cond3.setText("X");
+                    cond3.append("X");
                     break;
             }
         }));
 
         group4.setOnCheckedChangeListener(((radioGroup, i) -> {
+            cond4.setLength(0);
             switch (i){
                 case R.id.condition4_1:
-                    cond4.setText(getString(R.string.condition4_1));
+                    cond4.append(getString(R.string.condition4_1));
                     break;
 
                 case R.id.condition4_2:
-                    cond4.setText(getString(R.string.condition4_2));
+                    cond4.append(getString(R.string.condition4_2));
                     break;
 
                 case R.id.condition4_3:
-                    cond4.setText(getString(R.string.condition4_3));
+                    cond4.append(getString(R.string.condition4_3));
                     break;
 
                 case R.id.condition4_4:
-                    cond4.setText("X");
+                    cond4.append("X");
                     break;
             }
         }));
@@ -180,32 +181,32 @@ public class FragmentRecommend extends Fragment {
         group5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                cond5.setText(Integer.toString(adapterView.getSelectedItemPosition())); // 선택된 항목의 위치
-                //cond5.setText(adapterView.getItemAtPosition(i).toString()); // 선택된 항목의 실제값
+                cond5.setLength(0);
+                cond5.append(adapterView.getSelectedItemPosition());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
 
         group6.setOnCheckedChangeListener(((radioGroup, i) -> {
+            cond6.setLength(0);
             switch (i){
                 case R.id.condition6_1:
-                    cond6.setText(getString(R.string.condition6_1));
+                    cond6.append(getString(R.string.condition6_1));
                     break;
 
                 case R.id.condition6_2:
-                    cond6.setText(getString(R.string.condition6_2));
+                    cond6.append(getString(R.string.condition6_2));
                     break;
 
                 case R.id.condition6_3:
-                    cond6.setText(getString(R.string.condition6_3));
+                    cond6.append(getString(R.string.condition6_3));
                     break;
 
                 case R.id.condition6_4:
-                    cond6.setText("X");
+                    cond6.append("X");
                     break;
             }
         }));
