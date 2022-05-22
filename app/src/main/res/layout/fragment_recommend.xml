@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="-204dp"
-        tools:layout_editor_absoluteY="-143dp">
+        tools:layout_editor_absoluteX="-44dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <Button
             android:id="@+id/btn_goSearch"
@@ -214,8 +214,8 @@
             android:id="@+id/group5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:spinnerMode="dropdown"
-            android:popupBackground="@color/teal_500"/>
+            android:popupBackground="@color/teal_500"
+            android:spinnerMode="dropdown" />
 
         <TextView
             android:id="@+id/condition6"
@@ -281,8 +281,6 @@
             tools:layout_editor_absoluteY="172dp" />
 
     </LinearLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

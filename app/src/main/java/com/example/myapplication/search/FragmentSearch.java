@@ -15,15 +15,17 @@ import com.example.myapplication.R;
 import com.example.myapplication.recommend.FragmentRecommend;
 
 public class FragmentSearch extends Fragment {
-    private View view;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_search, container,false);
+        View view1 = inflater.inflate(R.layout.fragment_search, container, false);
         FragmentRecommend rec = new FragmentRecommend();
+        FragmentSearchPlant searchPlant = new FragmentSearchPlant();
 
-        Button btnRecommend = view.findViewById(R.id.button); //추천 페이지로 가는 버튼 초기화
+        Button btnRecommend = view1.findViewById(R.id.button); //추천 페이지로 가는 버튼 초기화
+        Button btnSearch = view1.findViewById(R.id.search_button);
+
         btnRecommend.setOnClickListener(view -> {
             FragmentTransaction ft = getChildFragmentManager().beginTransaction();
             ft.replace(R.id.fragment_search, rec);
@@ -34,6 +36,13 @@ public class FragmentSearch extends Fragment {
             //위처럼 한 줄로 해도 되는데 애니메이션 넣고 싶어서 ft 선언해서 함 (나중에 바꿀 수 있나 찾아보기)
         });
 
-        return view;
+        btnSearch.setOnClickListener(view -> {
+            FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+            ft.replace(R.id.fragment_search, searchPlant);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+            ft.commit();
+        });
+
+        return view1;
     }
 }
