@@ -77,7 +77,7 @@ public class FragmentRecommend extends Fragment {
                 resultText.append(new StringBuilder().append("and size = \"").append(cond2).append("\" "));
                 resultText.append(new StringBuilder().append("and flowering = \"").append(cond3).append("\" "));
                 resultText.append(new StringBuilder().append("and difficulty = \"").append(cond4).append("\" "));
-                resultText.append(new StringBuilder().append("and water = ").append(cond5).append(" "));
+                //resultText.append(new StringBuilder().append("and water = ").append(cond5).append(" "));
                 resultText.append(new StringBuilder().append("and sunshine = \"").append(cond6).append("\" "));
 
                 FragmentResult resultPage = new FragmentResult();

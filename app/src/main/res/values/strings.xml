@@ -12,7 +12,7 @@
 
     <string name="condition1">식물을 키우는 용도는 무엇인가요?</string>
     <string name="condition1_1">공기정화</string>
-    <string name="condition1_2">인테리어</string>
+    <string name="condition1_2">관상용</string>
     <string name="condition1_3">식용</string>
     <string name="condition1_4">선택 안 함</string>
 
