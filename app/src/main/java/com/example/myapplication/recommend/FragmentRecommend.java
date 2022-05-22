@@ -27,17 +27,14 @@ public class FragmentRecommend extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_recommend, container,false);
-        Button btnGetResult;
-        Button btnBack;
-        TextView result;
         StringBuilder resultText, cond1, cond2, cond3, cond4, cond5, cond6;
         RadioGroup group1, group2, group3, group4, group6;
+        Button btnGetResult;
+        Button btnBack;
         Spinner group5;
 
         btnBack = view.findViewById(R.id.btn_goSearch);
         btnGetResult = view.findViewById(R.id.btn_getResult);
-
-        result = view.findViewById(R.id.filteringCondition); // 최종 조건 확인용
 
         resultText = new StringBuilder("select * from plants where ");
         cond1 = new StringBuilder();
@@ -46,7 +43,7 @@ public class FragmentRecommend extends Fragment {
         cond4 = new StringBuilder();
         cond5 = new StringBuilder();
         cond6 = new StringBuilder();
-
+        
         group1 = view.findViewById(R.id.group1);
         group2 = view.findViewById(R.id.group2);
         group3 = view.findViewById(R.id.group3);
@@ -61,24 +58,20 @@ public class FragmentRecommend extends Fragment {
         btnBack.setOnClickListener(view -> {
             FragmentManager fm = getParentFragmentManager();
             FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-
-            //라디오버튼 선택 초기화하기
-            group1.clearCheck(); group2.clearCheck(); group3.clearCheck(); group4.clearCheck(); group6.clearCheck();
+            
+            group1.clearCheck(); group2.clearCheck(); group3.clearCheck(); group4.clearCheck(); group6.clearCheck(); //라디오버튼 선택 초기화하기
             
             ft.remove(FragmentRecommend.this).commit(); // 지금 띄운 추천 페이지 (this) 지우기
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE); // 애니메이션
             fm.popBackStack(); // 검색 -> 추천으로 호출했으니까 호출 스택에서 더 위에 있는 추천 프래그먼트를 pop 하는거 같음
         });
 
         btnGetResult.setOnClickListener(view -> {
-            if(group1.getCheckedRadioButtonId() == -1 |
-               group2.getCheckedRadioButtonId() == -1 |
-               group3.getCheckedRadioButtonId() == -1 |
-               group4.getCheckedRadioButtonId() == -1 |
-               group5.getSelectedItemPosition() == 0 |
-               group6.getCheckedRadioButtonId() == -1) {
+            if(group1.getCheckedRadioButtonId() == -1 | group2.getCheckedRadioButtonId() == -1 | group3.getCheckedRadioButtonId() == -1 |
+               group4.getCheckedRadioButtonId() == -1 | group5.getSelectedItemPosition() == 0 | group6.getCheckedRadioButtonId() == -1)
                 Toast.makeText(view.getContext().getApplicationContext(), "선택하지 않은 조건이 있어요!", Toast.LENGTH_SHORT).show();
-            } else {
+
+            else {
                 resultText.setLength(27); //resultText 초기화 (초기값으로 만듦 - 아래에서 조건을 append로 연결중이라 초기화 필요)
                 resultText.append(new StringBuilder().append("use = \"").append(cond1).append("\" "));
                 resultText.append(new StringBuilder().append("and size = \"").append(cond2).append("\" "));
@@ -86,7 +79,20 @@ public class FragmentRecommend extends Fragment {
                 resultText.append(new StringBuilder().append("and difficulty = \"").append(cond4).append("\" "));
                 resultText.append(new StringBuilder().append("and water = ").append(cond5).append(" "));
                 resultText.append(new StringBuilder().append("and sunshine = \"").append(cond6).append("\" "));
-                result.setText(resultText);
+
+                FragmentResult resultPage = new FragmentResult();
+                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+
+                group1.clearCheck(); group2.clearCheck(); group3.clearCheck(); group4.clearCheck(); group6.clearCheck();
+                group5.setSelection(0);
+
+                Bundle resultQuery = new Bundle();
+                resultQuery.putString("bundleKey", resultText.toString());
+                getParentFragmentManager().setFragmentResult("rk", resultQuery);
+
+                ft.remove(FragmentRecommend.this);
+                ft.replace(R.id.fragment_search, resultPage);
+                ft.commit();
             }
         });
 
