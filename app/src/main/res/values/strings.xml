@@ -45,13 +45,11 @@
     </string-array>
 
     <string name="condition6">햇빛</string>
+    <string name="condition6_1">음지</string>
+    <string name="condition6_2">반음지</string>
+    <string name="condition6_3">양지</string>
+    <string name="condition6_4">선택 안 함</string>
 
     <string name="btn_getResult">결과 보기</string>
-    <string name="filteringCondition1">조건1</string>
-    <string name="filteringCondition2">조건2</string>
-    <string name="filteringCondition3">조건3</string>
-    <string name="filteringCondition4">조건4</string>
-    <string name="filteringCondition5">조건5</string>
-    <string name="filteringCondition6">조건6</string>
     <string name="filteringCondition">최종조건</string>
 </resources>
