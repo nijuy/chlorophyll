@@ -37,6 +37,3 @@ public class PlantAdapter extends ArrayAdapter<Plant>{
         }
     }
 }
-
-}
-

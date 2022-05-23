@@ -46,7 +46,7 @@
         android:textColor="@color/black"
         android:text="애칭" />
 
-    <TextView
+    <!--<TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/plant_name"
@@ -54,7 +54,7 @@
         android:layout_marginLeft="17dp"
         android:textSize="16dp"
         android:textColor="@color/black"
-        android:text="키우기 시작한 날짜" />
+        android:text="키우기 시작한 날짜" />-->
 
 
     <EditText
@@ -72,7 +72,7 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
-        android:id="@+id/plant_name"
+        android:id="@+id/plant_nickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/plant_species"
@@ -85,7 +85,31 @@
         android:inputType="textPersonName"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <EditText
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/plant_nickname">
+
+        <Button
+            android:id="@+id/doneBtn"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="저장" />
+
+        <Button
+            android:id="@+id/cancelBtn"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="취소" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <!--<EditText
         android:id="@+id/plant_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -97,7 +121,7 @@
         android:ems="10"
         android:hint="언제부터 키우셨나요?"
         android:inputType="textPersonName"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck" />-->
 
 
 </RelativeLayout>
