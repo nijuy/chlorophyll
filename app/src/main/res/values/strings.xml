@@ -36,16 +36,6 @@
     <string name="condition4_3">고급</string>
     <string name="condition4_4">선택 안 함</string>
 
-    <string name="condition5">물주기</string>
-    <string-array name="condition5_items">
-        <item>물주기</item>
-        <item>항상 흙이 물에 잠기도록</item>
-        <item>흙이 물에 잠기지 않는 촉촉한 상태를 유지</item>
-        <item>흙의 표면이 말랐을 때</item>
-        <item>화분 속 흙이 모두 말랐을 때</item>
-        <item>선택 안 함</item>
-    </string-array>
-
     <string name="condition6">햇빛</string>
     <string name="condition6_1">음지</string>
     <string name="condition6_2">반음지</string>

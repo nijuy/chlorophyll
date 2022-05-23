@@ -204,21 +204,6 @@
         </RadioGroup>
 
         <TextView
-            android:id="@+id/condition5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/condition5"
-            tools:layout_editor_absoluteX="176dp"
-            tools:layout_editor_absoluteY="172dp" />
-
-        <Spinner
-            android:id="@+id/group5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:popupBackground="@color/teal_500"
-            android:spinnerMode="dropdown" />
-
-        <TextView
             android:id="@+id/condition6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

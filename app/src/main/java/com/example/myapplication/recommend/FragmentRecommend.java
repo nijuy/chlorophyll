@@ -27,11 +27,10 @@ public class FragmentRecommend extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_recommend, container,false);
-        StringBuilder resultText, cond1, cond2, cond3, cond4, cond5, cond6;
+        StringBuilder resultText, cond1, cond2, cond3, cond4, cond6;
         RadioGroup group1, group2, group3, group4, group6;
         Button btnGetResult;
         Button btnBack;
-        Spinner group5;
 
         btnBack = view.findViewById(R.id.btn_goSearch);
         btnGetResult = view.findViewById(R.id.btn_getResult);
@@ -41,19 +40,13 @@ public class FragmentRecommend extends Fragment {
         cond2 = new StringBuilder();
         cond3 = new StringBuilder();
         cond4 = new StringBuilder();
-        cond5 = new StringBuilder();
         cond6 = new StringBuilder();
         
         group1 = view.findViewById(R.id.group1);
         group2 = view.findViewById(R.id.group2);
         group3 = view.findViewById(R.id.group3);
         group4 = view.findViewById(R.id.group4);
-        group5 = view.findViewById(R.id.group5); //스피너
         group6 = view.findViewById(R.id.group6);
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.condition5_items, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        group5.setAdapter(adapter);
 
         btnBack.setOnClickListener(view -> {
             FragmentManager fm = getParentFragmentManager();
@@ -68,7 +61,7 @@ public class FragmentRecommend extends Fragment {
 
         btnGetResult.setOnClickListener(view -> {
             if(group1.getCheckedRadioButtonId() == -1 | group2.getCheckedRadioButtonId() == -1 | group3.getCheckedRadioButtonId() == -1 |
-               group4.getCheckedRadioButtonId() == -1 | group5.getSelectedItemPosition() == 0 | group6.getCheckedRadioButtonId() == -1) {
+               group4.getCheckedRadioButtonId() == -1 | group6.getCheckedRadioButtonId() == -1)
                 Toast.makeText(view.getContext().getApplicationContext(), "선택하지 않은 조건이 있어요!", Toast.LENGTH_SHORT).show();
 
             else {
@@ -77,14 +70,12 @@ public class FragmentRecommend extends Fragment {
                 resultText.append(new StringBuilder().append("and size = \"").append(cond2).append("\" "));
                 resultText.append(new StringBuilder().append("and flowering = \"").append(cond3).append("\" "));
                 resultText.append(new StringBuilder().append("and difficulty = \"").append(cond4).append("\" "));
-                //resultText.append(new StringBuilder().append("and water = ").append(cond5).append(" "));
                 resultText.append(new StringBuilder().append("and sunshine = \"").append(cond6).append("\" "));
 
                 FragmentResult resultPage = new FragmentResult();
                 FragmentTransaction ft = getParentFragmentManager().beginTransaction();
 
                 group1.clearCheck(); group2.clearCheck(); group3.clearCheck(); group4.clearCheck(); group6.clearCheck();
-                group5.setSelection(0);
 
                 Bundle resultQuery = new Bundle();
                 resultQuery.putString("bundleKey", resultText.toString());
@@ -183,18 +174,6 @@ public class FragmentRecommend extends Fragment {
                     break;
             }
         }));
-
-        group5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                cond5.setLength(0);
-                cond5.append(adapterView.getSelectedItemPosition());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
 
         group6.setOnCheckedChangeListener(((radioGroup, i) -> {
             cond6.setLength(0);
