@@ -16,9 +16,10 @@
 
         <Button
             android:id="@+id/btn_goSearch"
-            android:layout_width="wrap_content"
+            android:layout_width="46dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="72dp"
+            android:layout_marginTop="62dp"
+            android:background="#00ff0000"
             android:text="@string/btn_goSearch"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -264,15 +265,6 @@
             android:layout_height="wrap_content"
             android:text="@string/btn_getResult" />
 
-        <TextView
-            android:id="@+id/filteringCondition"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/filteringCondition"
-            tools:layout_editor_absoluteX="176dp"
-            tools:layout_editor_absoluteY="172dp" />
-
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

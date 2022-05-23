@@ -21,6 +21,7 @@ public class PlantAdapter extends ArrayAdapter<Plant>{
 
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         Plant plant = (Plant) getItem(position);
+      
         if (convertView == null) {
             View itemView = LayoutInflater.from(getContext()).inflate(R.layout.plant_item, parent, false);
             TextView textView = itemView.findViewById(R.id.plant_name_search);
@@ -36,3 +37,6 @@ public class PlantAdapter extends ArrayAdapter<Plant>{
         }
     }
 }
+
+}
+

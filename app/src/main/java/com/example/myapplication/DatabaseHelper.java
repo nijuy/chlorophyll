@@ -22,11 +22,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static String databasePath = ""; // 데이터베이스 경로
     private static String databaseName = "plantDB.db"; // 데이터베이스 이름
 
+
     private final Context mContext;
     private SQLiteDatabase mDatabase;
 
     public DatabaseHelper(Context context){
         super(context, databaseName, null, 1);
+
 
         databasePath = context.getApplicationInfo().dataDir + "/databases/";
 
@@ -35,7 +37,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // 데이터베이스 파일 열기
     public boolean OpenDatabaseFile() throws SQLException {
-
         if(!CheckDatabaseFileExist()){
             CreateDatabase();
         }
@@ -94,16 +95,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     // 테이블 정보 가져오기
-    public ArrayList<Plant> getTableData() {
+    public ArrayList<Plant> getTableData(String sql) {
 
         try{
             // 테이블 정보를 저장할 List
             ArrayList<Plant> mList = new ArrayList<>();
-
-            // 쿼리
-            // 테이블 이름
-            String tableName = "plants";
-            String sql = "SELECT * FROM " + tableName;
 
             // 테이블 데이터를 읽기 위한 Cursor
             Cursor mCursor = mDatabase.rawQuery(sql, null);
@@ -113,7 +109,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 // 다음 Row로 이동
                 while(mCursor.moveToNext()){
-
                     // 해당 Row 저장
                     Plant plant = new Plant();
 
@@ -164,3 +159,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 }
+

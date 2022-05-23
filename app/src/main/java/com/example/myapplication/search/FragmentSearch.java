@@ -22,7 +22,6 @@ public class FragmentSearch extends Fragment {
         View view1 = inflater.inflate(R.layout.fragment_search, container, false);
         FragmentRecommend rec = new FragmentRecommend();
         FragmentSearchPlant searchPlant = new FragmentSearchPlant();
-
         Button btnRecommend = view1.findViewById(R.id.button); //추천 페이지로 가는 버튼 초기화
         Button btnSearch = view1.findViewById(R.id.search_button);
 
