@@ -58,9 +58,9 @@ public class FragmentRecommend extends Fragment {
         btnBack.setOnClickListener(view -> {
             FragmentManager fm = getParentFragmentManager();
             FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-            
+          
             group1.clearCheck(); group2.clearCheck(); group3.clearCheck(); group4.clearCheck(); group6.clearCheck(); //라디오버튼 선택 초기화하기
-            
+
             ft.remove(FragmentRecommend.this).commit(); // 지금 띄운 추천 페이지 (this) 지우기
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE); // 애니메이션
             fm.popBackStack(); // 검색 -> 추천으로 호출했으니까 호출 스택에서 더 위에 있는 추천 프래그먼트를 pop 하는거 같음
@@ -68,7 +68,7 @@ public class FragmentRecommend extends Fragment {
 
         btnGetResult.setOnClickListener(view -> {
             if(group1.getCheckedRadioButtonId() == -1 | group2.getCheckedRadioButtonId() == -1 | group3.getCheckedRadioButtonId() == -1 |
-               group4.getCheckedRadioButtonId() == -1 | group5.getSelectedItemPosition() == 0 | group6.getCheckedRadioButtonId() == -1)
+               group4.getCheckedRadioButtonId() == -1 | group5.getSelectedItemPosition() == 0 | group6.getCheckedRadioButtonId() == -1) {
                 Toast.makeText(view.getContext().getApplicationContext(), "선택하지 않은 조건이 있어요!", Toast.LENGTH_SHORT).show();
 
             else {
@@ -219,6 +219,4 @@ public class FragmentRecommend extends Fragment {
 
         return view;
     }
-
-
 }

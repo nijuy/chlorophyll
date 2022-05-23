@@ -16,15 +16,22 @@ import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    protected static String TAG = "DatabaseHelper"; // Error TAG
+    // Error TAG
+    protected static String TAG = "DatabaseHelper";
+
     private static String databasePath = ""; // 데이터베이스 경로
     private static String databaseName = "plantDB.db"; // 데이터베이스 이름
+
+
     private final Context mContext;
     private SQLiteDatabase mDatabase;
 
     public DatabaseHelper(Context context){
         super(context, databaseName, null, 1);
+
+
         databasePath = context.getApplicationInfo().dataDir + "/databases/";
+
         this.mContext = context;
     }
 
@@ -89,6 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // 테이블 정보 가져오기
     public ArrayList<Plant> getTableData(String sql) {
+
         try{
             // 테이블 정보를 저장할 List
             ArrayList<Plant> mList = new ArrayList<>();
@@ -98,6 +106,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             // 테이블 끝까지 읽기
             if (mCursor != null){
+
                 // 다음 Row로 이동
                 while(mCursor.moveToNext()){
                     // 해당 Row 저장
@@ -150,3 +159,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 }
+
