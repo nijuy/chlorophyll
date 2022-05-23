@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidTest/chlorophyll/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.1" />
+        <entry key="..\:/AndroidTest/chlorophyll/app/src/main/res/layout/fragment_add_plant.xml" value="0.15833333333333333" />
+        <entry key="..\:/AndroidTest/chlorophyll/app/src/main/res/layout/fragment_plan.xml" value="0.26541554959785524" />
+        <entry key="..\:/AndroidTest/chlorophyll/app/src/main/res/layout/fragment_recommend.xml" value="0.15833333333333333" />
+        <entry key="..\:/AndroidTest/chlorophyll/app/src/main/res/layout/item_todo.xml" value="0.536" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyApplication/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.147" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/et_link_back.xml" value="0.1095" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.14" />
