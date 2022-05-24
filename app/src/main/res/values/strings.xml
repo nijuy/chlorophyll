@@ -4,7 +4,6 @@
     <string name="title_home">Home</string>
     <string name="title_plan">Plan</string>
     <string name="title_add_plant">AddPlant</string>
-    <string name="searchResult">검색 결과</string>
     <string name="plantName">식물 이름</string>
     <string name="plantTip">식물 팁</string>
     <string name="add_to_my_plant">내 식물로 등록하기</string>
