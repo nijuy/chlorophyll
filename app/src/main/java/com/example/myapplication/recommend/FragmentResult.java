@@ -62,7 +62,7 @@ public class FragmentResult extends Fragment {
 
 
         plantList = getFilteredPlant(query);
-        //showResult();
+        showResult();
         return view;
     }
 
@@ -71,7 +71,7 @@ public class FragmentResult extends Fragment {
             return databaseHelper.getTableData(sql);
         } catch (NullPointerException e){
             Log.e("","표시할 결과가 없음");
-            return new ArrayList<Plant>();
+            return new ArrayList<>();
         }
     }
 

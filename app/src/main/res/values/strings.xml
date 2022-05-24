@@ -13,7 +13,7 @@
     <string name="recommendText">내 상황에 딱 맞는 식물을 추천 받아보세요!\n</string>
 
     <string name="condition1">식물을 키우는 용도는 무엇인가요?</string>
-    <string name="condition1_1">공기정화</string>
+    <string name="condition1_1">공기정화용</string>
     <string name="condition1_2">관상용</string>
     <string name="condition1_3">식용</string>
     <string name="condition1_4">선택 안 함</string>
