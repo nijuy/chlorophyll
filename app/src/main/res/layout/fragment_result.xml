@@ -42,9 +42,11 @@
         android:layout_height="wrap_content"
         android:text="@string/queryText" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id = "@+id/resultRecommend"
+    <ListView
+        android:id="@+id/result_recommendList"
+        android:background="@drawable/listview_search_background"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:dividerHeight="2dp"/>
 
 </LinearLayout>
