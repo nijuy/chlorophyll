@@ -19,6 +19,7 @@
             android:id="@+id/btn_goSearch"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginTop="10dp"
             android:background="#00ff0000"
             android:text="@string/btn_goSearch"
             app:layout_constraintEnd_toEndOf="parent"
@@ -27,14 +28,25 @@
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/plant_search_view"
+            android:background="@drawable/btn_search_round"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
             app:queryHint="식물 이름을 입력하세요" />
     </LinearLayout>
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/searchResult"
+        android:textSize="18sp"
+        android:textColor="#808080" />
     <ListView
         android:id="@+id/plant_listView"
+        android:background="@drawable/listview_search_background"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:dividerHeight="2dp"/>
 
 </LinearLayout>
