@@ -69,9 +69,7 @@ public class FragmentResult extends Fragment {
 
     public ArrayList<Plant> getFilteredPlant(String sql){
         try {
-            //ArrayList<Plant> temp = databaseHelper.getTableData("select * from plants");
-            ArrayList<Plant> temp = databaseHelper.getTableData(sql);
-            return temp;
+            return databaseHelper.getTableData(sql);
         } catch (NullPointerException e){
             Log.e("","표시할 결과가 없음");
             return new ArrayList<>();

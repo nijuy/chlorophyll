@@ -210,9 +210,6 @@ public class FragmentRecommend extends Fragment {
             db.OpenDatabaseFile();
             resultList = db.getTableData(resultText.toString());
 
-            if(resultList != null)
-                Log.e("","temp 배열 null 아님");
-
         } catch (Exception e){
             Log.e("","예외 발생");
         }
