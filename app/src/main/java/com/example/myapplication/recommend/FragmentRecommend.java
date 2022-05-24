@@ -4,13 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -125,7 +121,7 @@ public class FragmentRecommend extends Fragment {
                     break;
 
                 case R.id.condition2_4:
-                    cond2.append("= \"").append("is not NULL").append("\"");
+                    cond2.append("is not NULL").append("\"");
                     break;
             }
         }));
