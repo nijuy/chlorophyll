@@ -28,6 +28,7 @@
         android:layout_below="@id/plant_image">
 
         <Button
+            android:id="@+id/diaryBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -36,6 +37,7 @@
             android:text="DIARY" />
 
         <Button
+            android:id="@+id/detailBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
