@@ -5,8 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,10 +15,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.myapplication.Plant;
-import com.example.myapplication.R;
 import com.example.myapplication.DatabaseHelper;
-
+import com.example.myapplication.Plant;
+import com.example.myapplication.PlantAdapter;
+import com.example.myapplication.R;
 import java.util.ArrayList;
 
 public class FragmentResult extends Fragment {
@@ -27,18 +27,10 @@ public class FragmentResult extends Fragment {
     private DatabaseHelper databaseHelper;
     private ArrayList<Plant> plantList;
 
-    FragmentResult(){
-        try {
-            databaseHelper = new DatabaseHelper(getActivity().getApplicationContext());
-            databaseHelper.OpenDatabaseFile();
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        connectDB();
         view = inflater.inflate(R.layout.fragment_result, container,false);
         ImageButton btnBack;
         TextView queryView;
@@ -61,15 +53,25 @@ public class FragmentResult extends Fragment {
             queryView.setText(query);
         });
 
-
         plantList = getFilteredPlant(query);
         showResult();
         return view;
     }
 
+    public void connectDB(){
+        try {
+            databaseHelper = new DatabaseHelper(getActivity().getApplicationContext());
+            databaseHelper.OpenDatabaseFile();
+        } catch (Exception e){
+            Log.e("","예외 발생");
+        }
+    }
+
     public ArrayList<Plant> getFilteredPlant(String sql){
         try {
-            return databaseHelper.getTableData(sql);
+            //ArrayList<Plant> temp = databaseHelper.getTableData("select * from plants");
+            ArrayList<Plant> temp = databaseHelper.getTableData(sql);
+            return temp;
         } catch (NullPointerException e){
             Log.e("","표시할 결과가 없음");
             return new ArrayList<>();
@@ -77,5 +79,9 @@ public class FragmentResult extends Fragment {
     }
 
     public void showResult(){
+        ListView listView = view.findViewById(R.id.result_recommendList);
+
+        PlantAdapter adapter = new PlantAdapter(getActivity().getApplicationContext(),0,plantList);
+        listView.setAdapter(adapter);
     }
 }
