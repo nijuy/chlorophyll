@@ -67,11 +67,11 @@ public class FragmentRecommend extends Fragment {
 
             else {
                 resultText.setLength(27); //resultText 초기화 (초기값으로 만듦 - 아래에서 조건을 append로 연결중이라 초기화 필요)
-                resultText.append(new StringBuilder().append("use = \"").append(cond1).append("\" "));
-                resultText.append(new StringBuilder().append("and size = \"").append(cond2).append("\" "));
-                resultText.append(new StringBuilder().append("and flowering = \"").append(cond3).append("\" "));
-                resultText.append(new StringBuilder().append("and difficulty = \"").append(cond4).append("\" "));
-                resultText.append(new StringBuilder().append("and sunshine = \"").append(cond6).append("\" "));
+                resultText.append(new StringBuilder().append("use ").append(cond1).append(" "));
+                resultText.append(new StringBuilder().append("and size ").append(cond2).append(" "));
+                resultText.append(new StringBuilder().append("and flowering ").append(cond3).append(" "));
+                resultText.append(new StringBuilder().append("and difficulty ").append(cond4).append(" "));
+                resultText.append(new StringBuilder().append("and sunshine ").append(cond6).append(""));
 
                 FragmentResult resultPage = new FragmentResult();
                 FragmentTransaction ft = getParentFragmentManager().beginTransaction();
@@ -92,19 +92,19 @@ public class FragmentRecommend extends Fragment {
             cond1.setLength(0); // 초기화
             switch (i){
                 case R.id.condition1_1:
-                    cond1.append(getString(R.string.condition1_1));
+                    cond1.append("= \"").append(getString(R.string.condition1_1)).append("\"");
                     break;
 
                 case R.id.condition1_2:
-                    cond1.append(getString(R.string.condition1_2));
+                    cond1.append("= \"").append(getString(R.string.condition1_2)).append("\"");
                     break;
 
                 case R.id.condition1_3:
-                    cond1.append(getString(R.string.condition1_3));
+                    cond1.append("= \"").append(getString(R.string.condition1_3)).append("\"");
                     break;
 
                 case R.id.condition1_4:
-                    cond1.append("X");
+                    cond1.append("is not NULL");
                     break;
             }
         });
@@ -113,19 +113,19 @@ public class FragmentRecommend extends Fragment {
             cond2.setLength(0);
             switch (i){
                 case R.id.condition2_1:
-                    cond2.append(getString(R.string.condition2_1));
+                    cond2.append("= \"").append(getString(R.string.condition2_1)).append("\"");
                     break;
 
                 case R.id.condition2_2:
-                    cond2.append(getString(R.string.condition2_2));
+                    cond2.append("= \"").append(getString(R.string.condition2_2)).append("\"");
                     break;
 
                 case R.id.condition2_3:
-                    cond2.append(getString(R.string.condition2_3));
+                    cond2.append("= \"").append(getString(R.string.condition2_3)).append("\"");
                     break;
 
                 case R.id.condition2_4:
-                    cond2.append("X");
+                    cond2.append("= \"").append("is not NULL").append("\"");
                     break;
             }
         }));
@@ -134,23 +134,23 @@ public class FragmentRecommend extends Fragment {
             cond3.setLength(0);
             switch (i){
                 case R.id.condition3_1:
-                    cond3.append(getString(R.string.condition3_1));
+                    cond3.append("= \"").append(getString(R.string.condition3_1)).append("\"");
                     break;
 
                 case R.id.condition3_2:
-                    cond3.append(getString(R.string.condition3_2));
+                    cond3.append("= \"").append(getString(R.string.condition3_2)).append("\"");
                     break;
 
                 case R.id.condition3_3:
-                    cond3.append(getString(R.string.condition3_3));
+                    cond3.append("= \"").append(getString(R.string.condition3_3)).append("\"");
                     break;
 
                 case R.id.condition3_4:
-                    cond3.append(getString(R.string.condition3_4));
+                    cond3.append("= \"").append(getString(R.string.condition3_4)).append("\"");
                     break;
 
                 case R.id.condition3_5:
-                    cond3.append("X");
+                    cond3.append("is not NULL");
                     break;
             }
         }));
@@ -159,19 +159,19 @@ public class FragmentRecommend extends Fragment {
             cond4.setLength(0);
             switch (i){
                 case R.id.condition4_1:
-                    cond4.append(getString(R.string.condition4_1));
+                    cond4.append("= \"").append(getString(R.string.condition4_1)).append("\"");
                     break;
 
                 case R.id.condition4_2:
-                    cond4.append(getString(R.string.condition4_2));
+                    cond4.append("= \"").append(getString(R.string.condition4_2)).append("\"");
                     break;
 
                 case R.id.condition4_3:
-                    cond4.append(getString(R.string.condition4_3));
+                    cond4.append("= \"").append(getString(R.string.condition4_3)).append("\"");
                     break;
 
                 case R.id.condition4_4:
-                    cond4.append("X");
+                    cond4.append("is not NULL");
                     break;
             }
         }));
@@ -180,19 +180,19 @@ public class FragmentRecommend extends Fragment {
             cond6.setLength(0);
             switch (i){
                 case R.id.condition6_1:
-                    cond6.append(getString(R.string.condition6_1));
+                    cond6.append("= \"").append(getString(R.string.condition6_1)).append("\"");
                     break;
 
                 case R.id.condition6_2:
-                    cond6.append(getString(R.string.condition6_2));
+                    cond6.append("= \"").append(getString(R.string.condition6_2)).append("\"");
                     break;
 
                 case R.id.condition6_3:
-                    cond6.append(getString(R.string.condition6_3));
+                    cond6.append("= \"").append(getString(R.string.condition6_3)).append("\"");
                     break;
 
                 case R.id.condition6_4:
-                    cond6.append("X");
+                    cond6.append("is not NULL");
                     break;
             }
         }));
