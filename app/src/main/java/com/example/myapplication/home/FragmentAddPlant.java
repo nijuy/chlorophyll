@@ -22,10 +22,10 @@ import java.util.Date;
 
 public class FragmentAddPlant extends Fragment {
 
-    SharedPreferences pref;
-    SharedPreferences.Editor editor;
+    SharedPreferences listPref, pref;
+    SharedPreferences.Editor listEditor, editor;
 
-    String species, nickname;
+    String species, nickname, list;
 
     View rootView = null;
     EditText speciesEdit, nicknameEdit;
@@ -38,18 +38,22 @@ public class FragmentAddPlant extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_add_plant, container, false);
-        imageView = (ImageView)rootView.findViewById(R.id.addPhoto_image);
+        imageView = (ImageView) rootView.findViewById(R.id.addPhoto_image);
         //imageView.setImageResource(R.drawable.ic_baseline_camera_alt_24);
         speciesEdit = rootView.findViewById(R.id.plant_species);
         nicknameEdit = rootView.findViewById(R.id.plant_nickname);
-        photoBtn = (Button)rootView.findViewById(R.id.addPhoto_btn_upload);
-        doneBtn = (Button)rootView.findViewById(R.id.doneBtn);
-        cancelBtn = (Button)rootView.findViewById(R.id.cancelBtn);
+        photoBtn = (Button) rootView.findViewById(R.id.addPhoto_btn_upload);
+        doneBtn = (Button) rootView.findViewById(R.id.doneBtn);
+        cancelBtn = (Button) rootView.findViewById(R.id.cancelBtn);
 
         fragmentHome = new FragmentHome();
 
         Context context = getActivity();
         //context = container.getContext();
+
+        // 추가
+        listPref = context.getSharedPreferences("listPref", Context.MODE_PRIVATE);
+        listEditor = listPref.edit();
 
         String fileName = getTime();
         pref = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
@@ -58,22 +62,26 @@ public class FragmentAddPlant extends Fragment {
         doneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*species = speciesEdit.getText().toString();
+                species = speciesEdit.getText().toString();
                 editor.putString("species", species);
 
                 nickname = nicknameEdit.getText().toString();
                 editor.putString("nickname", nickname);
 
-                editor.apply(); // 저장*/
+                editor.apply(); // 저장
 
-                ((MainActivity)getActivity()).replaceFragment(fragmentHome);
+                list = listPref.getString("title", "");
+                listEditor.putString("title", list + "/" + fileName);
+                listEditor.apply();
+
+                ((MainActivity) getActivity()).replaceFragment(fragmentHome);
             }
         });
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).replaceFragment(fragmentHome);
+                ((MainActivity) getActivity()).replaceFragment(fragmentHome);
             }
         });
 
