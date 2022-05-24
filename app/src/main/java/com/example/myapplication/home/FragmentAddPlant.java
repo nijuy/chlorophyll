@@ -41,6 +41,7 @@ public class FragmentAddPlant extends Fragment {
         imageView = (ImageView) rootView.findViewById(R.id.addPhoto_image);
         //imageView.setImageResource(R.drawable.ic_baseline_camera_alt_24);
         speciesEdit = rootView.findViewById(R.id.plant_species);
+        speciesEdit.setText(species);
         nicknameEdit = rootView.findViewById(R.id.plant_nickname);
         photoBtn = (Button) rootView.findViewById(R.id.addPhoto_btn_upload);
         doneBtn = (Button) rootView.findViewById(R.id.doneBtn);
@@ -94,5 +95,9 @@ public class FragmentAddPlant extends Fragment {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_hh_mm_ss");
         String getTime = dateFormat.format(date);
         return getTime;
+    }
+
+    public void setSpecies(String species){
+        this.species = species;
     }
 }

@@ -5,20 +5,50 @@
     android:layout_height="match_parent"
     tools:context=".DetailActivity">
 
-    <TextView
-        android:id="@+id/plant_detail_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:text="@string/plant_name"
-        android:textColor="@color/purple_200"
-        android:textSize="50sp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/plant_detail_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/plant_detail_image"
+                android:layout_width="match_parent"
+                android:layout_height="360dp"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/plant_detail_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@string/plantName"
+                android:textColor="@color/purple_200"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginStart="5dp"
+                android:text="@string/plantTip"
+                android:textColor="@color/purple_200"
+                android:textSize="20sp"/>
+
+            <Button
+                android:id="@+id/button_add_to_my_plant"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/btn_search_round"
+                android:backgroundTint="#d3d3d3"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/add_to_my_plant"/>
+
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>
