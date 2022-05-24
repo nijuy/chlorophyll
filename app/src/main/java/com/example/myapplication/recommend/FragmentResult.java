@@ -1,7 +1,7 @@
 package com.example.myapplication.recommend;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-//import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Plant;
 import com.example.myapplication.R;
@@ -27,6 +24,7 @@ public class FragmentResult extends Fragment {
     private View view;
     private String query;
     private DatabaseHelper databaseHelper;
+    private ArrayList<Plant> plantList;
 
     FragmentResult(){
         try {
@@ -41,14 +39,11 @@ public class FragmentResult extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_result, container,false);
-        ArrayList<Plant> plantList;
         Button btnBack;
         TextView queryView;
-        RecyclerView recyclerView;
 
         btnBack = view.findViewById(R.id.btn_goRecommend);
         queryView = view.findViewById(R.id.queryText);
-        recyclerView = view.findViewById(R.id.resultRecommend);
 
         btnBack.setOnClickListener(view -> {
             FragmentManager fm = getParentFragmentManager();
@@ -65,27 +60,21 @@ public class FragmentResult extends Fragment {
             queryView.setText(query);
         });
 
-        /*
+
         plantList = getFilteredPlant(query);
-        showResult();
-
-        Context ct = container.getContext();
-        recyclerView.setLayoutManager(new LinearLayoutManager(ct));
-
-        RecyclerAdapter adapter;
-        adapter = new RecyclerAdapter(ct, plantList);
-        recyclerView.setAdapter(adapter);
-        */
-
-
+        //showResult();
         return view;
     }
 
     public ArrayList<Plant> getFilteredPlant(String sql){
-        return databaseHelper.getTableData(sql);
+        try {
+            return databaseHelper.getTableData(sql);
+        } catch (NullPointerException e){
+            Log.e("","표시할 결과가 없음");
+            return new ArrayList<Plant>();
+        }
     }
 
     public void showResult(){
-
     }
 }
