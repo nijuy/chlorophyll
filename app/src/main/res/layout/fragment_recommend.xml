@@ -17,13 +17,13 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-16dp">
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_goSearch"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="72dp"
             android:background="#00ff0000"
-            android:text="@string/btn_goSearch"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +32,7 @@
             android:id="@+id/recommendText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="72dp"
+            android:layout_marginTop="84dp"
             android:text="@string/recommendText" />
     </LinearLayout>
 

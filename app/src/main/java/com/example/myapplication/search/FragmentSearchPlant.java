@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -39,7 +40,7 @@ public class FragmentSearchPlant extends Fragment {
         searchPlant();
         setUpOnClickListener();
 
-        Button btnBack;
+        ImageButton btnBack;
 
         btnBack = view.findViewById(R.id.btn_goSearch);
         btnBack.setOnClickListener(view ->{

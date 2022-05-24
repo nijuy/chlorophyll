@@ -15,13 +15,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
         android:orientation="horizontal">
-        <Button
+        <ImageButton
             android:id="@+id/btn_goSearch"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:background="#00ff0000"
-            android:text="@string/btn_goSearch"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

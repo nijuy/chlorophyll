@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -30,7 +31,7 @@ public class FragmentRecommend extends Fragment {
         StringBuilder resultText, cond1, cond2, cond3, cond4, cond6;
         RadioGroup group1, group2, group3, group4, group6;
         Button btnGetResult;
-        Button btnBack;
+        ImageButton btnBack;
 
         btnBack = view.findViewById(R.id.btn_goSearch);
         btnGetResult = view.findViewById(R.id.btn_getResult);
