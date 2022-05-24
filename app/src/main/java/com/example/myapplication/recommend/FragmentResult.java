@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,7 +22,6 @@ import java.util.ArrayList;
 
 public class FragmentResult extends Fragment {
     private View view;
-    private String query;
     private DatabaseHelper databaseHelper;
     private ArrayList<Plant> plantList;
 
@@ -33,12 +31,10 @@ public class FragmentResult extends Fragment {
         connectDB();
         view = inflater.inflate(R.layout.fragment_result, container,false);
         ImageButton btnBack;
-        TextView queryView;
 
         btnBack = view.findViewById(R.id.btn_goRecommend);
-        queryView = view.findViewById(R.id.queryText);
-
         btnBack.setOnClickListener(view -> {
+            databaseHelper.CloseDatabaseFile();
             FragmentManager fm = getParentFragmentManager();
             FragmentTransaction ft = getParentFragmentManager().beginTransaction();
 
@@ -49,12 +45,9 @@ public class FragmentResult extends Fragment {
 
         super.onCreateView(inflater, container, savedInstanceState);
         getParentFragmentManager().setFragmentResultListener("rk", this, (requestKey, result) -> {
-            query = result.getString("bundleKey");
-            queryView.setText(query);
+            plantList = getFilteredPlant(result.getString("bundleKey"));
+            showResult();
         });
-
-        plantList = getFilteredPlant(query);
-        showResult();
         return view;
     }
 

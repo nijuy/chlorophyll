@@ -1,7 +1,6 @@
 package com.example.myapplication.recommend;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +15,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.myapplication.DatabaseHelper;
-import com.example.myapplication.Plant;
 import com.example.myapplication.R;
-
-import java.util.ArrayList;
 
 public class FragmentRecommend extends Fragment {
     private View view;
     private StringBuilder resultText;
-    private ArrayList<Plant> resultList;
 
     @Nullable
     @Override
@@ -80,8 +74,6 @@ public class FragmentRecommend extends Fragment {
                 FragmentTransaction ft = getParentFragmentManager().beginTransaction();
 
                 group1.clearCheck(); group2.clearCheck(); group3.clearCheck(); group4.clearCheck(); group6.clearCheck();
-
-                testGetResult();
 
                 Bundle resultQuery = new Bundle();
                 resultQuery.putString("bundleKey", resultText.toString());
@@ -203,17 +195,4 @@ public class FragmentRecommend extends Fragment {
         }));
         return view;
     }
-
-    public void testGetResult(){
-        try {
-            DatabaseHelper db = new DatabaseHelper(getActivity().getApplicationContext());
-            db.OpenDatabaseFile();
-            resultList = db.getTableData(resultText.toString());
-
-        } catch (Exception e){
-            Log.e("","예외 발생");
-        }
-
-    }
-
 }

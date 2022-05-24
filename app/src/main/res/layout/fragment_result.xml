@@ -36,12 +36,6 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/queryText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/queryText" />
-
     <ListView
         android:id="@+id/result_recommendList"
         android:background="@drawable/listview_search_background"
