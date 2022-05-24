@@ -27,7 +27,7 @@ import java.util.List;
 
 public class FragmentHome extends Fragment {
 
-    SharedPreferences pref;
+    SharedPreferences pref, listPref;
     SharedPreferences.Editor editor;
 
     String species, nickname;
@@ -58,26 +58,18 @@ public class FragmentHome extends Fragment {
             }
         });
 
- /*       String direc = "/data/data/" + context.getPackageName() + "/shared_prefs";
-        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + direc;
-        File directory = new File(direc);
-        File[] files = directory.listFiles();
+        listPref = context.getSharedPreferences("listPref", Context.MODE_PRIVATE);
+        String[] array = (listPref.getString("title", "")).split("/");
 
-        ArrayList<String> filesNameList = new ArrayList<>();
+        for (int i = 0; i < array.length; i++) {
+            if (!array[i].equals("")) {
+                pref = getActivity().getSharedPreferences(array[i], Context.MODE_PRIVATE);
 
-        for (int i = 0; i < files.length; i++) {
-            filesNameList.add(files[i].getName());
+                species = pref.getString("species", "");
+                nickname = pref.getString("nickname", "");
+                myPlantList.add(new MyPlantList(species, nickname));
+            }
         }
-
-        for (int i = 0; i < filesNameList.size(); i++) {
-            pref = getActivity().getSharedPreferences(filesNameList.get(i), Context.MODE_PRIVATE);
-            editor = pref.edit();
-
-            species = pref.getString("species", "");
-            nickname = pref.getString("nickname", "");
-
-            myPlantList.add(new MyPlantList(species, nickname));
-        }*/
 
         adapter = new MyPlantListAdapter(context, myPlantList);
         recyclerView.setAdapter(adapter);
