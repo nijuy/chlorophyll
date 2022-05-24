@@ -9,6 +9,7 @@
     <string name="btn_recommend">나한테 꼭 맞는 식물 추천 받으러 가기!</string>
     <string name="btn_goSearch">⬅</string>
     <string name="plant_name">식물 이름</string>
+    <string name="searchResult">검색 결과</string>
     <string name="recommendText">내 상황에 딱 맞는 식물을 추천 받아보세요!\n</string>
 
     <string name="condition1">식물을 키우는 용도는 무엇인가요?</string>
