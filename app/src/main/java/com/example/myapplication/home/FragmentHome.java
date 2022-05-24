@@ -58,12 +58,12 @@ public class FragmentHome extends Fragment {
             }
         });
 
-        String direc = "/data/data/" + context.getPackageName() + "/shared_prefs";
+ /*       String direc = "/data/data/" + context.getPackageName() + "/shared_prefs";
         String path = Environment.getExternalStorageDirectory().getAbsolutePath() + direc;
         File directory = new File(direc);
         File[] files = directory.listFiles();
 
-        List<String> filesNameList = new ArrayList<>();
+        ArrayList<String> filesNameList = new ArrayList<>();
 
         for (int i = 0; i < files.length; i++) {
             filesNameList.add(files[i].getName());
@@ -77,7 +77,7 @@ public class FragmentHome extends Fragment {
             nickname = pref.getString("nickname", "");
 
             myPlantList.add(new MyPlantList(species, nickname));
-        }
+        }*/
 
         adapter = new MyPlantListAdapter(context, myPlantList);
         recyclerView.setAdapter(adapter);

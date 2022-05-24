@@ -82,7 +82,7 @@ public class FragmentSearchPlant extends Fragment {
         DatabaseHelper databaseHelper = new DatabaseHelper(getActivity().getApplicationContext());
         databaseHelper.OpenDatabaseFile();
 
-        plantList = databaseHelper.getTableData();
+        plantList = databaseHelper.getTableData("SELECT * FROM plants");
         Log.e("test", String.valueOf(plantList.size()));
 
         databaseHelper.close();
