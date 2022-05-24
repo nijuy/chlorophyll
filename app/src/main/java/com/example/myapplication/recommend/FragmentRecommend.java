@@ -19,12 +19,13 @@ import com.example.myapplication.R;
 
 public class FragmentRecommend extends Fragment {
     private View view;
+    private StringBuilder resultText;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_recommend, container,false);
-        StringBuilder resultText, cond1, cond2, cond3, cond4, cond6;
+        StringBuilder cond1, cond2, cond3, cond4, cond6;
         RadioGroup group1, group2, group3, group4, group6;
         Button btnGetResult;
         ImageButton btnBack;
@@ -32,7 +33,7 @@ public class FragmentRecommend extends Fragment {
         btnBack = view.findViewById(R.id.btn_goSearch);
         btnGetResult = view.findViewById(R.id.btn_getResult);
 
-        resultText = new StringBuilder("select * from plants where ");
+        resultText = new StringBuilder("SELECT * FROM plants WHERE ");
         cond1 = new StringBuilder();
         cond2 = new StringBuilder();
         cond3 = new StringBuilder();
@@ -64,10 +65,10 @@ public class FragmentRecommend extends Fragment {
             else {
                 resultText.setLength(27); //resultText 초기화 (초기값으로 만듦 - 아래에서 조건을 append로 연결중이라 초기화 필요)
                 resultText.append(new StringBuilder().append("use ").append(cond1).append(" "));
-                resultText.append(new StringBuilder().append("and size ").append(cond2).append(" "));
-                resultText.append(new StringBuilder().append("and flowering ").append(cond3).append(" "));
-                resultText.append(new StringBuilder().append("and difficulty ").append(cond4).append(" "));
-                resultText.append(new StringBuilder().append("and sunshine ").append(cond6).append(""));
+                resultText.append(new StringBuilder().append("AND size ").append(cond2).append(" "));
+                resultText.append(new StringBuilder().append("AND flowering ").append(cond3).append(" "));
+                resultText.append(new StringBuilder().append("AND difficulty ").append(cond4).append(" "));
+                resultText.append(new StringBuilder().append("AND sunshine ").append(cond6).append(""));
 
                 FragmentResult resultPage = new FragmentResult();
                 FragmentTransaction ft = getParentFragmentManager().beginTransaction();
@@ -121,7 +122,7 @@ public class FragmentRecommend extends Fragment {
                     break;
 
                 case R.id.condition2_4:
-                    cond2.append("is not NULL").append("\"");
+                    cond2.append("is not NULL");
                     break;
             }
         }));
@@ -192,7 +193,6 @@ public class FragmentRecommend extends Fragment {
                     break;
             }
         }));
-
         return view;
     }
 }
