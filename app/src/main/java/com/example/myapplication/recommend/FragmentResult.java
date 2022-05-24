@@ -1,10 +1,12 @@
 package com.example.myapplication.recommend;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -15,6 +17,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.myapplication.DatabaseHelper;
+import com.example.myapplication.DetailActivity;
 import com.example.myapplication.Plant;
 import com.example.myapplication.PlantAdapter;
 import com.example.myapplication.R;
@@ -24,6 +27,7 @@ public class FragmentResult extends Fragment {
     private View view;
     private DatabaseHelper databaseHelper;
     private ArrayList<Plant> plantList;
+    private ListView listView;
 
     @Nullable
     @Override
@@ -32,7 +36,9 @@ public class FragmentResult extends Fragment {
         view = inflater.inflate(R.layout.fragment_result, container,false);
         ImageButton btnBack;
 
+        listView = view.findViewById(R.id.result_recommendList);
         btnBack = view.findViewById(R.id.btn_goRecommend);
+
         btnBack.setOnClickListener(view -> {
             databaseHelper.CloseDatabaseFile();
             FragmentManager fm = getParentFragmentManager();
@@ -47,7 +53,9 @@ public class FragmentResult extends Fragment {
         getParentFragmentManager().setFragmentResultListener("rk", this, (requestKey, result) -> {
             plantList = getFilteredPlant(result.getString("bundleKey"));
             showResult();
+            setUpOnClickListener();
         });
+
         return view;
     }
 
@@ -70,9 +78,20 @@ public class FragmentResult extends Fragment {
     }
 
     public void showResult(){
-        ListView listView = view.findViewById(R.id.result_recommendList);
-
         PlantAdapter adapter = new PlantAdapter(getActivity().getApplicationContext(),0,plantList);
         listView.setAdapter(adapter);
+    }
+
+    private void setUpOnClickListener(){
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Plant selectPlant = (Plant) listView.getItemAtPosition(i);
+                Intent showDetail = new Intent(getActivity().getApplicationContext(), DetailActivity.class);
+                showDetail.putExtra("id", selectPlant.getId());
+                //getActivity().getApplicationContext().startActivity(showDetail);
+                //getActivity().finish();
+            }
+        });
     }
 }
