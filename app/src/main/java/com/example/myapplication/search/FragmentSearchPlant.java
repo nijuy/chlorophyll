@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -104,6 +103,7 @@ public class FragmentSearchPlant extends Fragment {
                 Intent showDetail = new Intent(getActivity().getApplicationContext(), DetailActivity.class);
                 showDetail.putExtra("id",selectPlant.getId());
                 startActivity(showDetail);
+                getActivity().finish();
             }
         });
     }

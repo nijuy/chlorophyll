@@ -3,8 +3,9 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,6 +13,7 @@ import com.example.myapplication.search.FragmentSearchPlant;
 
 public class DetailActivity extends AppCompatActivity {
     Plant selectPlant;
+    Button add_to_my_plant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,17 @@ public class DetailActivity extends AppCompatActivity {
         getSelectedPlant();
 
         setValues();
+
+        add_to_my_plant = this.findViewById(R.id.button_add_to_my_plant);
+        add_to_my_plant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailActivity.this, MainActivity.class);
+                intent.putExtra("name",selectPlant.getName());
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void setValues() {
