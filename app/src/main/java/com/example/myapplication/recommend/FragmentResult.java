@@ -33,6 +33,7 @@ public class FragmentResult extends Fragment {
     private View view;
     private DatabaseHelper databaseHelper;
     public static ArrayList<Plant> plantList;
+    public static ArrayList<Plant> filterPlantList;
     private ListView listView;
     ActivityResultLauncher<Intent> activityResultLauncher;
     FragmentAddPlant fragmentAddPlant;
@@ -70,7 +71,8 @@ public class FragmentResult extends Fragment {
 
         super.onCreateView(inflater, container, savedInstanceState);
         getParentFragmentManager().setFragmentResultListener("rk", this, (requestKey, result) -> {
-            plantList = getFilteredPlant(result.getString("bundleKey"));
+            plantList = getFilteredPlant("SELECT * FROM plants");
+            filterPlantList = getFilteredPlant(result.getString("bundleKey"));
             showResult();
             setUpOnClickListener();
         });
@@ -97,7 +99,7 @@ public class FragmentResult extends Fragment {
     }
 
     public void showResult(){
-        PlantAdapter adapter = new PlantAdapter(getActivity().getApplicationContext(),0,plantList);
+        PlantAdapter adapter = new PlantAdapter(getActivity().getApplicationContext(),0,filterPlantList);
         listView.setAdapter(adapter);
     }
 
