@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myapplication.recommend.FragmentResult;
 import com.example.myapplication.search.FragmentSearchPlant;
 
 public class DetailActivity extends AppCompatActivity {
@@ -57,8 +58,18 @@ public class DetailActivity extends AppCompatActivity {
     private void getSelectedPlant(){
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
+        String pageKey = intent.getStringExtra("pageKey");
         int id_num = Integer.parseInt(id)-1;
 
-        selectPlant = FragmentSearchPlant.plantList.get(id_num);
+        switch (pageKey) {
+            case "1":
+                selectPlant = FragmentSearchPlant.plantList.get(id_num);
+                break;
+
+            case "2":
+                selectPlant = FragmentResult.plantList.get(id_num);
+                break;
+        }
+
     }
 }
