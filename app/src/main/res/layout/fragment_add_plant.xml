@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/addPhoto_btn_upload"
         android:layout_marginTop="38dp"
-        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
         android:textSize="16sp"
         android:textColor="@color/black"
         android:text="식물명" />
@@ -109,7 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="물주기              일 마다"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:paddingLeft="30dp"
                 android:textColor="@color/black"
                 android:layout_marginBottom="10dp"/>
@@ -121,7 +121,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/white_edittext"
-                android:hint="0"
+                android:hint="00"
                 android:inputType="number"
                 android:textSize="16dp"
                 android:textAlignment="center"
@@ -157,7 +157,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/white_edittext"
-                android:hint="0"
+                android:hint="00"
                 android:inputType="number"
                 android:textSize="16dp"
                 android:textAlignment="center"
@@ -181,7 +181,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="분갈이              일 마다"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:paddingLeft="30dp"
                 android:textColor="@color/black"
                 android:layout_marginBottom="10dp"  />
@@ -193,9 +193,9 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/white_edittext"
-                android:hint="0"
+                android:hint="00"
                 android:inputType="number"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:textAlignment="center"
                 android:layout_marginLeft="85dp"/>
 
