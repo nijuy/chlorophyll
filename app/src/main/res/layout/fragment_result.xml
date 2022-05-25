@@ -16,13 +16,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_goRecommend"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="72dp"
             android:background="#00ff0000"
-            android:text="@string/btn_goRecommend"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
             app:layout_constraintEnd_toStartOf="@+id/announcementText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,15 +36,11 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/queryText"
+    <ListView
+        android:id="@+id/result_recommendList"
+        android:background="@drawable/listview_search_background"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/queryText" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id = "@+id/resultRecommend"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:dividerHeight="2dp"/>
 
 </LinearLayout>

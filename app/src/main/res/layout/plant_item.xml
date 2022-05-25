@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="50dp">
+    android:layout_height="wrap_content"
+    tools:ignore="UseCompoundDrawables">
+    <ImageView
+        android:id="@+id/plant_image_search"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:padding="2dp"/>
 
     <TextView
+        android:id="@+id/plant_name_search"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/plant_name_search"
+        android:layout_marginStart="20dp"
         android:textSize="20sp"/>
 
 </LinearLayout>

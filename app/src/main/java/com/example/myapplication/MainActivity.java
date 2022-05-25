@@ -9,7 +9,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 
 import com.example.myapplication.calendar.FragmentPlan;
-import com.example.myapplication.home.FragmentAddPlant;
 import com.example.myapplication.home.FragmentHome;
 import com.example.myapplication.search.FragmentSearch;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch(item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.action_home:
                         setFrag(0);
                         break;
@@ -55,10 +54,10 @@ public class MainActivity extends AppCompatActivity {
         setFrag(0);
     }
 
-    private void setFrag(int n){
+    private void setFrag(int n) {
         fragmentManager = getSupportFragmentManager();
         ft = fragmentManager.beginTransaction();
-        switch(n){
+        switch (n) {
             case 0:
                 ft.replace(R.id.main_frame, fragmentHome);
                 ft.commit();
@@ -73,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-    public void replaceFragment(Fragment fragment){
+
+    public void replaceFragment(Fragment fragment) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.main_frame, fragment).commit();

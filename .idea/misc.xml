@@ -17,37 +17,41 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/MyApplication/app/src/main/res/layout/search.xml" value="0.1661600810536981" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyApplication/app/src/main/res/menu/bottom_menu.xml" value="0.3312820512820513" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyApplication/app/src/main/res/menu/bottom_navi.xml" value="0.32153846153846155" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/drawable/btn_search_round.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/drawable/btn_signin_rount.xml" value="0.1325" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/activity_detail.xml" value="0.17806484295845998" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.1" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/activity_detail.xml" value="0.25" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/activity_main.xml" value="0.14" />
         <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_add_plant.xml" value="0.264" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_home.xml" value="0.18" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_home2.xml" value="0.17603850050658562" />
         <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_plan.xml" value="0.17603850050658562" />
         <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_recommend.xml" value="0.25" />
         <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_result.xml" value="0.25" />
         <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_search.xml" value="0.33" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_search_plant.xml" value="0.264" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_search_plant.xml" value="0.25" />
         <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/myplant_item.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/plant_item.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/row_plantlist.xml" value="0.33695652173913043" />
-        <entry key="..\:/Users/dks48/AndroidStudioProjects/chlorophyll/app/src/main/res/drawable/edittext.xml" value="0.183" />
-        <entry key="..\:/Users/dks48/AndroidStudioProjects/chlorophyll/app/src/main/res/drawable/gary_edittext.xml" value="0.103" />
-        <entry key="..\:/Users/dks48/AndroidStudioProjects/chlorophyll/app/src/main/res/drawable/red_edittext.xml" value="0.183" />
-        <entry key="..\:/Users/dks48/AndroidStudioProjects/chlorophyll/app/src/main/res/drawable/white_edittext.xml" value="0.1765" />
-        <entry key="..\:/Users/dks48/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/activity_detail.xml" value="0.24895833333333334" />
-        <entry key="..\:/Users/dks48/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_add_plant.xml" value="0.4" />
-        <entry key="..\:/Users/dks48/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_detail.xml" value="0.1" />
-        <entry key="..\:/Users/dks48/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_diary.xml" value="0.24564102564102563" />
-        <entry key="..\:/Users/dks48/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_home.xml" value="0.264" />
-        <entry key="..\:/Users/dks48/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_home2.xml" value="0.2" />
-        <entry key="..\:/Users/dks48/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_plan.xml" value="0.20462962962962963" />
-        <entry key="..\:/Users/dks48/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/myplant_item.xml" value="0.1" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/drawable/edittext.xml" value="0.183" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/drawable/gary_edittext.xml" value="0.103" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/drawable/red_edittext.xml" value="0.183" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/drawable/white_edittext.xml" value="0.1765" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/activity_detail.xml" value="0.24895833333333334" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_add_plant.xml" value="0.4" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_detail.xml" value="0.1" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_diary.xml" value="0.24564102564102563" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_home.xml" value="0.264" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_home2.xml" value="0.2" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_plan.xml" value="0.20462962962962963" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/myplant_item.xml" value="0.1" />
         <entry key="..\:/android-sdk/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/activity_main.xml" value="0.2677083333333333" />
         <entry key="..\:/android-sdk/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_add_plant.xml" value="0.2677083333333333" />
         <entry key="..\:/android-sdk/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_home.xml" value="0.2677083333333333" />
-        <entry key="..\:/android-sdk/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_recommend.xml" value="0.25" />
+        <entry key="..\:/android-sdk/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_recommend.xml" value="0.33" />
         <entry key="..\:/android-sdk/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_result.xml" value="0.33" />
         <entry key="..\:/android-sdk/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_search.xml" value="0.25" />
+        <entry key="..\:/android-sdk/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_search_plant.xml" value="0.28229166666666666" />
         <entry key="..\:/android-sdk/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/plant_item.xml" value="0.3555253623188406" />
       </map>
     </option>

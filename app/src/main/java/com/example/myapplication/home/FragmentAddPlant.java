@@ -20,9 +20,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.search.FragmentSearchPlant;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -50,10 +53,12 @@ public class FragmentAddPlant extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Context context = getActivity();
+        fragmentHome = new FragmentHome();
         rootView = inflater.inflate(R.layout.fragment_add_plant, container, false);
         imageView = (ImageView) rootView.findViewById(R.id.addPhoto_image);
         //imageView.setImageResource(R.drawable.ic_baseline_camera_alt_24);
         speciesEdit = rootView.findViewById(R.id.plant_species);
+        speciesEdit.setText(species);
         nicknameEdit = rootView.findViewById(R.id.plant_nickname);
         photoBtn = (Button) rootView.findViewById(R.id.addPhoto_btn_upload);
         doneBtn = (Button) rootView.findViewById(R.id.doneBtn);
@@ -201,13 +206,31 @@ public class FragmentAddPlant extends Fragment {
                         ((MainActivity) getActivity()).replaceFragment(fragmentHome);
                     }
                 }
+              
+                /*species = speciesEdit.getText().toString();
+                editor.putString("species", species);
+
+                nickname = nicknameEdit.getText().toString();
+                editor.putString("nickname", nickname);
+
+                editor.apply(); // 저장
+
+                list = listPref.getString("title", "");
+                listEditor.putString("title", list + "/" + fileName);
+                listEditor.apply();
+
+                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                ft.replace(getId(),fragmentHome);
+                ft.commit();*/
             }
         });
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity) getActivity()).replaceFragment(fragmentHome);
+                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                ft.replace(getId(),fragmentHome);
+                ft.commit();
             }
         });
 
@@ -220,5 +243,9 @@ public class FragmentAddPlant extends Fragment {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_hh_mm_ss");
         String getTime = dateFormat.format(date);
         return getTime;
+    }
+
+    public void setSpecies(String species){
+        this.species = species;
     }
 }

@@ -8,6 +8,8 @@ public class Plant {
     private String flowering;
     private String difficulty;
     private String sunshine;
+    private String image;
+    private String tip;
 
     public String getId() { return id; }
     public void setId(String id){
@@ -35,4 +37,12 @@ public class Plant {
 
     public String getSunshine() { return sunshine; }
     public void setSunshine(String sunshine) { this.sunshine = sunshine; }
+
+    public String getImage(){ return image;}
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getTip() { return tip; }
+    public void setTip(String tip) { this.tip = tip; }
 }

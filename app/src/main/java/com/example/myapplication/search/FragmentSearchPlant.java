@@ -1,5 +1,6 @@
 package com.example.myapplication.search;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,9 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
@@ -19,9 +23,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.myapplication.DatabaseHelper;
 import com.example.myapplication.DetailActivity;
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.Plant;
 import com.example.myapplication.PlantAdapter;
 import com.example.myapplication.R;
+import com.example.myapplication.home.FragmentAddPlant;
 
 import java.util.ArrayList;
 
@@ -29,6 +35,8 @@ public class FragmentSearchPlant extends Fragment {
     private View view;
     public static ArrayList<Plant> plantList;
     ListView listView;
+    ActivityResultLauncher<Intent> activityResultLauncher;
+    FragmentAddPlant fragmentAddPlant = new FragmentAddPlant();
 
     @Nullable
     @Override
@@ -39,7 +47,15 @@ public class FragmentSearchPlant extends Fragment {
         searchPlant();
         setUpOnClickListener();
 
-        Button btnBack;
+        activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if(result.getResultCode() == Activity.RESULT_OK) {
+                Intent intent = result.getData();
+                fragmentAddPlant.setSpecies(intent.getStringExtra("name"));
+                ((MainActivity)getActivity()).replaceFragment(fragmentAddPlant);
+            }
+        });
+
+        ImageButton btnBack;
 
         btnBack = view.findViewById(R.id.btn_goSearch);
         btnBack.setOnClickListener(view ->{
@@ -101,8 +117,10 @@ public class FragmentSearchPlant extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Plant selectPlant = (Plant) listView.getItemAtPosition(i);
                 Intent showDetail = new Intent(getActivity().getApplicationContext(), DetailActivity.class);
-                showDetail.putExtra("id",selectPlant.getId());
-                startActivity(showDetail);
+                showDetail.putExtra("id", selectPlant.getId());
+                showDetail.putExtra("pageKey", "1");
+
+                activityResultLauncher.launch(showDetail);
             }
         });
     }
