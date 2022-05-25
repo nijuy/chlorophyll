@@ -48,9 +48,9 @@ public class DetailActivity extends AppCompatActivity {
         TextView textView = findViewById(R.id.plant_detail_name);
         ImageView imageView = findViewById(R.id.plant_detail_image);
         TextView textView1 = findViewById(R.id.plant_detail_tip);
-
         textView.setText(selectPlant.getName());
-        textView1.setText(selectPlant.getTip());
+        String tip = selectPlant.getTip().replace("\\n", System.getProperty("line.separator"));
+        textView1.setText(tip);
         imageView.setImageResource(getResources().getIdentifier(selectPlant.getImage(),"drawable",getPackageName()));
     }
 

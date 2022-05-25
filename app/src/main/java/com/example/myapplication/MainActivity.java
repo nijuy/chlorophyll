@@ -5,15 +5,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 
 import com.example.myapplication.calendar.FragmentPlan;
-import com.example.myapplication.home.FragmentAddPlant;
 import com.example.myapplication.home.FragmentHome;
 import com.example.myapplication.search.FragmentSearch;
-import com.example.myapplication.search.FragmentSearchPlant;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
