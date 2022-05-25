@@ -117,7 +117,9 @@ public class FragmentSearchPlant extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Plant selectPlant = (Plant) listView.getItemAtPosition(i);
                 Intent showDetail = new Intent(getActivity().getApplicationContext(), DetailActivity.class);
-                showDetail.putExtra("id",selectPlant.getId());
+                showDetail.putExtra("id", selectPlant.getId());
+                showDetail.putExtra("pageKey", "1");
+
                 activityResultLauncher.launch(showDetail);
             }
         });
