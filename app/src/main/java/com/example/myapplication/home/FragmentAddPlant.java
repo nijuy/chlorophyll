@@ -2,14 +2,20 @@ package com.example.myapplication.home;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +33,7 @@ public class FragmentAddPlant extends Fragment {
     SharedPreferences.Editor listEditor, editor;
 
     String species, nickname, list;
+    int water = -1, sun = -1, split = -1;
 
     View rootView = null;
     EditText speciesEdit, nicknameEdit;
@@ -34,9 +41,10 @@ public class FragmentAddPlant extends Fragment {
     ImageView imageView = null;
 
     Switch waterSwitch, sunSwitch, splitSwitch;
+    TextView waterText, sunText, splitText;
     EditText waterEdit, sunEdit, splitEdit;
 
-    FragmentHome fragmentHome = new FragmentHome();
+    FragmentHome fragmentHome;
 
     @Nullable
     @Override
@@ -51,8 +59,67 @@ public class FragmentAddPlant extends Fragment {
         doneBtn = (Button) rootView.findViewById(R.id.doneBtn);
         cancelBtn = (Button) rootView.findViewById(R.id.cancelBtn);
 
-        // 수정 중 (switch를 이용해 설정 여부 결정 후 설정 결과를 파일 형식으로 저장)
-        //waterSwitch = rootView.findViewById(R.)
+        waterEdit = rootView.findViewById(R.id.water_edit);
+        waterText = rootView.findViewById(R.id.water_textview);
+        waterSwitch = rootView.findViewById(R.id.water_switch);
+        waterSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b) { // 설정 안함
+                    waterEdit.setEnabled(false);
+                    waterEdit.setTextColor(Color.parseColor("#9e9b9b"));
+                    waterText.setTextColor(Color.parseColor("#9e9b9b"));
+                    water = 0;
+                } else {
+                    waterEdit.setEnabled(true);
+                    waterEdit.setTextColor(Color.parseColor("#000000"));
+                    waterText.setTextColor(Color.parseColor("#000000"));
+                    water = Integer.parseInt(waterEdit.getText().toString());
+                }
+            }
+        });
+
+        sunEdit = rootView.findViewById(R.id.sun_edit);
+        sunText = rootView.findViewById(R.id.sun_textview);
+        sunSwitch = rootView.findViewById(R.id.sun_switch);
+        sunSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b) { // 설정 안함
+                    sunEdit.setEnabled(false);
+                    sunEdit.setTextColor(Color.parseColor("#9e9b9b"));
+                    sunText.setTextColor(Color.parseColor("#9e9b9b"));
+                    sun = 0;
+                } else {
+                    sunEdit.setEnabled(true);
+                    sunEdit.setTextColor(Color.parseColor("#000000"));
+                    sunText.setTextColor(Color.parseColor("#000000"));
+                    sun = Integer.parseInt(sunEdit.getText().toString());
+                }
+            }
+        });
+
+        splitEdit = rootView.findViewById(R.id.split_edit);
+        splitText = rootView.findViewById(R.id.split_textview);
+        splitSwitch = rootView.findViewById(R.id.split_switch);
+        splitSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b) { // 설정 안함
+                    splitEdit.setEnabled(false);
+                    splitEdit.setTextColor(Color.parseColor("#9e9b9b"));
+                    splitText.setTextColor(Color.parseColor("#9e9b9b"));
+                    split = 0;
+                } else {
+                    splitEdit.setEnabled(true);
+                    splitEdit.setTextColor(Color.parseColor("#000000"));
+                    splitText.setTextColor(Color.parseColor("#000000"));
+                    split = Integer.parseInt(splitEdit.getText().toString());
+                }
+            }
+        });
+
+        fragmentHome = new FragmentHome();
 
         listPref = context.getSharedPreferences("listPref", Context.MODE_PRIVATE);
         listEditor = listPref.edit();
@@ -64,19 +131,76 @@ public class FragmentAddPlant extends Fragment {
         doneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                species = speciesEdit.getText().toString();
-                editor.putString("species", species);
+                boolean res = true;
 
-                nickname = nicknameEdit.getText().toString();
-                editor.putString("nickname", nickname);
+                if (water == -1) {
+                    if((waterEdit.getText().toString()).equals("")) {
+                        Toast.makeText(context, "물 주기를 입력해주세요", Toast.LENGTH_SHORT).show();
+                        res = false;
+                    } else {
+                        water = Integer.parseInt(waterEdit.getText().toString());
 
-                editor.apply(); // 저장
+                        if (water == 0) {
+                            Toast.makeText(context, "0보다 큰 수를 입력해주세요", Toast.LENGTH_SHORT).show();
+                            water = -1;
+                            res = false;
+                        }
+                    }
+                }
 
-                list = listPref.getString("title", "");
-                listEditor.putString("title", list + "/" + fileName);
-                listEditor.apply();
+                if (sun == -1) {
+                    if((sunEdit.getText().toString()).equals("")) {
+                        Toast.makeText(context, "햇빛 주기를 입력해주세요", Toast.LENGTH_SHORT).show();
+                        res = false;
+                    } else {
+                        sun = Integer.parseInt(sunEdit.getText().toString());
 
-                ((MainActivity) getActivity()).replaceFragment(fragmentHome);
+                        if (sun == 0) {
+                            Toast.makeText(context, "0보다 큰 수를 입력해주세요", Toast.LENGTH_SHORT).show();
+                            sun = -1;
+                            res = false;
+                        }
+                    }
+                }
+
+                if (split == -1) {
+                    if((splitEdit.getText().toString()).equals("")) {
+                        Toast.makeText(context, "분갈이 주기를 입력해주세요", Toast.LENGTH_SHORT).show();
+                        res = false;
+                    } else {
+                        split = Integer.parseInt(splitEdit.getText().toString());
+
+                        if (split == 0) {
+                            Toast.makeText(context, "0보다 큰 수를 입력해주세요", Toast.LENGTH_SHORT).show();
+                            split = -1;
+                            res = false;
+                        }
+                    }
+                }
+
+                if (res) {
+                    if(water < 0 || sun < 0 || split < 0) {
+                        Toast.makeText(getActivity(), "주기는 자연수로 선택해주세요", Toast.LENGTH_SHORT).show();
+                    } else {
+                        species = speciesEdit.getText().toString();
+                        editor.putString("species", species);
+
+                        nickname = nicknameEdit.getText().toString();
+                        editor.putString("nickname", nickname);
+
+                        editor.putInt("water", water);
+                        editor.putInt("sun", sun);
+                        editor.putInt("split", split);
+
+                        editor.apply(); // 저장
+
+                        list = listPref.getString("title", "");
+                        listEditor.putString("title", list + "/" + fileName);
+                        listEditor.apply();
+
+                        ((MainActivity) getActivity()).replaceFragment(fragmentHome);
+                    }
+                }
             }
         });
 
