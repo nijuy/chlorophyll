@@ -36,7 +36,7 @@ public class FragmentAddPlant extends Fragment {
     Switch waterSwitch, sunSwitch, splitSwitch;
     EditText waterEdit, sunEdit, splitEdit;
 
-    FragmentHome fragmentHome = new FragmentHome();
+    FragmentHome fragmentHome;
 
     @Nullable
     @Override
@@ -53,6 +53,8 @@ public class FragmentAddPlant extends Fragment {
         cancelBtn = (Button) rootView.findViewById(R.id.cancelBtn);
 
         // 수정 중 (switch를 이용해 설정 여부 결정 후 설정 결과를 파일 형식으로 저장)
+        fragmentHome = new FragmentHome();
+
         //waterSwitch = rootView.findViewById(R.)
 
         listPref = context.getSharedPreferences("listPref", Context.MODE_PRIVATE);
