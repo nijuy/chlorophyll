@@ -14,9 +14,12 @@ import android.widget.Switch;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.search.FragmentSearchPlant;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -42,6 +45,7 @@ public class FragmentAddPlant extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Context context = getActivity();
+        fragmentHome = new FragmentHome();
         rootView = inflater.inflate(R.layout.fragment_add_plant, container, false);
         imageView = (ImageView) rootView.findViewById(R.id.addPhoto_image);
         //imageView.setImageResource(R.drawable.ic_baseline_camera_alt_24);
@@ -53,8 +57,6 @@ public class FragmentAddPlant extends Fragment {
         cancelBtn = (Button) rootView.findViewById(R.id.cancelBtn);
 
         // 수정 중 (switch를 이용해 설정 여부 결정 후 설정 결과를 파일 형식으로 저장)
-        fragmentHome = new FragmentHome();
-
         //waterSwitch = rootView.findViewById(R.)
 
         listPref = context.getSharedPreferences("listPref", Context.MODE_PRIVATE);
@@ -79,14 +81,18 @@ public class FragmentAddPlant extends Fragment {
                 listEditor.putString("title", list + "/" + fileName);
                 listEditor.apply();
 
-                ((MainActivity) getActivity()).replaceFragment(fragmentHome);
+                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                ft.replace(getId(),fragmentHome);
+                ft.commit();
             }
         });
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity) getActivity()).replaceFragment(fragmentHome);
+                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                ft.replace(getId(),fragmentHome);
+                ft.commit();
             }
         });
 

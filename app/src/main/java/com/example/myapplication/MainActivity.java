@@ -27,13 +27,11 @@ public class MainActivity extends AppCompatActivity {
     private FragmentSearch fragmentSearch;
     private FragmentHome fragmentHome;
     private FragmentPlan fragmentPlan;
-    private FragmentAddPlant fragmentAddPlant=new FragmentAddPlant();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String name = getIntent().getStringExtra("name");
 
         bottomNavigationView = findViewById(R.id.bottomNavi);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -57,11 +55,6 @@ public class MainActivity extends AppCompatActivity {
         fragmentHome = new FragmentHome();
         fragmentPlan = new FragmentPlan();
         setFrag(0);
-
-        if(name != null){
-            fragmentAddPlant.setSpecies(name);
-            replaceFragment(fragmentAddPlant);
-        }
     }
 
     private void setFrag(int n) {
