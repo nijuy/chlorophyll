@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,11 +33,15 @@ public class FragmentAddPlant extends Fragment {
     Button photoBtn, doneBtn, cancelBtn;
     ImageView imageView = null;
 
-    FragmentHome fragmentHome;
+    Switch waterSwitch, sunSwitch, splitSwitch;
+    EditText waterEdit, sunEdit, splitEdit;
+
+    FragmentHome fragmentHome = new FragmentHome();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Context context = getActivity();
         rootView = inflater.inflate(R.layout.fragment_add_plant, container, false);
         imageView = (ImageView) rootView.findViewById(R.id.addPhoto_image);
         //imageView.setImageResource(R.drawable.ic_baseline_camera_alt_24);
@@ -46,12 +51,9 @@ public class FragmentAddPlant extends Fragment {
         doneBtn = (Button) rootView.findViewById(R.id.doneBtn);
         cancelBtn = (Button) rootView.findViewById(R.id.cancelBtn);
 
-        fragmentHome = new FragmentHome();
+        // 수정 중 (switch를 이용해 설정 여부 결정 후 설정 결과를 파일 형식으로 저장)
+        //waterSwitch = rootView.findViewById(R.)
 
-        Context context = getActivity();
-        //context = container.getContext();
-
-        // 추가
         listPref = context.getSharedPreferences("listPref", Context.MODE_PRIVATE);
         listEditor = listPref.edit();
 
