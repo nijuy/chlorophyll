@@ -14,11 +14,24 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/plant_detail_image"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="360dp"
-                android:scaleType="fitXY" />
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/plant_detail_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="360dp"
+                    android:scaleType="fitXY" />
+
+                <ImageButton
+                    android:id="@+id/btn_goSearch"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_baseline_arrow_back_ios_24" />
+
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/plant_detail_name"
@@ -30,6 +43,7 @@
                 android:textSize="20sp"/>
 
             <TextView
+                android:id="@+id/plant_detail_tip"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
                 android:layout_marginStart="5dp"
