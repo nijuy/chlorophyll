@@ -1,7 +1,5 @@
 package com.example.myapplication;
 
-import android.content.res.Resources;
-
 public class Plant {
     private String id;
     private String name;

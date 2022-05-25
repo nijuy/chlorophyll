@@ -120,6 +120,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     plant.setDifficulty(mCursor.getString(5));
                     plant.setSunshine(mCursor.getString(6));
                     plant.setImage(mCursor.getString(7));
+                    plant.setTip(mCursor.getString(8));
                     // List에 해당 Row 추가
                     mList.add(plant);
                 }
