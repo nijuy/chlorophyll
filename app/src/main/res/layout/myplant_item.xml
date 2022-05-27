@@ -34,7 +34,8 @@
             android:layout_weight="1"
             android:background="#679950"
             android:textSize="20dp"
-            android:text="DIARY" />
+            android:text="DIARY"
+            android:layout_marginRight="3dp"/>
 
         <Button
             android:id="@+id/detailBtn"
@@ -43,7 +44,8 @@
             android:layout_weight="1"
             android:background="#679950"
             android:textSize="20dp"
-            android:text="DETAIL" />
+            android:text="DETAIL"
+            android:layout_marginLeft="3dp"/>
 
     </LinearLayout>
 
