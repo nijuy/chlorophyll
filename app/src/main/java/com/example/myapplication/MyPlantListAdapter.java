@@ -44,11 +44,13 @@ public class MyPlantListAdapter extends RecyclerView.Adapter<ViewHolder> {
         holder.test1_textView.setText(String.valueOf(listData.get(position).getTest1()));
         holder.test2_textView.setText(listData.get(position).getTest2());
 
+        String title = listData.get(position).getTitle();
+
         diaryBtn = rootView.findViewById(R.id.diaryBtn);
         diaryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCallback.onClick("diary");
+                mCallback.onClick("diary", title);
             }
         });
 
@@ -56,7 +58,7 @@ public class MyPlantListAdapter extends RecyclerView.Adapter<ViewHolder> {
         detailBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCallback.onClick("detail");
+                mCallback.onClick("detail", title);
             }
         });
     }

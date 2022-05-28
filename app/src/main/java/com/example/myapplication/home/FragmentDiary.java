@@ -13,11 +13,16 @@ import com.example.myapplication.R;
 
 public class FragmentDiary extends Fragment {
     private View view;
+    private String title = "";
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_diary, container,false);
+
+        if(getArguments() != null) {
+            title = getArguments().getString("title");
+        }
         return view;
     }
 }
