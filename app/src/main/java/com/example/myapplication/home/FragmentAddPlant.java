@@ -35,7 +35,7 @@ public class FragmentAddPlant extends Fragment {
     SharedPreferences listPref, pref;
     SharedPreferences.Editor listEditor, editor;
 
-    String species, nickname, list;
+    String value, species, nickname, list;
     int water = -1, sun = -1, split = -1;
 
     View rootView = null;
@@ -55,22 +55,23 @@ public class FragmentAddPlant extends Fragment {
         Context context = getActivity();
         fragmentHome = new FragmentHome();
         rootView = inflater.inflate(R.layout.fragment_add_plant, container, false);
-        imageView = (ImageView) rootView.findViewById(R.id.addPhoto_image);
+        imageView = rootView.findViewById(R.id.addPhoto_image);
         //imageView.setImageResource(R.drawable.ic_baseline_camera_alt_24);
         speciesEdit = rootView.findViewById(R.id.plant_species);
         speciesEdit.setText(species);
         nicknameEdit = rootView.findViewById(R.id.plant_nickname);
-        photoBtn = (Button) rootView.findViewById(R.id.addPhoto_btn_upload);
-        doneBtn = (Button) rootView.findViewById(R.id.doneBtn);
-        cancelBtn = (Button) rootView.findViewById(R.id.cancelBtn);
+        photoBtn = rootView.findViewById(R.id.addPhoto_btn_upload);
+        doneBtn = rootView.findViewById(R.id.doneBtn);
+        cancelBtn = rootView.findViewById(R.id.cancelBtn);
 
         waterEdit = rootView.findViewById(R.id.water_edit);
         waterText = rootView.findViewById(R.id.water_textview);
         waterSwitch = rootView.findViewById(R.id.water_switch);
+        waterSwitch.setChecked(true);
         waterSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b) { // 설정 안함
+                if(!b) { // 설정 안함
                     waterEdit.setEnabled(false);
                     waterEdit.setTextColor(Color.parseColor("#9e9b9b"));
                     waterText.setTextColor(Color.parseColor("#9e9b9b"));
@@ -79,7 +80,10 @@ public class FragmentAddPlant extends Fragment {
                     waterEdit.setEnabled(true);
                     waterEdit.setTextColor(Color.parseColor("#000000"));
                     waterText.setTextColor(Color.parseColor("#000000"));
-                    water = Integer.parseInt(waterEdit.getText().toString());
+                    value = waterEdit.getText().toString();
+
+                    if (value.equals("")) water = 0;
+                    else water = Integer.parseInt(value);
                 }
             }
         });
@@ -87,10 +91,11 @@ public class FragmentAddPlant extends Fragment {
         sunEdit = rootView.findViewById(R.id.sun_edit);
         sunText = rootView.findViewById(R.id.sun_textview);
         sunSwitch = rootView.findViewById(R.id.sun_switch);
+        sunSwitch.setChecked(true);
         sunSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b) { // 설정 안함
+                if(!b) { // 설정 안함
                     sunEdit.setEnabled(false);
                     sunEdit.setTextColor(Color.parseColor("#9e9b9b"));
                     sunText.setTextColor(Color.parseColor("#9e9b9b"));
@@ -99,7 +104,10 @@ public class FragmentAddPlant extends Fragment {
                     sunEdit.setEnabled(true);
                     sunEdit.setTextColor(Color.parseColor("#000000"));
                     sunText.setTextColor(Color.parseColor("#000000"));
-                    sun = Integer.parseInt(sunEdit.getText().toString());
+                    value = sunEdit.getText().toString();
+
+                    if (value.equals("")) sun = 0;
+                    else sun = Integer.parseInt(value);
                 }
             }
         });
@@ -107,10 +115,11 @@ public class FragmentAddPlant extends Fragment {
         splitEdit = rootView.findViewById(R.id.split_edit);
         splitText = rootView.findViewById(R.id.split_textview);
         splitSwitch = rootView.findViewById(R.id.split_switch);
+        splitSwitch.setChecked(true);
         splitSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b) { // 설정 안함
+                if(!b) { // 설정 안함
                     splitEdit.setEnabled(false);
                     splitEdit.setTextColor(Color.parseColor("#9e9b9b"));
                     splitText.setTextColor(Color.parseColor("#9e9b9b"));
@@ -119,7 +128,10 @@ public class FragmentAddPlant extends Fragment {
                     splitEdit.setEnabled(true);
                     splitEdit.setTextColor(Color.parseColor("#000000"));
                     splitText.setTextColor(Color.parseColor("#000000"));
-                    split = Integer.parseInt(splitEdit.getText().toString());
+                    value = splitEdit.getText().toString();
+
+                    if (value.equals("")) split = 0;
+                    else split = Integer.parseInt(value);
                 }
             }
         });

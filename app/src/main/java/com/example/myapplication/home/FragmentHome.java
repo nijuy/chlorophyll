@@ -110,7 +110,7 @@ public class FragmentHome extends Fragment implements OnItemClick {
 
             Bundle bundle = new Bundle();
             bundle.putString("title", title);
-            fragmentDiary.setArguments(bundle);
+            fragmentDetail.setArguments(bundle);
 
             ((MainActivity)getActivity()).replaceFragment(fragmentDetail);
         }

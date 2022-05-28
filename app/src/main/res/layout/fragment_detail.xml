@@ -50,13 +50,11 @@
         android:layout_weight="1"
         android:textSize="16sp"
         android:ems="10"
-        android:text="test"
         android:inputType="textPersonName"
         tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/plant_nickname"
-        android:text="test"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/plantText"
@@ -99,8 +97,8 @@
                 android:textColor="@color/black"
                 android:layout_marginBottom="10dp"/>
 
-            <EditText
-                android:id="@+id/water_edit"
+            <TextView
+                android:id="@+id/water_text"
                 android:layout_width="40dp"
                 android:layout_height="23dp"
                 android:layout_alignParentTop="true"
@@ -135,8 +133,8 @@
                 android:textColor="@color/black"
                 android:layout_marginBottom="10dp"  />
 
-            <EditText
-                android:id="@+id/sun_edit"
+            <TextView
+                android:id="@+id/sun_text"
                 android:layout_width="40dp"
                 android:layout_height="23dp"
                 android:layout_alignParentTop="true"
@@ -171,8 +169,8 @@
                 android:textColor="@color/black"
                 android:layout_marginBottom="10dp"  />
 
-            <EditText
-                android:id="@+id/split_edit"
+            <TextView
+                android:id="@+id/split_text"
                 android:layout_width="40dp"
                 android:layout_height="23dp"
                 android:layout_alignParentTop="true"
