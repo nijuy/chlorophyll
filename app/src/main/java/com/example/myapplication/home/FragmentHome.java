@@ -33,7 +33,7 @@ public class FragmentHome extends Fragment implements OnItemClick {
 
     SharedPreferences pref, listPref;
 
-    String species, nickname;
+    String species, nickname, title;
 
     ArrayList<MyPlantList> myPlantList;
     RecyclerView recyclerView;
@@ -83,7 +83,8 @@ public class FragmentHome extends Fragment implements OnItemClick {
 
                     species = pref.getString("species", "");
                     nickname = pref.getString("nickname", "");
-                    myPlantList.add(new MyPlantList(species, nickname));
+                    title = array[i];
+                    myPlantList.add(new MyPlantList(species, nickname, title));
                 }
             }
 
@@ -95,12 +96,22 @@ public class FragmentHome extends Fragment implements OnItemClick {
     }
 
     @Override
-    public void onClick(String value){
+    public void onClick(String value, String title){
         if (value.equals("diary")) {
             FragmentDiary fragmentDiary = new FragmentDiary();
+
+            Bundle bundle = new Bundle();
+            bundle.putString("title", title);
+            fragmentDiary.setArguments(bundle);
+
             ((MainActivity)getActivity()).replaceFragment(fragmentDiary);
         } else if (value.equals("detail")) {
             FragmentDetail fragmentDetail = new FragmentDetail();
+
+            Bundle bundle = new Bundle();
+            bundle.putString("title", title);
+            fragmentDiary.setArguments(bundle);
+
             ((MainActivity)getActivity()).replaceFragment(fragmentDetail);
         }
     }
