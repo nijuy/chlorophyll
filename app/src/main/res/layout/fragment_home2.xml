@@ -7,6 +7,46 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
+    <Button
+        android:id="@+id/btn_location"
+        android:layout_width="300dp"
+        android:layout_height="20dp"
+        android:layout_margin="8dp"
+        android:background="#17787a"
+        android:text="위치 보기"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/locationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="위~치"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"/>
+
+    <TextView
+        android:id="@+id/weatherText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="날~씨"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="28dp"/>
+    <!--
+    <TextView
+        android:id="@+id/weather"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_marginBottom="8dp"
+        android:background="#17787a"
+        android:gravity="center"
+        android:text="날씨를 위한 자리 (없음 말구)"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
+    -->
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
