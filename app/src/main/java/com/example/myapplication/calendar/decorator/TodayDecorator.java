@@ -1,5 +1,5 @@
-// 오늘 날짜 표시
-package com.example.myapplication.calendar;
+// 오늘 초록색으로 표시
+package com.example.myapplication.calendar.decorator;
 
 import android.graphics.Color;
 import android.graphics.Typeface;

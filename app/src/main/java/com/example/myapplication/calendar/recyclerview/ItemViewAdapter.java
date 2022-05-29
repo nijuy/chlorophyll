@@ -1,5 +1,5 @@
 // item_todo와 ItemToDo를 사용하기 위한 어댑터
-package com.example.myapplication.calendar;
+package com.example.myapplication.calendar.recyclerview;
 
 import android.content.Context;
 import android.view.LayoutInflater;

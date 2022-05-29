@@ -1,4 +1,5 @@
-package com.example.myapplication.calendar;
+// 선택한 날짜 밑에 점 찍기
+package com.example.myapplication.calendar.decorator;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
