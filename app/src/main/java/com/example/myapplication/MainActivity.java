@@ -15,6 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -77,5 +78,17 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.main_frame, fragment).commit();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantresult) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantresult);
+        if(requestCode == 1 && grantresult.length > 0){
+            for(int i = 0 ; i < grantresult.length ; i++){
+                if(grantresult[i] == -1)
+                    Toast.makeText(MainActivity.this.getApplicationContext(), "날씨를 보려면 위치 권한을 허용해주세요!", Toast.LENGTH_SHORT).show();
+            }
+        }
+
     }
 }
