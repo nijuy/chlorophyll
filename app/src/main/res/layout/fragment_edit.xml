@@ -202,11 +202,11 @@
         android:layout_below="@id/alarm_setting">
 
         <Button
-            android:id="@+id/editBtn"
+            android:id="@+id/completeBtn"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="수정" />
+            android:text="완료" />
 
         <Button
             android:id="@+id/cancelBtn"
