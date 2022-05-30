@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 
 public class FragmentDetail extends Fragment {
@@ -204,9 +205,11 @@ public class FragmentDetail extends Fragment {
                 public void onClick(View view) {
                     fragmentEdit = new FragmentEdit();
 
-                    FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                    ft.replace(getId(),fragmentEdit);
-                    ft.commit();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("title", title);
+                    fragmentEdit.setArguments(bundle);
+
+                    ((MainActivity)getActivity()).replaceFragment(fragmentEdit);
                 }
             });
 
@@ -225,9 +228,7 @@ public class FragmentDetail extends Fragment {
                     //editor.apply(); // 저장
                     listEditor.apply(); // 저장
 
-                    FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                    ft.replace(getId(),fragmentHome);
-                    ft.commit();
+                    ((MainActivity)getActivity()).replaceFragment(fragmentHome);
 
                     Toast.makeText(context, "식물 정보를 삭제했습니다", Toast.LENGTH_SHORT).show();
                 }
