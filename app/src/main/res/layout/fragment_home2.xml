@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <Button
+        android:id="@+id/btn_location"
+        android:layout_width="300dp"
+        android:layout_height="20dp"
+        android:layout_margin="8dp"
+        android:background="#17787a"
+        android:text="위치 보기"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/locationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="위~치"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"/>
+
+    <TextView
+        android:id="@+id/weatherText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="날~씨"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="28dp"/>
+    <!--
+    <TextView
+        android:id="@+id/weather"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_marginBottom="8dp"
+        android:background="#17787a"
+        android:gravity="center"
+        android:text="날씨를 위한 자리 (없음 말구)"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
+    -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아직 식물을 등록하지 않으셨나요?\n식물을 등록해보세요!"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+    <ImageButton
+        android:id="@+id/add_plant_button"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:background="@android:color/transparent"
+        android:padding="10dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_baseline_add_circle_24"
+        android:tint="@color/black"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck,UseAppTint"  />
+
+</RelativeLayout>

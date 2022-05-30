@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true">
 
     <ImageView
         android:id="@+id/addPhoto_image"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="70dp"
         android:background="#C8C8C8"
         android:padding="5dp"
         android:src="@drawable/ic_baseline_camera_alt_24" />
@@ -32,7 +33,7 @@
         android:layout_below="@id/addPhoto_btn_upload"
         android:layout_marginTop="38dp"
         android:layout_marginLeft="17dp"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textColor="@color/black"
         android:text="식물명" />
 
@@ -41,12 +42,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/plant_species"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="17dp"
-        android:textSize="16dp"
+        android:layout_marginStart="17dp"
+        android:textSize="16sp"
         android:textColor="@color/black"
         android:text="애칭" />
 
-    <TextView
+    <!--<TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/plant_name"
@@ -54,8 +55,7 @@
         android:layout_marginLeft="17dp"
         android:textSize="16dp"
         android:textColor="@color/black"
-        android:text="키우기 시작한 날짜" />
-
+        android:text="키우기 시작한 날짜" />-->
 
     <EditText
         android:id="@+id/plant_species"
@@ -72,7 +72,7 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
-        android:id="@+id/plant_name"
+        android:id="@+id/plant_nickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/plant_species"
@@ -85,7 +85,162 @@
         android:inputType="textPersonName"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <EditText
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/alarm_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/plant_nickname">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Switch
+                android:id="@+id/water_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp" />
+
+            <TextView
+                android:id="@+id/water_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="물주기              일 마다"
+                android:textSize="16sp"
+                android:paddingLeft="30dp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="10dp"/>
+
+            <EditText
+                android:id="@+id/water_edit"
+                android:layout_width="40dp"
+                android:layout_height="23dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/white_edittext"
+                android:hint="00"
+                android:inputType="number"
+                android:textSize="16dp"
+                android:textAlignment="center"
+                android:layout_marginLeft="85dp"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Switch
+                android:id="@+id/sun_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp" />
+
+            <TextView
+                android:id="@+id/sun_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="햇빛주기              일 마다"
+                android:textSize="16dp"
+                android:paddingLeft="30dp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="10dp"  />
+
+            <EditText
+                android:id="@+id/sun_edit"
+                android:layout_width="40dp"
+                android:layout_height="23dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/white_edittext"
+                android:hint="00"
+                android:inputType="number"
+                android:textSize="16dp"
+                android:textAlignment="center"
+                android:layout_marginLeft="100dp"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Switch
+                android:id="@+id/split_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp" />
+
+            <TextView
+                android:id="@+id/split_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="분갈이              일 마다"
+                android:textSize="16sp"
+                android:paddingLeft="30dp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="10dp"  />
+
+            <EditText
+                android:id="@+id/split_edit"
+                android:layout_width="40dp"
+                android:layout_height="23dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/white_edittext"
+                android:hint="00"
+                android:inputType="number"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:layout_marginLeft="85dp"/>
+
+        </FrameLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!--<EditText
+        android:id="@+id/water_edit"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="311dp"
+        android:background="@drawable/white_edittext"
+        android:hint="0"
+        android:inputType="number"
+        android:padding="10dp"
+        android:textAlignment="center" />-->
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/alarm_setting">
+
+        <Button
+            android:id="@+id/doneBtn"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="등록" />
+
+        <Button
+            android:id="@+id/cancelBtn"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="취소" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <!--<EditText
         android:id="@+id/plant_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -97,7 +252,7 @@
         android:ems="10"
         android:hint="언제부터 키우셨나요?"
         android:inputType="textPersonName"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck" />-->
 
 
 </RelativeLayout>

@@ -4,14 +4,19 @@
     <string name="title_home">Home</string>
     <string name="title_plan">Plan</string>
     <string name="title_add_plant">AddPlant</string>
+    <string name="plantName">식물 이름</string>
+    <string name="plantTip">식물 팁</string>
+    <string name="add_to_my_plant">내 식물로 등록하기</string>
 
+    <!-- 추천 페이지 -->
     <string name="btn_recommend">나한테 꼭 맞는 식물 추천 받으러 가기!</string>
-    <string name="btn_goSearch">검색으로 돌아가기</string>
-    <string name="recommendText">다양한 조건 설정으로 내 상황에 딱 맞는 식물을 추천 받아보세요!\n</string>
+    <string name="plant_name">식물 이름</string>
+    <string name="searchResult">검색 결과</string>
+    <string name="recommendText">내 상황에 딱 맞는 식물을 추천 받아보세요!\n</string>
 
     <string name="condition1">식물을 키우는 용도는 무엇인가요?</string>
-    <string name="condition1_1">공기정화</string>
-    <string name="condition1_2">인테리어</string>
+    <string name="condition1_1">공기정화용</string>
+    <string name="condition1_2">관상용</string>
     <string name="condition1_3">식용</string>
     <string name="condition1_4">선택 안 함</string>
 
@@ -29,30 +34,18 @@
     <string name="condition3_5">선택 안 함</string>
 
     <string name="condition4">난이도</string>
-    <string name="condition4_1">초급</string>
-    <string name="condition4_2">중급</string>
-    <string name="condition4_3">고급</string>
+    <string name="condition4_1">쉬움</string>
+    <string name="condition4_2">보통</string>
+    <string name="condition4_3">어려움</string>
     <string name="condition4_4">선택 안 함</string>
 
-    <string name="condition5">물주기</string>
-    <string-array name="condition5_items">
-        <item>물주기</item>
-        <item>항상 흙이 물에 잠기도록</item>
-        <item>흙이 물에 잠기지 않는 촉촉한 상태를 유지</item>
-        <item>흙의 표면이 말랐을 때</item>
-        <item>화분 속 흙이 모두 말랐을 때</item>
-        <item>선택 안 함</item>
-    </string-array>
-
     <string name="condition6">햇빛</string>
+    <string name="condition6_1">음지</string>
+    <string name="condition6_2">반음지</string>
+    <string name="condition6_3">양지</string>
+    <string name="condition6_4">선택 안 함</string>
 
     <string name="btn_getResult">결과 보기</string>
-    <string name="filteringCondition1">조건1</string>
-    <string name="filteringCondition2">조건2</string>
-    <string name="filteringCondition3">조건3</string>
-    <string name="filteringCondition4">조건4</string>
-    <string name="filteringCondition5">조건5</string>
-    <string name="filteringCondition6">조건6</string>
     <string name="filteringCondition">최종조건</string>
 
     <string-array name="custom_weekdays">
@@ -80,4 +73,6 @@
         <item>12월</item>
     </string-array>
 
+    <!-- 결과 페이지 -->
+    <string name="announcementText">설정하신 조건에 맞는 식물 목록이에요!</string>
 </resources>
