@@ -31,8 +31,12 @@ import com.example.myapplication.OnItemClick;
 import com.example.myapplication.R;
 import com.example.myapplication.calendar.FragmentPlan;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -76,9 +80,12 @@ public class FragmentHome extends Fragment implements OnItemClick {
             locationText = rootView.findViewById(R.id.locationText);
             btnLocation = rootView.findViewById(R.id.btn_location);
 
+            locationText.setVisibility(View.GONE);
+
             if(ContextCompat.checkSelfPermission(requireActivity(),android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
                 if(ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                     btnLocation.setVisibility(View.GONE);
+                    locationText.setVisibility(View.VISIBLE);
 
                     LocationTracker lt = new LocationTracker(container.getContext());
                     String address = getCurrentAddress(lt.getLatitude(), lt.getLongitude());
@@ -109,9 +116,12 @@ public class FragmentHome extends Fragment implements OnItemClick {
             locationText = rootView.findViewById(R.id.locationText);
             btnLocation = rootView.findViewById(R.id.btn_location);
 
+            locationText.setVisibility(View.GONE);
+
             if(ContextCompat.checkSelfPermission(requireActivity(),android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
                 if(ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                     btnLocation.setVisibility(View.GONE);
+                    locationText.setVisibility(View.VISIBLE);
 
                     LocationTracker lt = new LocationTracker(container.getContext());
                     String address = getCurrentAddress(lt.getLatitude(), lt.getLongitude());
@@ -227,19 +237,18 @@ public class FragmentHome extends Fragment implements OnItemClick {
         @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDate3 = new SimpleDateFormat("mm"); //분
         Date today = new Date();
         StringBuilder msg = new StringBuilder();
+        String min, hour;
 
         String serviceKey = "hMACbDiw3Z1Pm4vTng3uNgdRCNx%2FoGkO2BfR0P4G9%2F%2Fi8KeBMivV%2Fa9VvMTRiWr2Oj1pPqPo9ZoxUAtQ6aV1uQ%3D%3D";
         String date = simpleDate1.format(today);
         int hr = Integer.parseInt(simpleDate2.format(today));
         int minute = Integer.parseInt(simpleDate3.format(today));
-        String min = "";
-        String hour = "";
 
         if(minute <= 40){
             hour = Integer.toString(hr-1);
             min = "30";
         }
-        else{
+        else {
             hour = Integer.toString(hr);
             min = "00";
         }
@@ -248,13 +257,48 @@ public class FragmentHome extends Fragment implements OnItemClick {
                 .append(serviceKey)
                 .append("&pageNo=1")
                 .append("&numOfRows=1000")
-                .append("&dataType=XML")
+                .append("&dataType=JSON")
                 .append("&base_date=").append(date)
                 .append("&base_time=").append(hour).append(min)
                 .append("&nx=").append(x).append("&ny=").append(y);
 
         Log.d("@@", msg.toString());
+
+        /*
+        new Thread(() -> {
+            sendRequestMsg(msg);
+        }).start();
+        */
     }
+
+    public void sendRequestMsg(StringBuilder msg){
+        try {
+            URL url = new URL(msg.toString());
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Content-type", "application/json");
+            BufferedReader rd;
+
+            if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300)
+                rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            else
+                rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+
+            StringBuilder sb = new StringBuilder();
+            while(rd.readLine() != null)
+                sb.append(rd.readLine());
+
+            rd.close();
+            conn.disconnect();
+            String result= sb.toString();
+            Log.d("@@", result);
+
+        } catch (Exception e){
+            Log.d("@@", "sendRequestmsg에서 에러 발생!");
+            e.printStackTrace();
+        }
+    }
+
 
 
 

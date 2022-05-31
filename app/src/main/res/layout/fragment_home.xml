@@ -25,7 +25,8 @@
             android:id="@+id/weatherText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="날씨"/>
+            android:text="날씨"
+            android:layout_marginBottom="40dp"/>
 
         <Button
             android:id="@+id/btn_location"
