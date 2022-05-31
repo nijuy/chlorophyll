@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.RatingBar;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -44,9 +46,11 @@ public class FragmentResult extends Fragment {
         view = inflater.inflate(R.layout.fragment_result, container,false);
         fragmentAddPlant = new FragmentAddPlant();
         ImageButton btnBack;
+        RatingBar ratingBar;
 
         listView = view.findViewById(R.id.result_recommendList);
         btnBack = view.findViewById(R.id.btn_goRecommend);
+        ratingBar = view.findViewById(R.id.recommendRate);
 
         connectDB();
         setUpOnClickListener();
@@ -67,6 +71,10 @@ public class FragmentResult extends Fragment {
             ft.remove(FragmentResult.this).commit();
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
             fm.popBackStack();
+        });
+
+        ratingBar.setOnRatingBarChangeListener((ratingBar1, v, b) -> {
+            Toast.makeText(view.getContext().getApplicationContext(), "추천 결과에 " + ratingBar1.getRating() + "점을 주셨습니다!", Toast.LENGTH_SHORT).show();
         });
 
         super.onCreateView(inflater, container, savedInstanceState);

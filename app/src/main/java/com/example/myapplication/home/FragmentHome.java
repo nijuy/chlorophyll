@@ -69,6 +69,25 @@ public class FragmentHome extends Fragment implements OnItemClick {
                     ((MainActivity)getActivity()).replaceFragment(fragmentAddPlant);
                 }
             });
+
+            locationText = rootView.findViewById(R.id.locationText);
+            btnLocation = rootView.findViewById(R.id.btn_location);
+
+            if(ContextCompat.checkSelfPermission(requireActivity(),android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+                if(ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    btnLocation.setVisibility(rootView.GONE);
+
+                    LocationTracker lt = new LocationTracker(container.getContext());
+                    String address = getCurrentAddress(lt.getLatitude(), lt.getLongitude());
+                    locationText.setText("위도 : "+lt.getLatitude()+" / 경도 : "+lt.getLongitude()+"\n주소 : "+address);
+                }
+
+            btnLocation.setOnClickListener(view -> {
+                int REQUEST_CODE = 1;
+                String[] PERMISSIONS = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+                ActivityCompat.requestPermissions((getActivity()), PERMISSIONS, REQUEST_CODE);
+            });
+
         } else {
             rootView = inflater.inflate(R.layout.fragment_home, container,false);
             recyclerView = rootView.findViewById(R.id.my_plant_list);
@@ -87,13 +106,14 @@ public class FragmentHome extends Fragment implements OnItemClick {
             locationText = rootView.findViewById(R.id.locationText);
             btnLocation = rootView.findViewById(R.id.btn_location);
 
-            LocationTracker lt = new LocationTracker(container.getContext());
-            String address = getCurrentAddress(lt.getLatitude(), lt.getLongitude());
-            locationText.setText("위도 : "+lt.getLatitude()+" / 경도 : "+lt.getLongitude()+"\n주소 : "+address);
-
             if(ContextCompat.checkSelfPermission(requireActivity(),android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-                if(ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+                if(ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                     btnLocation.setVisibility(rootView.GONE);
+
+                    LocationTracker lt = new LocationTracker(container.getContext());
+                    String address = getCurrentAddress(lt.getLatitude(), lt.getLongitude());
+                    locationText.setText("위도 : "+lt.getLatitude()+" / 경도 : "+lt.getLongitude()+"\n주소 : "+address);
+                }
 
             btnLocation.setOnClickListener(view -> {
                 int REQUEST_CODE = 1;
