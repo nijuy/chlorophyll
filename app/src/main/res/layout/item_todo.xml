@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp">
+
+    <!-- 식물 이름 -->
+    <TextView
+        android:id="@+id/item_todo_plant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="식물 이름"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/item_todo_etc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" : "
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/item_todo_plant"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- 할 일 -->
+    <TextView
+        android:id="@+id/item_todo_what"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="할 일"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/item_todo_etc"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 시간 -->
+    <TextView
+        android:id="@+id/item_todo_when"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="시간"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/item_todo_plant"
+        app:layout_constraintTop_toBottomOf="@+id/item_todo_plant" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

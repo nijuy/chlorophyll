@@ -211,7 +211,7 @@ public class FragmentAddPlant extends Fragment {
 
                         editor.apply(); // 저장
 
-                        list = listPref.getString("title", "");
+                        list = listPref.getString("title", "/");
                         listEditor.putString("title", list + "/" + fileName);
                         listEditor.apply();
 

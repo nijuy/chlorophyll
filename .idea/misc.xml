@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidTest/chlorophyll/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.1" />
+        <entry key="..\:/AndroidTest/chlorophyll/app/src/main/res/layout/fragment_add_plant.xml" value="0.15833333333333333" />
+        <entry key="..\:/AndroidTest/chlorophyll/app/src/main/res/layout/fragment_plan.xml" value="0.26541554959785524" />
+        <entry key="..\:/AndroidTest/chlorophyll/app/src/main/res/layout/fragment_recommend.xml" value="0.15833333333333333" />
+        <entry key="..\:/AndroidTest/chlorophyll/app/src/main/res/layout/item_todo.xml" value="0.536" />
+        <entry key="..\:/AndroidTest/chlorophyll/app/src/main/res/menu/bottom_menu.xml" value="0.13148148148148148" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyApplication/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.147" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/et_link_back.xml" value="0.1095" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.14" />
@@ -18,6 +24,13 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/MyApplication/app/src/main/res/menu/bottom_menu.xml" value="0.3312820512820513" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyApplication/app/src/main/res/menu/bottom_navi.xml" value="0.32153846153846155" />
         <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/drawable/btn_signin_rount.xml" value="0.1325" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/drawable/edittext.xml" value="0.183" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/drawable/gary_edittext.xml" value="0.103" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/drawable/red_edittext.xml" value="0.183" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/drawable/white_edittext.xml" value="0.1765" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_detail.xml" value="0.1" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_diary.xml" value="0.24564102564102563" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_detail.xml" value="0.24444444444444444" />
         <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/activity_detail.xml" value="0.25" />
         <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/activity_main.xml" value="0.14" />
         <entry key="..\:/Users/User/AndroidStudioProjects/chlorophyll/app/src/main/res/layout/fragment_add_plant.xml" value="0.264" />
