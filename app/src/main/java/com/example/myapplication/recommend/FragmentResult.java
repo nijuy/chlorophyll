@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 public class FragmentResult extends Fragment {
     private View view;
     private DatabaseHelper databaseHelper;
+    private TextView noResultTest;
     public static ArrayList<Plant> plantList;
     public static ArrayList<Plant> filterPlantList;
     private ListView listView;
@@ -51,7 +53,9 @@ public class FragmentResult extends Fragment {
         listView = view.findViewById(R.id.result_recommendList);
         btnBack = view.findViewById(R.id.btn_goRecommend);
         ratingBar = view.findViewById(R.id.recommendRate);
+        noResultTest = view.findViewById(R.id.noResultText);
 
+        noResultTest.setVisibility(view.GONE);
         connectDB();
         setUpOnClickListener();
 
@@ -107,8 +111,12 @@ public class FragmentResult extends Fragment {
     }
 
     public void showResult(){
-        PlantAdapter adapter = new PlantAdapter(getActivity().getApplicationContext(),0,filterPlantList);
-        listView.setAdapter(adapter);
+        if(filterPlantList.size() != 0){
+            PlantAdapter adapter = new PlantAdapter(getActivity().getApplicationContext(),0,filterPlantList);
+            listView.setAdapter(adapter);
+        } else
+            noResultTest.setVisibility(view.VISIBLE);
+
     }
 
     private void setUpOnClickListener(){
