@@ -171,12 +171,16 @@ public class FragmentHome extends Fragment implements OnItemClick {
                 Log.d("@@", "주소 못 찾음");
             }
 
-            return addressList.get(0).getAddressLine(0).toString();
+            String Address = addressList.get(0).getAddressLine(0);
+            int totalAddress = addressList.get(0).getAddressLine(0).length();
+            int featureLength = addressList.get(0).getFeatureName().length() + 1; // "a b"에서 " b" 만큼 자를거니까 공백 길이 1 더해줌
+
+            return Address.substring(0, totalAddress-featureLength);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return "이게 가면 안되긴 하는데";
+        return "이게 가면 안된다,,, 이건 그냥 리턴때문에 만들어둔 잉여 문자열이니까,,,,";
     }
 
     public void getWeather(){
