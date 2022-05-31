@@ -38,9 +38,36 @@
 
     <ListView
         android:id="@+id/result_recommendList"
-        android:background="@drawable/listview_search_background"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:dividerHeight="2dp"/>
+        android:layout_height="wrap_content"
+        android:background="@drawable/listview_search_background"
+        android:dividerHeight="2dp" />
+
+    <TextView
+        android:id="@+id/noResultText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:text="해당하는 식물이 없습니다...\n조건을 바꿔서 검색해보세요"
+        android:textSize="20dp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/ratingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="추천 결과에 만족하시나요?"
+        android:textSize="13dp"
+        android:layout_gravity="center" />
+
+    <RatingBar
+        android:id="@+id/recommendRate"
+        style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:isIndicator="false"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

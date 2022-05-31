@@ -28,9 +28,6 @@ public class LocationTracker implements LocationListener {
         try{
             LocationManager lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
-            Log.d("@@", Boolean.toString(lm.isProviderEnabled(LocationManager.GPS_PROVIDER))); //gps 동작 확인
-            Log.d("@@", Boolean.toString(lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER))); //network 동작 확인
-
             if(ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
                 lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 100, 10, this);
@@ -43,11 +40,10 @@ public class LocationTracker implements LocationListener {
                         longitude = location.getLongitude();
                     }
                 }
-
             }
 
         } catch (Exception e){
-            Log.d("@",e.toString());
+            e.printStackTrace();
         }
         return location;
     }

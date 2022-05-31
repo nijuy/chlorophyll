@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.RatingBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -32,6 +35,7 @@ import java.util.ArrayList;
 public class FragmentResult extends Fragment {
     private View view;
     private DatabaseHelper databaseHelper;
+    private TextView noResultTest;
     public static ArrayList<Plant> plantList;
     public static ArrayList<Plant> filterPlantList;
     private ListView listView;
@@ -44,10 +48,14 @@ public class FragmentResult extends Fragment {
         view = inflater.inflate(R.layout.fragment_result, container,false);
         fragmentAddPlant = new FragmentAddPlant();
         ImageButton btnBack;
+        RatingBar ratingBar;
 
         listView = view.findViewById(R.id.result_recommendList);
         btnBack = view.findViewById(R.id.btn_goRecommend);
+        ratingBar = view.findViewById(R.id.recommendRate);
+        noResultTest = view.findViewById(R.id.noResultText);
 
+        noResultTest.setVisibility(view.GONE);
         connectDB();
         setUpOnClickListener();
 
@@ -67,6 +75,10 @@ public class FragmentResult extends Fragment {
             ft.remove(FragmentResult.this).commit();
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
             fm.popBackStack();
+        });
+
+        ratingBar.setOnRatingBarChangeListener((ratingBar1, v, b) -> {
+            Toast.makeText(view.getContext().getApplicationContext(), "추천 결과에 " + ratingBar1.getRating() + "점을 주셨습니다!", Toast.LENGTH_SHORT).show();
         });
 
         super.onCreateView(inflater, container, savedInstanceState);
@@ -99,8 +111,12 @@ public class FragmentResult extends Fragment {
     }
 
     public void showResult(){
-        PlantAdapter adapter = new PlantAdapter(getActivity().getApplicationContext(),0,filterPlantList);
-        listView.setAdapter(adapter);
+        if(filterPlantList.size() != 0){
+            PlantAdapter adapter = new PlantAdapter(getActivity().getApplicationContext(),0,filterPlantList);
+            listView.setAdapter(adapter);
+        } else
+            noResultTest.setVisibility(view.VISIBLE);
+
     }
 
     private void setUpOnClickListener(){
