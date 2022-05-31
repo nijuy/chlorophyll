@@ -31,9 +31,16 @@ import com.example.myapplication.R;
 import com.example.myapplication.calendar.FragmentPlan;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import jxl.Workbook;
+import jxl.Sheet;
+import jxl.read.biff.BiffException;
 
 public class FragmentHome extends Fragment implements OnItemClick {
 
@@ -58,24 +65,21 @@ public class FragmentHome extends Fragment implements OnItemClick {
         context = getActivity();
         listPref = context.getSharedPreferences("listPref", Context.MODE_PRIVATE);
         String[] array = (listPref.getString("title", "")).split("/");
+        Date time = new Date(System.currentTimeMillis());
+        SimpleDateFormat simpledate = new SimpleDateFormat("HHmm"); // 0-23시 시간 + 분
 
         if (array.length == 1) {
             rootView = inflater.inflate(R.layout.fragment_home2, container,false);
 
             addButton = rootView.findViewById(R.id.add_plant_button);
-            addButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ((MainActivity)getActivity()).replaceFragment(fragmentAddPlant);
-                }
-            });
+            addButton.setOnClickListener(view -> ((MainActivity)getActivity()).replaceFragment(fragmentAddPlant));
 
             locationText = rootView.findViewById(R.id.locationText);
             btnLocation = rootView.findViewById(R.id.btn_location);
 
             if(ContextCompat.checkSelfPermission(requireActivity(),android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
                 if(ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                    btnLocation.setVisibility(rootView.GONE);
+                    btnLocation.setVisibility(View.GONE);
 
                     LocationTracker lt = new LocationTracker(container.getContext());
                     String address = getCurrentAddress(lt.getLatitude(), lt.getLongitude());
@@ -108,11 +112,12 @@ public class FragmentHome extends Fragment implements OnItemClick {
 
             if(ContextCompat.checkSelfPermission(requireActivity(),android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
                 if(ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                    btnLocation.setVisibility(rootView.GONE);
+                    btnLocation.setVisibility(View.GONE);
 
                     LocationTracker lt = new LocationTracker(container.getContext());
                     String address = getCurrentAddress(lt.getLatitude(), lt.getLongitude());
-                    locationText.setText("위도 : "+lt.getLatitude()+" / 경도 : "+lt.getLongitude()+"\n주소 : "+address);
+                    locationText.setText("위도 : " + lt.getLatitude() + " / 경도 : " + lt.getLongitude()
+                                       + "\n주소 : " + address + " / 시간 : " + simpledate.format(time) );
                 }
 
             btnLocation.setOnClickListener(view -> {
@@ -167,24 +172,53 @@ public class FragmentHome extends Fragment implements OnItemClick {
         try {
             addressList = geocoder.getFromLocation(latitude, longtitude,1);
 
-            if(addressList == null || addressList.size() == 0){
+            if(addressList == null || addressList.size() == 0)
                 Log.d("@@", "주소 못 찾음");
-            }
 
             String Address = addressList.get(0).getAddressLine(0);
             int totalAddress = addressList.get(0).getAddressLine(0).length();
-            int featureLength = addressList.get(0).getFeatureName().length() + 1; // "a b"에서 " b" 만큼 자를거니까 공백 길이 1 더해줌
+            int featureLength = addressList.get(0).getFeatureName().length() + 1; // "a b"에서 " b" 만큼 자를거니까 b 길이에 공백 길이 1 더해줌
 
+            getCoordinates(addressList.get(0).getThoroughfare()); // 동 가지고 x,y 좌표값 찾는 함수 호출
             return Address.substring(0, totalAddress-featureLength);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return "이게 가면 안된다,,, 이건 그냥 리턴때문에 만들어둔 잉여 문자열이니까,,,,";
+        return "이게 가면 안된다,,, 이건 리턴때문에 만들어둔 잉여 문자열이니까,,,,";
     }
 
-    public void getWeather(){
 
+    public void getCoordinates(String localName) {
+        Log.d("@@", localName);
+        try {
+            InputStream is = getActivity().getApplicationContext().getResources().getAssets().open("location_name.xls");
+            Workbook wb = Workbook.getWorkbook(is);
+
+            if (wb != null) {
+                Sheet sheet = wb.getSheet(0);   // 시트 불러오기
+                if (sheet != null) {
+                    int colTotal = sheet.getColumns();    // 전체 컬럼
+                    int rowTotal = sheet.getColumn(colTotal - 1).length;
+
+                    for (int row = 1 ; row < rowTotal ; row++) {
+                        String contents = sheet.getCell(4, row).getContents();
+                        if (contents.contains(localName)) {
+                            String x = sheet.getCell(5, row).getContents();
+                            String y = sheet.getCell(6, row).getContents();
+                            row = rowTotal;
+                            Log.d("@@", "x = " + x + " y = " + y);
+                        }
+                    }
+                }
+            }
+        } catch (IOException e) {
+            Log.i("READ_EXCEL1", e.getMessage());
+            e.printStackTrace();
+        } catch (BiffException e) {
+            Log.i("READ_EXCEL1", e.getMessage());
+            e.printStackTrace();
+        }
     }
-
 }
