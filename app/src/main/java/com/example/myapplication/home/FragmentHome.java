@@ -172,15 +172,18 @@ public class FragmentHome extends Fragment implements OnItemClick {
         try {
             addressList = geocoder.getFromLocation(latitude, longitude,1);
 
-            if(addressList == null || addressList.size() == 0)
+            if(addressList == null || addressList.size() == 0){
                 Log.d("@@", "주소 못 찾음");
+                return "위도 경도를 똑바로 넣자...........";
+            }
+            else {
+                String Address = addressList.get(0).getAddressLine(0);
+                int totalAddress = addressList.get(0).getAddressLine(0).length();
+                int featureLength = addressList.get(0).getFeatureName().length() + 1; // "a b"에서 " b" 만큼 자를거니까 b 길이에 공백 길이 1 더해줌
 
-            String Address = addressList.get(0).getAddressLine(0);
-            int totalAddress = addressList.get(0).getAddressLine(0).length();
-            int featureLength = addressList.get(0).getFeatureName().length() + 1; // "a b"에서 " b" 만큼 자를거니까 b 길이에 공백 길이 1 더해줌
-
-            getCoordinates(addressList.get(0).getThoroughfare());
-            return Address.substring(0, totalAddress-featureLength);
+                getCoordinates(addressList.get(0).getThoroughfare());
+                return Address.substring(0, totalAddress-featureLength);
+            }
 
         } catch (IOException e) {
             e.printStackTrace();

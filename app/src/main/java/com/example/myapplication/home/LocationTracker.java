@@ -40,11 +40,10 @@ public class LocationTracker implements LocationListener {
                         longitude = location.getLongitude();
                     }
                 }
-
             }
 
         } catch (Exception e){
-            Log.d("@",e.toString());
+            e.printStackTrace();
         }
         return location;
     }
