@@ -76,30 +76,10 @@ public class FragmentHome extends Fragment implements OnItemClick {
 
             addButton = rootView.findViewById(R.id.add_plant_button);
             addButton.setOnClickListener(view -> ((MainActivity)getActivity()).replaceFragment(fragmentAddPlant));
-
-            locationText = rootView.findViewById(R.id.locationText);
-            btnLocation = rootView.findViewById(R.id.btn_location);
-
-            locationText.setVisibility(View.GONE);
-
-            if(ContextCompat.checkSelfPermission(requireActivity(),android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-                if(ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                    btnLocation.setVisibility(View.GONE);
-                    locationText.setVisibility(View.VISIBLE);
-
-                    LocationTracker lt = new LocationTracker(container.getContext());
-                    String address = getCurrentAddress(lt.getLatitude(), lt.getLongitude());
-                    locationText.setText("위도 : "+lt.getLatitude()+" / 경도 : "+lt.getLongitude()+"\n주소 : "+address);
-                }
-
-            btnLocation.setOnClickListener(view -> {
-                int REQUEST_CODE = 1;
-                String[] PERMISSIONS = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
-                ActivityCompat.requestPermissions((getActivity()), PERMISSIONS, REQUEST_CODE);
-            });
-
-        } else {
+        }
+        else {
             rootView = inflater.inflate(R.layout.fragment_home, container,false);
+
             recyclerView = rootView.findViewById(R.id.my_plant_list);
             myPlantList = new ArrayList<MyPlantList>();
 
@@ -111,27 +91,6 @@ public class FragmentHome extends Fragment implements OnItemClick {
                 public void onClick(View view) {
                     ((MainActivity)getActivity()).replaceFragment(fragmentAddPlant);
                 }
-            });
-
-            locationText = rootView.findViewById(R.id.locationText);
-            btnLocation = rootView.findViewById(R.id.btn_location);
-
-            locationText.setVisibility(View.GONE);
-
-            if(ContextCompat.checkSelfPermission(requireActivity(),android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-                if(ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                    btnLocation.setVisibility(View.GONE);
-                    locationText.setVisibility(View.VISIBLE);
-
-                    LocationTracker lt = new LocationTracker(container.getContext());
-                    String address = getCurrentAddress(lt.getLatitude(), lt.getLongitude());
-                    locationText.setText("위도 : " + lt.getLatitude() + " / 경도 : " + lt.getLongitude() + "\n주소 : " + address);
-                }
-
-            btnLocation.setOnClickListener(view -> {
-                int REQUEST_CODE = 1;
-                String[] PERMISSIONS = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
-                ActivityCompat.requestPermissions((getActivity()), PERMISSIONS, REQUEST_CODE);
             });
 
             for (int i = 0; i < array.length; i++) {
@@ -149,6 +108,7 @@ public class FragmentHome extends Fragment implements OnItemClick {
             recyclerView.setAdapter(adapter);
         }
 
+        showLocation(container);
         return rootView;
     }
 
@@ -171,6 +131,38 @@ public class FragmentHome extends Fragment implements OnItemClick {
 
             ((MainActivity)getActivity()).replaceFragment(fragmentDetail);
         }
+    }
+
+    public boolean checkedPermissions(){
+        if(ContextCompat.checkSelfPermission(requireActivity(),android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+           && ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+            return true;
+
+        else
+            return false;
+    }
+
+    public void showLocation(@Nullable ViewGroup container){
+        locationText = rootView.findViewById(R.id.locationText);
+        btnLocation = rootView.findViewById(R.id.btn_location);
+
+        locationText.setVisibility(View.GONE);
+
+        if(checkedPermissions()) {
+            btnLocation.setVisibility(View.GONE);
+            locationText.setVisibility(View.VISIBLE);
+
+            LocationTracker lt = new LocationTracker(container.getContext());
+            String address = getCurrentAddress(lt.getLatitude(), lt.getLongitude());
+            locationText.setText("위도 : "+lt.getLatitude()+" / 경도 : "+lt.getLongitude()+"\n주소 : "+address);
+        }
+
+        btnLocation.setOnClickListener(view -> {
+            int REQUEST_CODE = 1;
+            String[] PERMISSIONS = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+            ActivityCompat.requestPermissions((getActivity()), PERMISSIONS, REQUEST_CODE);
+        });
+
     }
 
     public String getCurrentAddress(double latitude, double longitude) {
@@ -298,9 +290,5 @@ public class FragmentHome extends Fragment implements OnItemClick {
             e.printStackTrace();
         }
     }
-
-
-
-
 
 }
