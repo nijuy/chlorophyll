@@ -1,6 +1,7 @@
 package com.example.myapplication.home;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -65,8 +66,6 @@ public class FragmentHome extends Fragment implements OnItemClick {
         context = getActivity();
         listPref = context.getSharedPreferences("listPref", Context.MODE_PRIVATE);
         String[] array = (listPref.getString("title", "")).split("/");
-        Date time = new Date(System.currentTimeMillis());
-        SimpleDateFormat simpledate = new SimpleDateFormat("HHmm"); // 0-23시 시간 + 분
 
         if (array.length == 1) {
             rootView = inflater.inflate(R.layout.fragment_home2, container,false);
@@ -116,8 +115,7 @@ public class FragmentHome extends Fragment implements OnItemClick {
 
                     LocationTracker lt = new LocationTracker(container.getContext());
                     String address = getCurrentAddress(lt.getLatitude(), lt.getLongitude());
-                    locationText.setText("위도 : " + lt.getLatitude() + " / 경도 : " + lt.getLongitude()
-                                       + "\n주소 : " + address + " / 시간 : " + simpledate.format(time) );
+                    locationText.setText("위도 : " + lt.getLatitude() + " / 경도 : " + lt.getLongitude() + "\n주소 : " + address);
                 }
 
             btnLocation.setOnClickListener(view -> {
@@ -165,12 +163,12 @@ public class FragmentHome extends Fragment implements OnItemClick {
         }
     }
 
-    public String getCurrentAddress(double latitude, double longtitude) {
+    public String getCurrentAddress(double latitude, double longitude) {
         Geocoder geocoder = new Geocoder(getActivity().getApplicationContext(), Locale.getDefault());
         List<Address> addressList;
 
         try {
-            addressList = geocoder.getFromLocation(latitude, longtitude,1);
+            addressList = geocoder.getFromLocation(latitude, longitude,1);
 
             if(addressList == null || addressList.size() == 0)
                 Log.d("@@", "주소 못 찾음");
@@ -179,7 +177,7 @@ public class FragmentHome extends Fragment implements OnItemClick {
             int totalAddress = addressList.get(0).getAddressLine(0).length();
             int featureLength = addressList.get(0).getFeatureName().length() + 1; // "a b"에서 " b" 만큼 자를거니까 b 길이에 공백 길이 1 더해줌
 
-            getCoordinates(addressList.get(0).getThoroughfare()); // 동 가지고 x,y 좌표값 찾는 함수 호출
+            getCoordinates(addressList.get(0).getThoroughfare());
             return Address.substring(0, totalAddress-featureLength);
 
         } catch (IOException e) {
@@ -188,7 +186,6 @@ public class FragmentHome extends Fragment implements OnItemClick {
 
         return "이게 가면 안된다,,, 이건 리턴때문에 만들어둔 잉여 문자열이니까,,,,";
     }
-
 
     public void getCoordinates(String localName) {
         Log.d("@@", localName);
@@ -207,8 +204,8 @@ public class FragmentHome extends Fragment implements OnItemClick {
                         if (contents.contains(localName)) {
                             String x = sheet.getCell(5, row).getContents();
                             String y = sheet.getCell(6, row).getContents();
-                            row = rowTotal;
-                            Log.d("@@", "x = " + x + " y = " + y);
+                            makeRequestMsg(x, y);
+                            break;
                         }
                     }
                 }
@@ -221,4 +218,45 @@ public class FragmentHome extends Fragment implements OnItemClick {
             e.printStackTrace();
         }
     }
+
+    public void makeRequestMsg(String xText, String yText){
+        int x = Integer.parseInt(xText);
+        int y = Integer.parseInt(yText);
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDate1 = new SimpleDateFormat("yyyyMMdd"); //20220531
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDate2 = new SimpleDateFormat("HH"); //시
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDate3 = new SimpleDateFormat("mm"); //분
+        Date today = new Date();
+        StringBuilder msg = new StringBuilder();
+
+        String serviceKey = "hMACbDiw3Z1Pm4vTng3uNgdRCNx%2FoGkO2BfR0P4G9%2F%2Fi8KeBMivV%2Fa9VvMTRiWr2Oj1pPqPo9ZoxUAtQ6aV1uQ%3D%3D";
+        String date = simpleDate1.format(today);
+        int hr = Integer.parseInt(simpleDate2.format(today));
+        int minute = Integer.parseInt(simpleDate3.format(today));
+        String min = "";
+        String hour = "";
+
+        if(minute <= 40){
+            hour = Integer.toString(hr-1);
+            min = "30";
+        }
+        else{
+            hour = Integer.toString(hr);
+            min = "00";
+        }
+
+        msg.append("https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst?serviceKey=")
+                .append(serviceKey)
+                .append("&pageNo=1")
+                .append("&numOfRows=1000")
+                .append("&dataType=XML")
+                .append("&base_date=").append(date)
+                .append("&base_time=").append(hour).append(min)
+                .append("&nx=").append(x).append("&ny=").append(y);
+
+        Log.d("@@", msg.toString());
+    }
+
+
+
+
 }
