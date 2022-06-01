@@ -4,8 +4,7 @@ package com.example.myapplication.calendar.recyclerview;
 public class ItemToDo {
     private String plant;   // 식물 이름
     private String what;    // 할 일
-    private String when;    // 할 날짜
-    private String date;    // 하는 날짜
+    private String date;    // 할 날짜
 
     public String getPlant() {
         return plant;
@@ -19,13 +18,6 @@ public class ItemToDo {
     }
     public void setWhat(String what) {
         this.what = what;
-    }
-
-    public String getWhen() {
-        return when;
-    }
-    public void setWhen(String when) {
-        this.when = when;
     }
 
     public String getDate() { return date; }

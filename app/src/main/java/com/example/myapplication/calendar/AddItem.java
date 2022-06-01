@@ -12,34 +12,31 @@ public class AddItem {
 
     private String plantName;   // 식물 이름
     private String todoWhat;    // 할 일
-    private String todoWhen;    // 할 시간 - HH:mm:ss
     private String todoDate;    // 할 날짜 - yyyy년 MM월 dd일
-    private int todoCycle;   // 주기 - n Day
+    private int todoCycle;      // 주기 - n Day
 
     // 생성자
     public AddItem(ArrayList<ItemToDo> itemList,
-                   String plantName, String todoWhat, String todoWhen, int todoCycle) throws ParseException {
+                   String plantName, String startDate, String todoWhat, int todoCycle) throws ParseException {
         this.plantName = plantName;
         this.todoWhat = todoWhat;
-        this.todoWhen = todoWhen;
         this.todoCycle = todoCycle;
-        this.todoDate = Date2String(new Date());
+        this.todoDate = startDate;  // 일정 시작 날짜 = 등록 날짜
 
         // itemList에 추가
-        for (int i=0; i<10; i++) {  // 10회
-            addItem(itemList, plantName, todoWhat, todoWhen, todoDate);
+        for (int i=0; i<100; i++) {  // 10회
+            addItem(itemList, plantName, todoWhat, todoDate);
             todoDate = calCycle(todoDate, todoCycle);   // n일 후 추가
         }
     }
 
     // itemList에 아이템 추가
     private void addItem(ArrayList<ItemToDo> itemList,
-                         String plant, String what, String when, String date) {
+                         String plant, String what, String date) {
         ItemToDo item = new ItemToDo();
 
         item.setPlant(plant);
         item.setWhat(what);
-        item.setWhen(when);
         item.setDate(date);
 
         itemList.add(item);
@@ -75,9 +72,6 @@ public class AddItem {
 
     public String getTodoWhat() { return todoWhat; }
     public void setTodoWhat(String todoWhat) { this.todoWhat = todoWhat; }
-
-    public String getTodoWhen() { return todoWhen; }
-    public void setTodoWhen(String todoWhen) { this.todoWhen = todoWhen; }
 
     public int getTodoCycle() { return todoCycle; }
     public void setTodoCycle(int todoCycle) { this.todoCycle = todoCycle; }
