@@ -1,5 +1,8 @@
+// 할 시간 삭제
 package com.example.myapplication.calendar;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.MyPlantList;
 import com.example.myapplication.R;
 import com.example.myapplication.calendar.decorator.EventDecorator;
 import com.example.myapplication.calendar.decorator.SaturdayDecorator;
@@ -34,6 +38,7 @@ import java.util.List;
 
 public class FragmentPlan extends Fragment {
     private View view;
+    private Context context;
 
     private MaterialCalendarView mv;
     private TextView tv;
@@ -43,23 +48,76 @@ public class FragmentPlan extends Fragment {
     private ArrayList<ItemToDo> showList = new ArrayList<>();   // itemList 중 보여줄 일정
     private ItemViewAdapter adapter = null;
 
+    private SharedPreferences pref, listPref;
+    private String plantName, startDate, title;
+    private Integer water, sun, split;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_plan, container,false);
+        context = getActivity();
 
         // 연결
         mv = view.findViewById(R.id.plan_cv);
         tv = view.findViewById(R.id.plan_tv);
         rv = view.findViewById(R.id.plan_rv);
 
-        // 일정 추가 - 홈에서 일정 추가 어떻게?
+        // SharedPreference - 파일명=등록날짜
+        listPref = context.getSharedPreferences("listPref", Context.MODE_PRIVATE);
+        String[] array = (listPref.getString("title", "")).split("/");
+
+        this.itemList.clear();
+
+        // SharedPreference 읽고 itemlist에 추가
+        for (int i = 0; i < array.length; i++) {
+            if (!array[i].equals("")) {
+                pref = context.getSharedPreferences(array[i], Context.MODE_PRIVATE);
+
+                plantName = pref.getString("nickname", "");
+                water = pref.getInt("water", 0);    // 물주기
+                sun = pref.getInt("sun", 0);        // 햇빛
+                split = pref.getInt("split", 0);    // 분갈이
+                // 등록 날짜: title -> yyyy년 MM월 dd일 -> startDate
+                title = array[i];   // 등록날짜?
+                try {
+                    startDate = Title2Start(title);
+                } catch (ParseException e) { e.printStackTrace(); }
+
+                // 물주기 주기가 0 아니면 일정 itemList에 추가
+                if (water != 0) {
+                    try {
+                        new AddItem(itemList,
+                                plantName, startDate, "물주기", water);
+                    } catch (ParseException e) { e.printStackTrace(); }
+                }
+                // 햇빛 주기가 0 아니면 일정 itemList에 추가
+                if (sun != 0) {
+                    try {
+                        new AddItem(itemList,
+                                plantName, startDate, "햇빛", sun);
+                    } catch (ParseException e) { e.printStackTrace(); }
+                }
+                // 분갈이 주기가 0 아니면 일정 itemList에 추가
+                if (split != 0) {
+                    try {
+                        new AddItem(itemList,
+                                plantName, startDate, "분갈이", split);
+                    } catch (ParseException e) { e.printStackTrace(); }
+                }
+            }
+        }
+
+        /*
+        // 일정 추가 - 테스트
+        startDate = Date2String(new Date());    // 오늘
         try {
             new AddItem(itemList,
-                    "장미", "물주기", "17:00:00", 4);
+                    "장미", startDate, "물주기", 4);
             new AddItem(itemList,
-                    "백합", "물주기", "13:00:00", 5);
+                    "백합", startDate, "물주기",  5);
         } catch (ParseException e) { e.printStackTrace(); }
+        */
 
         // RecyclerView 세팅 - showList
         adapter = new ItemViewAdapter(showList);
@@ -103,7 +161,6 @@ public class FragmentPlan extends Fragment {
 
                 item.setPlant(i.getPlant());
                 item.setWhat(i.getWhat());
-                item.setWhen(i.getWhen());
                 item.setDate(i.getDate());
 
                 this.showList.add(item);
@@ -160,5 +217,18 @@ public class FragmentPlan extends Fragment {
         SimpleDateFormat s2d = new SimpleDateFormat("yyyy년 MM월 dd일");
 
         return s2d.parse(date);
+    }
+
+    // String "yyyyMMdd" -> String "yyyy년 MM월 dd일"
+    private String Title2Start(String title) throws ParseException {
+        Date date = new Date();
+        String str = title.substring(0,8);        // yyyyMMdd
+
+        // yyyyMMdd -> Date
+        SimpleDateFormat s2d = new SimpleDateFormat("yyyyMMdd");
+        date = s2d.parse(str);
+
+        // Date -> yyyy년 MM월 dd일
+        return Date2String(date);
     }
 }

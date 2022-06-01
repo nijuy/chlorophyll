@@ -41,7 +41,6 @@ public class ItemViewAdapter extends RecyclerView.Adapter<ItemViewAdapter.ViewHo
 
         holder.plantName.setText(item.getPlant());
         holder.todoWhat.setText(item.getWhat());
-        holder.todoWhen.setText(item.getWhen());
     }
 
     // getItemCount() : 전체 데이터의 개수를 리턴
@@ -54,7 +53,6 @@ public class ItemViewAdapter extends RecyclerView.Adapter<ItemViewAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView plantName;
         TextView todoWhat;
-        TextView todoWhen;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -62,7 +60,6 @@ public class ItemViewAdapter extends RecyclerView.Adapter<ItemViewAdapter.ViewHo
             // 뷰 객체에 대한 참조
             plantName = itemView.findViewById(R.id.item_todo_plant);
             todoWhat = itemView.findViewById(R.id.item_todo_what);
-            todoWhen = itemView.findViewById(R.id.item_todo_when);
         }
     }
 }
