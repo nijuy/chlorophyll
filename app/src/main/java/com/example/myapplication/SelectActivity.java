@@ -1,7 +1,5 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,10 +8,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.myapplication.recommend.FragmentResult;
-import com.example.myapplication.search.FragmentSearchPlant;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class DetailActivity extends AppCompatActivity {
+import com.example.myapplication.home.FragmentSelect;
+import com.example.myapplication.recommend.FragmentResult;
+
+public class SelectActivity extends AppCompatActivity {
     Plant selectPlant;
     Button add_to_my_plant;
     ImageButton btnBack;
@@ -37,7 +37,7 @@ public class DetailActivity extends AppCompatActivity {
         add_to_my_plant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DetailActivity.this, MainActivity.class);
+                Intent intent = new Intent(SelectActivity.this, MainActivity.class);
                 intent.putExtra("id", selectPlant.getId());
                 intent.putExtra("name",selectPlant.getName());
                 intent.putExtra("image", selectPlant.getImage());
@@ -65,13 +65,12 @@ public class DetailActivity extends AppCompatActivity {
 
         switch (pageKey) {
             case "1":
-                selectPlant = FragmentSearchPlant.plantList.get(id_num);
+                selectPlant = FragmentSelect.plantList.get(id_num);
                 break;
 
             case "2":
                 selectPlant = FragmentResult.plantList.get(id_num);
                 break;
         }
-
     }
 }

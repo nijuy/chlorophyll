@@ -51,7 +51,7 @@ public class FragmentHome extends Fragment implements OnItemClick {
 
     SharedPreferences pref, listPref;
 
-    String species, nickname, title;
+    String id, species, nickname, image, title;
 
     ArrayList<MyPlantList> myPlantList;
     RecyclerView recyclerView;
@@ -59,8 +59,7 @@ public class FragmentHome extends Fragment implements OnItemClick {
     MyPlantListAdapter adapter;
     View rootView = null;
     Context context;
-    FragmentAddPlant fragmentAddPlant = new FragmentAddPlant();
-    FragmentDiary fragmentDiary = new FragmentDiary();
+    FragmentSelect fragmentSelect = new FragmentSelect();
     TextView locationText;
     Button btnLocation;
 
@@ -75,7 +74,7 @@ public class FragmentHome extends Fragment implements OnItemClick {
             rootView = inflater.inflate(R.layout.fragment_home2, container,false);
 
             addButton = rootView.findViewById(R.id.add_plant_button);
-            addButton.setOnClickListener(view -> ((MainActivity)getActivity()).replaceFragment(fragmentAddPlant));
+            addButton.setOnClickListener(view -> ((MainActivity)getActivity()).replaceFragment(fragmentSelect));
         }
         else {
             rootView = inflater.inflate(R.layout.fragment_home, container,false);
@@ -89,7 +88,7 @@ public class FragmentHome extends Fragment implements OnItemClick {
             addButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((MainActivity)getActivity()).replaceFragment(fragmentAddPlant);
+                    ((MainActivity)getActivity()).replaceFragment(fragmentSelect);
                 }
             });
 
@@ -97,10 +96,12 @@ public class FragmentHome extends Fragment implements OnItemClick {
                 if (!array[i].equals("")) {
                     pref = getActivity().getSharedPreferences(array[i], Context.MODE_PRIVATE);
 
+                    id = pref.getString("id", "0");
                     species = pref.getString("species", "");
                     nickname = pref.getString("nickname", "");
+                    image = pref.getString("image", "");
                     title = array[i];
-                    myPlantList.add(new MyPlantList(species, nickname, title));
+                    myPlantList.add(new MyPlantList(id, species, nickname, image, title));
                 }
             }
 
@@ -115,13 +116,13 @@ public class FragmentHome extends Fragment implements OnItemClick {
     @Override
     public void onClick(String value, String title){
         if (value.equals("diary")) {
-            FragmentDiary fragmentDiary = new FragmentDiary();
+            FragmentFeature fragmentFeature = new FragmentFeature();
 
             Bundle bundle = new Bundle();
-            bundle.putString("title", title);
-            fragmentDiary.setArguments(bundle);
+            bundle.putString("id", title);
+            fragmentFeature.setArguments(bundle);
 
-            ((MainActivity)getActivity()).replaceFragment(fragmentDiary);
+            ((MainActivity)getActivity()).replaceFragment(fragmentFeature);
         } else if (value.equals("detail")) {
             FragmentDetail fragmentDetail = new FragmentDetail();
 

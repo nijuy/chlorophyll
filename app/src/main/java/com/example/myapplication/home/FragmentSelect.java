@@ -1,4 +1,4 @@
-package com.example.myapplication.search;
+package com.example.myapplication.home;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,36 +12,35 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.myapplication.DatabaseHelper;
-import com.example.myapplication.DetailActivity;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.Plant;
 import com.example.myapplication.PlantAdapter;
 import com.example.myapplication.R;
-import com.example.myapplication.home.FragmentAddPlant;
+import com.example.myapplication.SelectActivity;
 
 import java.util.ArrayList;
 
-public class FragmentSearchPlant extends Fragment {
-    private View view;
+public class FragmentSelect extends Fragment {
+    private View rootView;
     public static ArrayList<Plant> plantList;
     ListView listView;
     ActivityResultLauncher<Intent> activityResultLauncher;
     FragmentAddPlant fragmentAddPlant = new FragmentAddPlant();
+    FragmentHome fragmentHome;
+
+    ImageButton btnBack;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_search_plant, container,false);
+        rootView = inflater.inflate(R.layout.fragment_search_plant, container,false);
         setUpData();
         setUpList();
         searchPlant();
@@ -50,29 +49,27 @@ public class FragmentSearchPlant extends Fragment {
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
             if(result.getResultCode() == Activity.RESULT_OK) {
                 Intent intent = result.getData();
-                fragmentAddPlant.setId(intent.getStringExtra("id"));
                 fragmentAddPlant.setSpecies(intent.getStringExtra("name"));
                 fragmentAddPlant.setImage(intent.getStringExtra("image"));
+                fragmentAddPlant.setId(intent.getStringExtra("id"));
                 ((MainActivity)getActivity()).replaceFragment(fragmentAddPlant);
             }
         });
 
-        ImageButton btnBack;
-
-        btnBack = view.findViewById(R.id.btn_goSearch);
-        btnBack.setOnClickListener(view ->{
-            FragmentManager fm = getParentFragmentManager();
-            FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-            ft.remove(FragmentSearchPlant.this).commit(); // 지금 띄운 추천 페이지 (this) 지우기
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
-            fm.popBackStack();
+        btnBack = rootView.findViewById(R.id.btn_goSearch);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fragmentHome = new FragmentHome();
+                ((MainActivity)getActivity()).replaceFragment(fragmentHome);
+            }
         });
 
-        return view;
+        return rootView;
     }
 
     private void searchPlant(){
-        SearchView searchView = view.findViewById(R.id.plant_search_view);
+        SearchView searchView = rootView.findViewById(R.id.plant_search_view);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -107,7 +104,7 @@ public class FragmentSearchPlant extends Fragment {
     }
 
     private void setUpList(){
-        listView = view.findViewById(R.id.plant_listView);
+        listView = rootView.findViewById(R.id.plant_listView);
 
         PlantAdapter adapter = new PlantAdapter(getActivity().getApplicationContext(),0,plantList);
         listView.setAdapter(adapter);
@@ -118,7 +115,7 @@ public class FragmentSearchPlant extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Plant selectPlant = (Plant) listView.getItemAtPosition(i);
-                Intent showDetail = new Intent(getActivity().getApplicationContext(), DetailActivity.class);
+                Intent showDetail = new Intent(getActivity(), SelectActivity.class);
                 showDetail.putExtra("id", selectPlant.getId());
                 showDetail.putExtra("pageKey", "1");
 

@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.FragmentManager;
@@ -10,13 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 class ViewHolder extends RecyclerView.ViewHolder {
 
-    TextView test1_textView;
-    TextView test2_textView;
+    ImageView plantImage;
+    TextView plantSpecies;
+    TextView plantNickname;
 
     ViewHolder(View itemView) {
         super(itemView);
 
-        test1_textView = itemView.findViewById(R.id.test1_textview);
-        test2_textView = itemView.findViewById(R.id.test2_textview);
+        plantImage = itemView.findViewById(R.id.myplant_image);
+        plantSpecies = itemView.findViewById(R.id.myplant_species);
+        plantNickname = itemView.findViewById(R.id.myplant_nickname);
     }
 }

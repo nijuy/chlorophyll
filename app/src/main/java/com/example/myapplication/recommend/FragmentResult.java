@@ -63,6 +63,8 @@ public class FragmentResult extends Fragment {
             if(result.getResultCode() == Activity.RESULT_OK) {
                 Intent intent = result.getData();
                 fragmentAddPlant.setSpecies(intent.getStringExtra("name")); // 등록 페이지 내 식물 종 자동 설정
+                fragmentAddPlant.setImage(intent.getStringExtra("image"));
+                fragmentAddPlant.setId(intent.getStringExtra("id"));
                 ((MainActivity)getActivity()).replaceFragment(fragmentAddPlant); // 상세 페이지 -> 등록 fragment 대체
             }
         });

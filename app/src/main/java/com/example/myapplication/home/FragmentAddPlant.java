@@ -35,11 +35,14 @@ public class FragmentAddPlant extends Fragment {
     SharedPreferences listPref, pref;
     SharedPreferences.Editor listEditor, editor;
 
-    String value, species, nickname, list;
+    String value, species, nickname, image, list;
+    String id, packName;
     int water = -1, sun = -1, split = -1;
+    int resID;
 
     View rootView = null;
-    EditText speciesEdit, nicknameEdit;
+    TextView speciesText;
+    EditText nicknameEdit;
     Button photoBtn, doneBtn, cancelBtn;
     ImageView imageView = null;
 
@@ -56,13 +59,16 @@ public class FragmentAddPlant extends Fragment {
         fragmentHome = new FragmentHome();
         rootView = inflater.inflate(R.layout.fragment_add_plant, container, false);
         imageView = rootView.findViewById(R.id.addPhoto_image);
-        //imageView.setImageResource(R.drawable.ic_baseline_camera_alt_24);
-        speciesEdit = rootView.findViewById(R.id.plant_species);
-        speciesEdit.setText(species);
+        speciesText = rootView.findViewById(R.id.plant_species);
         nicknameEdit = rootView.findViewById(R.id.plant_nickname);
         photoBtn = rootView.findViewById(R.id.addPhoto_btn_upload);
         doneBtn = rootView.findViewById(R.id.doneBtn);
         cancelBtn = rootView.findViewById(R.id.cancelBtn);
+
+        packName = getActivity().getPackageName();
+        resID = getResources().getIdentifier(image, "drawable", packName);
+        speciesText.setText(species);
+        imageView.setImageResource(resID);
 
         waterEdit = rootView.findViewById(R.id.water_edit);
         waterText = rootView.findViewById(R.id.water_textview);
@@ -199,11 +205,14 @@ public class FragmentAddPlant extends Fragment {
                     if(water < 0 || sun < 0 || split < 0) {
                         Toast.makeText(getActivity(), "주기는 자연수로 선택해주세요", Toast.LENGTH_SHORT).show();
                     } else {
-                        species = speciesEdit.getText().toString();
+                        species = speciesText.getText().toString();
                         editor.putString("species", species);
 
                         nickname = nicknameEdit.getText().toString();
                         editor.putString("nickname", nickname);
+
+                        editor.putString("id", id);
+                        editor.putString("image", image);
 
                         editor.putInt("water", water);
                         editor.putInt("sun", sun);
@@ -218,22 +227,6 @@ public class FragmentAddPlant extends Fragment {
                         ((MainActivity) getActivity()).replaceFragment(fragmentHome);
                     }
                 }
-              
-                /*species = speciesEdit.getText().toString();
-                editor.putString("species", species);
-
-                nickname = nicknameEdit.getText().toString();
-                editor.putString("nickname", nickname);
-
-                editor.apply(); // 저장
-
-                list = listPref.getString("title", "");
-                listEditor.putString("title", list + "/" + fileName);
-                listEditor.apply();
-
-                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                ft.replace(getId(),fragmentHome);
-                ft.commit();*/
             }
         });
 
@@ -260,4 +253,8 @@ public class FragmentAddPlant extends Fragment {
     public void setSpecies(String species){
         this.species = species;
     }
+
+    public void setImage(String image) { this.image = image; }
+
+    public void setId(String id) { this.id = id; }
 }

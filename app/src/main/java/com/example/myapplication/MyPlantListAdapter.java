@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +19,10 @@ public class MyPlantListAdapter extends RecyclerView.Adapter<ViewHolder> {
     private ArrayList<MyPlantList> listData;
     private OnItemClick mCallback;
 
+    private String packName, id;
+    private int resID;
+
+    ImageView plantImg;
     Button diaryBtn, detailBtn;
     View rootView;
 
@@ -30,7 +35,6 @@ public class MyPlantListAdapter extends RecyclerView.Adapter<ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         rootView = inflater.inflate(R.layout.myplant_item, parent, false);
@@ -41,8 +45,13 @@ public class MyPlantListAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.test1_textView.setText(String.valueOf(listData.get(position).getTest1()));
-        holder.test2_textView.setText(listData.get(position).getTest2());
+        packName = context.getPackageName();
+        resID = context.getResources().getIdentifier(listData.get(position).getImage(), "drawable", packName);
+        id = listData.get(position).getId();
+        //holder.plantSpecies.setText(String.valueOf(listData.get(position).getSpecies()));
+        holder.plantSpecies.setText(listData.get(position).getSpecies());
+        holder.plantNickname.setText(listData.get(position).getNickname());
+        holder.plantImage.setImageResource(resID);
 
         String title = listData.get(position).getTitle();
 

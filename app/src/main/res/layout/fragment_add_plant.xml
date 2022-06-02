@@ -8,24 +8,12 @@
 
     <ImageView
         android:id="@+id/addPhoto_image"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="70dp"
+        android:layout_centerHorizontal="true"
         android:background="#C8C8C8"
-        android:padding="5dp"
-        android:src="@drawable/ic_baseline_camera_alt_24" />
-
-    <Button
-        android:id="@+id/addPhoto_btn_upload"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_below="@id/addPhoto_image"
-        android:layout_marginTop="5dp"
-        android:background="#B5B5B5"
-        android:padding="2dp"
-        android:text="Upload"
-        android:textColor="#424242"
-        tools:ignore="TouchTargetSizeCheck" />
+        android:padding="5dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -47,28 +35,16 @@
         android:textColor="@color/black"
         android:text="애칭" />
 
-    <!--<TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/plant_name"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="17dp"
-        android:textSize="16dp"
-        android:textColor="@color/black"
-        android:text="키우기 시작한 날짜" />-->
-
-    <EditText
+    <TextView
         android:id="@+id/plant_species"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/addPhoto_btn_upload"
+        android:layout_below="@id/addPhoto_image"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="57dp"
         android:layout_marginRight="15dp"
         android:layout_weight="1"
         android:ems="10"
-        android:hint="품종을 입력해주세요"
-        android:inputType="textPersonName"
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
@@ -202,19 +178,6 @@
         </FrameLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <!--<EditText
-        android:id="@+id/water_edit"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="311dp"
-        android:background="@drawable/white_edittext"
-        android:hint="0"
-        android:inputType="number"
-        android:padding="10dp"
-        android:textAlignment="center" />-->
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
