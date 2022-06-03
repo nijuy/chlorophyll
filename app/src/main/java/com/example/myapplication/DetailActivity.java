@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.recommend.FragmentResult;
+import com.example.myapplication.search.FragmentBestFive;
 import com.example.myapplication.search.FragmentSearchPlant;
 
 public class DetailActivity extends AppCompatActivity {
@@ -70,6 +71,10 @@ public class DetailActivity extends AppCompatActivity {
 
             case "2":
                 selectPlant = FragmentResult.plantList.get(id_num);
+                break;
+
+            case "3":
+                selectPlant = FragmentBestFive.plantList.get(id_num);
                 break;
         }
 
