@@ -18,8 +18,8 @@ class ViewHolder extends RecyclerView.ViewHolder {
     ViewHolder(View itemView) {
         super(itemView);
 
-        plantImage = itemView.findViewById(R.id.myplant_image);
-        plantSpecies = itemView.findViewById(R.id.myplant_species);
-        plantNickname = itemView.findViewById(R.id.myplant_nickname);
+        plantImage = itemView.findViewById(R.id.my_plant_image);
+        plantSpecies = itemView.findViewById(R.id.my_plant_species);
+        plantNickname = itemView.findViewById(R.id.my_plant_nickname);
     }
 }

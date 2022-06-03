@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:gravity="center_vertical"
@@ -7,17 +8,36 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="0dp"
     android:layout_marginRight="0dp"
-    android:layout_marginBottom="20dp"
-    android:background="@android:color/white">
+    android:layout_marginBottom="40dp"
+    android:background="@drawable/round_style">
 
-    <ImageButton
-        android:id="@+id/myplant_image"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_alignParentStart="true"
-        android:layout_gravity="center"
-        android:background="#5153"
-        android:scaleType="fitXY" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="134dp"
+        android:layout_height="134dp"
+        app:cardCornerRadius="40dp"
+        app:cardBackgroundColor="#64A68A"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp">
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/photo_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="40dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="15dp">
+
+        <ImageView
+            android:id="@+id/my_plant_image"
+            android:layout_width="130dp"
+            android:layout_height="130dp"/>
+
+    </androidx.cardview.widget.CardView>
 
     <LinearLayout
         android:id="@+id/button"
@@ -25,55 +45,54 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_below="@id/myplant_image">
+        android:layout_below="@id/photo_image">
 
         <Button
             android:id="@+id/diaryBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#679950"
-            android:textSize="20dp"
-            android:text="DIARY"
-            android:layout_marginRight="3dp"/>
+            android:background="@drawable/main_button_style"
+            android:textSize="20sp"
+            android:text="FEATURE"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"/>
 
         <Button
             android:id="@+id/detailBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#679950"
-            android:textSize="20dp"
+            android:background="@drawable/main_button_style"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
             android:text="DETAIL"
-            android:layout_marginLeft="3dp"/>
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"/>
 
     </LinearLayout>
 
-    <!--<TextView
-        android:id="@+id/nickname_textview"
+    <TextView
+        android:id="@+id/my_plant_nickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/button"
-        android:background="#97a892"
-        android:textColor="#ffffff"
-        android:textSize="20dp" />-->
+        android:layout_toEndOf="@id/photo_image"
+        android:textColor="#000000"
+        android:text="별칭 테스트"
+        android:layout_marginBottom="45dp"
+        android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/myplant_nickname"
+        android:id="@+id/my_plant_species"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/button"
-        android:background="#97a892"
+        android:layout_above="@id/my_plant_nickname"
+        android:layout_toEndOf="@id/photo_image"
         android:textColor="#000000"
-        android:textSize="20dp" />
-
-    <TextView
-        android:id="@+id/myplant_species"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/myplant_nickname"
-        android:background="#97a892"
-        android:textColor="#000000"
-        android:textSize="20dp" />
+        android:text="종 테스트"
+        android:layout_marginBottom="15dp"
+        android:textSize="20sp" />
 
 </RelativeLayout>

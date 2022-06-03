@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +26,7 @@ import com.example.myapplication.R;
 
 public class FragmentEdit extends Fragment {
     private View rootView;
-    private String title = "", species, nickname, value;
+    private String title = "", species, nickname, value, image, packName;
     private int water, sun, split;
     private int newWater, newSun, newSplit;
 
@@ -33,10 +34,12 @@ public class FragmentEdit extends Fragment {
     SharedPreferences pref;
     SharedPreferences.Editor editor;
 
-    EditText plantSpecies, plantNickname;
+    TextView plantSpecies;
+    EditText plantNickname;
     EditText waterEdit, sunEdit, splitEdit;
     TextView waterTextView, sunTextView, splitTextView;
     Switch waterSwitch, sunSwitch, splitSwitch;
+    ImageView imageView;
 
     Button completeBtn, cancelBtn;
 
@@ -52,6 +55,7 @@ public class FragmentEdit extends Fragment {
 
         if (getArguments() != null) {
             title = getArguments().getString("title");
+            image = getArguments().getString("image");
             pref = context.getSharedPreferences(title, Context.MODE_PRIVATE);
             editor = pref.edit();
 
@@ -84,6 +88,11 @@ public class FragmentEdit extends Fragment {
 
             completeBtn = rootView.findViewById(R.id.completeBtn);
             cancelBtn = rootView.findViewById(R.id.cancelBtn);
+
+            imageView = rootView.findViewById(R.id.addPhoto_image);
+            packName = context.getPackageName();
+            int resID = context.getResources().getIdentifier(image, "drawable", packName);
+            imageView.setImageResource(resID);
 
             if (water == 0) {
                 waterSwitch.setChecked(false);

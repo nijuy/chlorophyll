@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ import com.example.myapplication.R;
 public class FragmentDetail extends Fragment {
     private View rootView;
     private String title = "", species, nickname, value, list, newList;
+    private String packName, image;
     private int water, sun, split;
     private int newWater, newSun, newSplit;
 
@@ -36,6 +38,7 @@ public class FragmentDetail extends Fragment {
     TextView waterText, sunText, splitText;
     TextView waterTextView, sunTextView, splitTextView;
     Switch waterSwitch, sunSwitch, splitSwitch;
+    ImageView imageView;
 
     Button editBtn, deleteBtn;
 
@@ -50,6 +53,7 @@ public class FragmentDetail extends Fragment {
 
         if(getArguments() != null) {
             title = getArguments().getString("title");
+            image = getArguments().getString("image");
             pref = context.getSharedPreferences(title, Context.MODE_PRIVATE);
             editor = pref.edit();
 
@@ -61,6 +65,7 @@ public class FragmentDetail extends Fragment {
 
             plantSpecies = rootView.findViewById(R.id.plant_species);
             plantNickname = rootView.findViewById(R.id.plant_nickname);
+            imageView = rootView.findViewById(R.id.addPhoto_image);
 
             waterText = rootView.findViewById(R.id.water_text);
             sunText = rootView.findViewById(R.id.sun_text);
@@ -76,6 +81,10 @@ public class FragmentDetail extends Fragment {
 
             plantSpecies.setText(species);
             plantNickname.setText(nickname);
+            packName = context.getPackageName();
+            int resID = context.getResources().getIdentifier(image, "drawable", packName);
+            imageView.setImageResource(resID);
+            imageView.setClipToOutline(true);
 
             editBtn = rootView.findViewById(R.id.toEditBtn);
             deleteBtn = rootView.findViewById(R.id.toDeleteBtn);
@@ -207,6 +216,7 @@ public class FragmentDetail extends Fragment {
 
                     Bundle bundle = new Bundle();
                     bundle.putString("title", title);
+                    bundle.putString("image", image);
                     fragmentEdit.setArguments(bundle);
 
                     ((MainActivity)getActivity()).replaceFragment(fragmentEdit);
