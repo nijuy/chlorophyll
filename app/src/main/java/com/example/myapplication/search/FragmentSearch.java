@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,8 +23,11 @@ public class FragmentSearch extends Fragment {
         View view1 = inflater.inflate(R.layout.fragment_search, container, false);
         FragmentRecommend rec = new FragmentRecommend();
         FragmentSearchPlant searchPlant = new FragmentSearchPlant();
+        FragmentBestFive bestFive = new FragmentBestFive();
         Button btnRecommend = view1.findViewById(R.id.button); //추천 페이지로 가는 버튼 초기화
         Button btnSearch = view1.findViewById(R.id.search_button);
+        ImageButton purify_best_five = view1.findViewById(R.id.purify_best5_button);
+        ImageButton herb_best_five = view1.findViewById(R.id.herb_best5_button);
 
         btnRecommend.setOnClickListener(view -> {
             FragmentTransaction ft = getChildFragmentManager().beginTransaction();
@@ -38,6 +42,26 @@ public class FragmentSearch extends Fragment {
         btnSearch.setOnClickListener(view -> {
             FragmentTransaction ft = getChildFragmentManager().beginTransaction();
             ft.replace(R.id.fragment_search, searchPlant);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+            ft.commit();
+        });
+
+        purify_best_five.setOnClickListener(view -> {
+            FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+            Bundle resultQuery = new Bundle();
+            resultQuery.putString("bundleKey", "SELECT * FROM plants WHERE use = \"공기정화용\" LIMIT 5");
+            getChildFragmentManager().setFragmentResult("rk", resultQuery);
+            ft.replace(R.id.fragment_search, bestFive);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+            ft.commit();
+        });
+
+        herb_best_five.setOnClickListener(view -> {
+            FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+            Bundle resultQuery = new Bundle();
+            resultQuery.putString("bundleKey", "SELECT * FROM plants WHERE use = \"식용\" LIMIT 5");
+            getChildFragmentManager().setFragmentResult("rk", resultQuery);
+            ft.replace(R.id.fragment_search, bestFive);
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             ft.commit();
         });
