@@ -13,7 +13,7 @@
         android:layout_height="20dp"
         android:layout_margin="8dp"
         android:background="#17787a"
-        android:text="위치 보기"
+        android:text="@string/location_button"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,35 +22,22 @@
         android:id="@+id/locationText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="위~치"
+        android:text="@string/location_text"
         android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"/>
+        android:layout_marginStart="8dp"/>
 
     <TextView
         android:id="@+id/weatherText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="날~씨"
-        android:layout_marginLeft="8dp"
+        android:text="@string/weather_text"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="48dp"/>
-    <!--
-    <TextView
-        android:id="@+id/weather"
-        android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:layout_marginBottom="8dp"
-        android:background="#17787a"
-        android:gravity="center"
-        android:text="날씨를 위한 자리 (없음 말구)"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent" />
-    -->
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="아직 식물을 등록하지 않으셨나요?\n식물을 등록해보세요!"
+        android:text="@string/initial_text"
         android:textSize="20sp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"/>

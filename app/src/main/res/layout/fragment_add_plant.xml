@@ -18,10 +18,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/addPhoto_btn_upload"
+        android:layout_below="@id/addPhoto_image"
         android:layout_marginTop="38dp"
-        android:layout_marginLeft="17dp"
-        android:textSize="16sp"
+        android:layout_marginStart="17dp"
+        android:textSize="17sp"
         android:textColor="@color/black"
         android:text="식물명" />
 
@@ -33,7 +33,7 @@
         android:layout_marginStart="17dp"
         android:textSize="16sp"
         android:textColor="@color/black"
-        android:text="애칭" />
+        android:text="별칭" />
 
     <TextView
         android:id="@+id/plant_species"
@@ -201,21 +201,5 @@
             android:text="취소" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-    <!--<EditText
-        android:id="@+id/plant_start"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/plant_name"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="15dp"
-        android:layout_weight="1"
-        android:ems="10"
-        android:hint="언제부터 키우셨나요?"
-        android:inputType="textPersonName"
-        tools:ignore="TouchTargetSizeCheck" />-->
-
 
 </RelativeLayout>

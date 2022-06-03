@@ -67,14 +67,12 @@ public class FragmentFeature extends Fragment {
     }
 
     private void getSelectedPlant(){
-        Log.v("getSelectedPlant", "실행 중");
         int id_num = Integer.parseInt(id)-1;
 
         selectPlant = plantList.get(id_num);
     }
 
     private void setUpData(){
-        Log.v("setUpData", "실행 중");
         DatabaseHelper databaseHelper = new DatabaseHelper(getActivity().getApplicationContext());
         databaseHelper.OpenDatabaseFile();
 

@@ -1,4 +1,7 @@
-<resources>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+
     <string name="app_name">My Application</string>
     <string name="title_search">Search</string>
     <string name="title_home">Home</string>
@@ -75,4 +78,26 @@
 
     <!-- 결과 페이지 -->
     <string name="announcementText">설정하신 조건에 맞는 식물 목록이에요!</string>
+
+    <!-- fragment_home -->
+    <string name="location_button">위치 보기</string>
+    <string name="location_text">위~치</string>
+    <string name="weather_text">날~씨</string>
+    <string name="initial_text">아직 식물을 등록하지 않으셨나요?\n식물을 등록해보세요!</string>
+
+    <!-- button -->
+    <string name="feature_button">FEATURE</string>
+    <string name="detail_button">DETAIL</string>
+    <string name="complete_button">완&#160;&#160;료</string>
+    <string name="cancel_button">취&#160;&#160;소</string>
+    <string name="update_button">수&#160;&#160;정</string>
+    <string name="delete_button">삭&#160;&#160;제</string>
+
+    <!-- fragment_edit -->
+    <string name="hint">00</string>
+
+    <!-- fragment_detail -->
+    <string name="water_text">물주기&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;일&#160;마다</string>
+    <string name="sun_text">햇빛주기&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;일&#160;마다</string>
+    <string name="split_text">물주기&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;일&#160;마다</string>
 </resources>

@@ -114,7 +114,7 @@ public class FragmentHome extends Fragment implements OnItemClick {
     }
 
     @Override
-    public void onClick(String value, String title){
+    public void onClick(String value, String title, String image){
         if (value.equals("diary")) {
             FragmentFeature fragmentFeature = new FragmentFeature();
 
@@ -128,6 +128,7 @@ public class FragmentHome extends Fragment implements OnItemClick {
 
             Bundle bundle = new Bundle();
             bundle.putString("title", title);
+            bundle.putString("image", image);
             fragmentDetail.setArguments(bundle);
 
             ((MainActivity)getActivity()).replaceFragment(fragmentDetail);

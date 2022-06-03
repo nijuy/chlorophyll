@@ -61,7 +61,6 @@ public class FragmentAddPlant extends Fragment {
         imageView = rootView.findViewById(R.id.addPhoto_image);
         speciesText = rootView.findViewById(R.id.plant_species);
         nicknameEdit = rootView.findViewById(R.id.plant_nickname);
-        photoBtn = rootView.findViewById(R.id.addPhoto_btn_upload);
         doneBtn = rootView.findViewById(R.id.doneBtn);
         cancelBtn = rootView.findViewById(R.id.cancelBtn);
 

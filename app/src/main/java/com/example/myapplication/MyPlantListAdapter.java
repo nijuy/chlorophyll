@@ -19,10 +19,9 @@ public class MyPlantListAdapter extends RecyclerView.Adapter<ViewHolder> {
     private ArrayList<MyPlantList> listData;
     private OnItemClick mCallback;
 
-    private String packName, id;
+    private String packName;
     private int resID;
 
-    ImageView plantImg;
     Button diaryBtn, detailBtn;
     View rootView;
 
@@ -46,8 +45,9 @@ public class MyPlantListAdapter extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         packName = context.getPackageName();
-        resID = context.getResources().getIdentifier(listData.get(position).getImage(), "drawable", packName);
-        id = listData.get(position).getId();
+        String image = listData.get(position).getImage();
+        resID = context.getResources().getIdentifier(image, "drawable", packName);
+        String id = listData.get(position).getId();
         //holder.plantSpecies.setText(String.valueOf(listData.get(position).getSpecies()));
         holder.plantSpecies.setText(listData.get(position).getSpecies());
         holder.plantNickname.setText(listData.get(position).getNickname());
@@ -59,7 +59,7 @@ public class MyPlantListAdapter extends RecyclerView.Adapter<ViewHolder> {
         diaryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCallback.onClick("diary", title);
+                mCallback.onClick("diary", id, image);
             }
         });
 
@@ -67,7 +67,7 @@ public class MyPlantListAdapter extends RecyclerView.Adapter<ViewHolder> {
         detailBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCallback.onClick("detail", title);
+                mCallback.onClick("detail", title, image);
             }
         });
     }
