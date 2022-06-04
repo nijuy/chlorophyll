@@ -1,50 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    android:layout_marginTop="50dp">
 
-    <ImageView
-        android:id="@+id/addPhoto_image"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="70dp"
-        android:layout_centerHorizontal="true"
-        android:background="#C8C8C8"
-        android:padding="5dp" />
-
-    <TextView
-        android:layout_width="match_parent"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/addPhoto_image"
-        android:layout_marginTop="38dp"
-        android:layout_marginStart="17dp"
-        android:textSize="17sp"
-        android:textColor="@color/black"
-        android:text="식물명" />
+        android:layout_centerHorizontal="true"
+        app:cardCornerRadius="80dp"
+        android:layout_marginTop="70dp">
+
+        <ImageView
+            android:id="@+id/addPhoto_image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:padding="5dp" />
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/species"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/image"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
+        android:text="식물명 :"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/nickname"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/plant_species"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="17dp"
-        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+        android:textSize="18sp"
         android:textColor="@color/black"
-        android:text="별칭" />
+        android:text="별칭 :" />
 
     <TextView
         android:id="@+id/plant_species"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/addPhoto_image"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="57dp"
-        android:layout_marginRight="15dp"
+        android:layout_below="@id/image"
+        android:layout_toRightOf="@id/species"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="15dp"
         android:layout_weight="1"
         android:ems="10"
+        android:textSize="18sp"
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
@@ -53,11 +67,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/plant_species"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="15dp"
         android:layout_weight="1"
+        android:layout_toRightOf="@id/nickname"
         android:ems="10"
         android:hint="별칭을 입력해주세요"
+        android:textSize="18sp"
         android:inputType="textPersonName"
         tools:ignore="TouchTargetSizeCheck" />
 
@@ -84,9 +100,9 @@
                 android:id="@+id/water_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="물주기              일 마다"
-                android:textSize="16sp"
-                android:paddingLeft="30dp"
+                android:text="@string/water_text"
+                android:textSize="18sp"
+                android:paddingStart="30dp"
                 android:textColor="@color/black"
                 android:layout_marginBottom="10dp"/>
 
@@ -94,14 +110,13 @@
                 android:id="@+id/water_edit"
                 android:layout_width="40dp"
                 android:layout_height="23dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
                 android:background="@drawable/white_edittext"
-                android:hint="00"
+                android:hint="@string/hint"
                 android:inputType="number"
-                android:textSize="16dp"
+                android:textSize="17sp"
                 android:textAlignment="center"
-                android:layout_marginLeft="85dp"/>
+                android:layout_marginTop="1dp"
+                android:layout_marginStart="88dp"/>
 
         </FrameLayout>
 
@@ -120,9 +135,9 @@
                 android:id="@+id/sun_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="햇빛주기              일 마다"
-                android:textSize="16dp"
-                android:paddingLeft="30dp"
+                android:text="@string/sun_text"
+                android:textSize="18sp"
+                android:paddingStart="30dp"
                 android:textColor="@color/black"
                 android:layout_marginBottom="10dp"  />
 
@@ -130,14 +145,13 @@
                 android:id="@+id/sun_edit"
                 android:layout_width="40dp"
                 android:layout_height="23dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
                 android:background="@drawable/white_edittext"
-                android:hint="00"
+                android:hint="@string/hint"
                 android:inputType="number"
-                android:textSize="16dp"
+                android:textSize="17sp"
                 android:textAlignment="center"
-                android:layout_marginLeft="100dp"/>
+                android:layout_marginTop="1dp"
+                android:layout_marginStart="106dp"/>
 
         </FrameLayout>
 
@@ -156,8 +170,8 @@
                 android:id="@+id/split_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="분갈이              일 마다"
-                android:textSize="16sp"
+                android:text="@string/split_text"
+                android:textSize="18sp"
                 android:paddingLeft="30dp"
                 android:textColor="@color/black"
                 android:layout_marginBottom="10dp"  />
@@ -166,20 +180,20 @@
                 android:id="@+id/split_edit"
                 android:layout_width="40dp"
                 android:layout_height="23dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
                 android:background="@drawable/white_edittext"
-                android:hint="00"
+                android:hint="@string/hint"
                 android:inputType="number"
-                android:textSize="16sp"
+                android:textSize="17sp"
                 android:textAlignment="center"
-                android:layout_marginLeft="85dp"/>
+                android:layout_marginTop="1dp"
+                android:layout_marginStart="125dp"/>
 
         </FrameLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/btns"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -188,17 +202,29 @@
 
         <Button
             android:id="@+id/doneBtn"
-            android:layout_width="50dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="등록" />
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="25dp"
+            android:text="@string/complete_button"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#64A68A"
+            android:background="@drawable/button_style" />
 
         <Button
             android:id="@+id/cancelBtn"
-            android:layout_width="50dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="취소" />
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="30dp"
+            android:text="@string/cancel_button"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#64A68A"
+            android:background="@drawable/button_style" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
