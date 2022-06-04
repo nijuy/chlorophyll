@@ -37,15 +37,27 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.cert.X509Certificate;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
 import jxl.Workbook;
 import jxl.Sheet;
 import jxl.read.biff.BiffException;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class FragmentHome extends Fragment implements OnItemClick {
 
@@ -60,8 +72,10 @@ public class FragmentHome extends Fragment implements OnItemClick {
     View rootView = null;
     Context context;
     FragmentSelect fragmentSelect = new FragmentSelect();
-    TextView locationText;
+    TextView locationText, weatherText;
     Button btnLocation;
+
+    int pastHour = -1;
 
     @Nullable
     @Override
@@ -136,27 +150,26 @@ public class FragmentHome extends Fragment implements OnItemClick {
     }
 
     public boolean checkedPermissions(){
-        if(ContextCompat.checkSelfPermission(requireActivity(),android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
-           && ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-            return true;
-
-        else
-            return false;
+        return ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
     }
 
     public void showLocation(@Nullable ViewGroup container){
         locationText = rootView.findViewById(R.id.locationText);
+        weatherText = rootView.findViewById(R.id.weatherText);
         btnLocation = rootView.findViewById(R.id.btn_location);
 
         locationText.setVisibility(View.GONE);
+        weatherText.setVisibility(View.GONE);
 
         if(checkedPermissions()) {
             btnLocation.setVisibility(View.GONE);
             locationText.setVisibility(View.VISIBLE);
+            weatherText.setVisibility(View.VISIBLE);
 
             LocationTracker lt = new LocationTracker(container.getContext());
             String address = getCurrentAddress(lt.getLatitude(), lt.getLongitude());
-            locationText.setText("위도 : "+lt.getLatitude()+" / 경도 : "+lt.getLongitude()+"\n주소 : "+address);
+            locationText.setText(address + "의 날씨");
         }
 
         btnLocation.setOnClickListener(view -> {
@@ -164,7 +177,6 @@ public class FragmentHome extends Fragment implements OnItemClick {
             String[] PERMISSIONS = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
             ActivityCompat.requestPermissions((getActivity()), PERMISSIONS, REQUEST_CODE);
         });
-
     }
 
     public String getCurrentAddress(double latitude, double longitude) {
@@ -184,7 +196,7 @@ public class FragmentHome extends Fragment implements OnItemClick {
                 int featureLength = addressList.get(0).getFeatureName().length() + 1; // "a b"에서 " b" 만큼 자를거니까 b 길이에 공백 길이 1 더해줌
 
                 getCoordinates(addressList.get(0).getThoroughfare());
-                return Address.substring(0, totalAddress-featureLength);
+                return Address.substring(5, totalAddress-featureLength);
             }
 
         } catch (IOException e) {
@@ -227,73 +239,135 @@ public class FragmentHome extends Fragment implements OnItemClick {
     }
 
     public void makeRequestMsg(String xText, String yText){
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDate1 = new SimpleDateFormat("yyyyMMdd"); //날짜 포맷
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDate2 = new SimpleDateFormat("HH"); //시간 포맷
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDate3 = new SimpleDateFormat("mm"); //분
+        String serviceKey = "hMACbDiw3Z1Pm4vTng3uNgdRCNx/oGkO2BfR0P4G9//i8KeBMivV/a9VvMTRiWr2Oj1pPqPo9ZoxUAtQ6aV1uQ=="; //""hMACbDiw3Z1Pm4vTng3uNgdRCNx%2FoGkO2BfR0P4G9%2F%2Fi8KeBMivV%2Fa9VvMTRiWr2Oj1pPqPo9ZoxUAtQ6aV1uQ%3D%3D";
+        StringBuilder msg = new StringBuilder();
+        Date today = new Date();
+        StringBuilder hr = new StringBuilder();
+
         int x = Integer.parseInt(xText);
         int y = Integer.parseInt(yText);
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDate1 = new SimpleDateFormat("yyyyMMdd"); //20220531
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDate2 = new SimpleDateFormat("HH"); //시
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDate3 = new SimpleDateFormat("mm"); //분
-        Date today = new Date();
-        StringBuilder msg = new StringBuilder();
-        String min, hour;
 
-        String serviceKey = "hMACbDiw3Z1Pm4vTng3uNgdRCNx%2FoGkO2BfR0P4G9%2F%2Fi8KeBMivV%2Fa9VvMTRiWr2Oj1pPqPo9ZoxUAtQ6aV1uQ%3D%3D";
         String date = simpleDate1.format(today);
-        int hr = Integer.parseInt(simpleDate2.format(today));
+        int hour = Integer.parseInt(simpleDate2.format(today));
         int minute = Integer.parseInt(simpleDate3.format(today));
 
-        if(minute <= 40){
-            hour = Integer.toString(hr-1);
-            min = "30";
+        if(hour < 10)
+            hr.append("0");
+
+        if(minute <= 40)
+            hr.append(Integer.toString(hour-1));
+        else
+            hr.append(Integer.toString(hour));
+
+        boolean sendFlag = pastHour == -1 | pastHour != hour;
+        pastHour = hour; // 요청 보내는 시간 갱신
+
+        if(sendFlag){
+            msg.append("https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?serviceKey=")
+                    .append(serviceKey)
+                    .append("&pageNo=1")
+                    .append("&numOfRows=1000")
+                    .append("&dataType=JSON")
+                    .append("&base_date=").append(date)
+                    .append("&base_time=").append(hr.toString()).append("00")
+                    .append("&nx=").append(x).append("&ny=").append(y);
+
+            Log.d("@@", msg.toString()); // 요청 메시지 확인용
+            new Thread(() -> { sendRequestMsg(msg); }).start();
         }
-        else {
-            hour = Integer.toString(hr);
-            min = "00";
-        }
-
-        msg.append("https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst?serviceKey=")
-                .append(serviceKey)
-                .append("&pageNo=1")
-                .append("&numOfRows=1000")
-                .append("&dataType=JSON")
-                .append("&base_date=").append(date)
-                .append("&base_time=").append(hour).append(min)
-                .append("&nx=").append(x).append("&ny=").append(y);
-
-        Log.d("@@", msg.toString());
-
-        /*
-        new Thread(() -> {
-            sendRequestMsg(msg);
-        }).start();
-        */
     }
 
     public void sendRequestMsg(StringBuilder msg){
         try {
+            ignoreSsl(); //ssl 인증서 무시
             URL url = new URL(msg.toString());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Content-type", "application/json");
-            BufferedReader rd;
 
-            if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300)
-                rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            else
-                rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-
-            StringBuilder sb = new StringBuilder();
-            while(rd.readLine() != null)
-                sb.append(rd.readLine());
-
-            rd.close();
-            conn.disconnect();
-            String result= sb.toString();
-            Log.d("@@", result);
-
+            int code = conn.getResponseCode();
+            if(code >= 200 && code <= 300){
+                try{
+                    StringBuffer sb = new StringBuffer();
+                    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    sb.append(br.readLine());
+                    Log.d("@@", sb.toString());
+                    getCurrentWeather(sb.toString());
+                    br.close();
+                } catch(Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            conn.disconnect(); //연결 해제
         } catch (Exception e){
-            Log.d("@@", "sendRequestmsg에서 에러 발생!");
+            Log.d("@@", e.getMessage());
+        }
+    }
+
+    public void getCurrentWeather(String data){
+        JSONParser parser = new JSONParser();
+        JSONObject obj;
+
+        try {
+            //필요한 부분 : response의 body의 items의 item 배열 - 순차적으로 get 해옴
+            obj = (JSONObject) parser.parse(data);
+            JSONObject response = (JSONObject) obj.get("response");
+            JSONObject body = (JSONObject) response.get("body");
+            JSONObject items = (JSONObject) body.get("items");
+            JSONArray itemArray = (JSONArray) items.get("item");
+
+            StringBuilder weather = new StringBuilder();
+            for(int i = 0 ; i < itemArray.size() ; i++) {
+                JSONObject item = (JSONObject) itemArray.get(i);
+                String value = (String) item.get("obsrValue").toString();
+
+                switch (i){
+                    case 1:
+                        weather.append("습도 " + value + "% / ");
+                        break;
+
+                    case 2:
+                        weather.append("강수량 " + value + "mm / ");
+                        break;
+
+                    case 3:
+                        weather.append("기온 " + value + "℃ / ");
+                        break;
+
+                    case 7:
+                        weather.append("풍속 " + value + "m/s");
+                        break;
+                }
+            }
+            weatherText.setText(weather.toString());
+        } catch (ParseException e){
             e.printStackTrace();
         }
     }
 
+    public static void ignoreSsl() throws Exception{
+        HostnameVerifier hv = (urlHostName, session) -> true;
+        trustAllHttpsCertificates();
+        HttpsURLConnection.setDefaultHostnameVerifier(hv);
+    }
+
+    public static void trustAllHttpsCertificates() throws Exception {
+        TrustManager[] trustAllCerts = new TrustManager[1];
+        TrustManager tm = new miTM();
+        trustAllCerts[0] = tm;
+        SSLContext sc = SSLContext.getInstance("SSL");
+        sc.init(null, trustAllCerts, null);
+        HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+    }
+}
+
+class miTM implements TrustManager,X509TrustManager {
+    public X509Certificate[] getAcceptedIssuers() { return null; }
+    public boolean isServerTrusted(X509Certificate[] certs) { return true; }
+    public boolean isClientTrusted(X509Certificate[] certs) { return true; }
+    public void checkServerTrusted(X509Certificate[] certs, String authType) {}
+    public void checkClientTrusted(X509Certificate[] certs, String authType) {}
 }

@@ -9,9 +9,10 @@
 
     <Button
         android:id="@+id/btn_location"
-        android:layout_width="300dp"
+        android:layout_width="150dp"
         android:layout_height="20dp"
-        android:layout_margin="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
         android:background="#17787a"
         android:text="@string/location_button"
         android:textSize="15sp"
@@ -23,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/location_text"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="28dp"
         android:layout_marginStart="8dp"/>
 
     <TextView
