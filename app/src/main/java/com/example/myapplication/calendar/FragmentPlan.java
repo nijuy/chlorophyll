@@ -1,7 +1,11 @@
 // 할 시간 삭제
 package com.example.myapplication.calendar;
 
+import android.app.AlarmManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,6 +38,7 @@ import com.prolificinteractive.materialcalendarview.format.MonthArrayTitleFormat
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -52,6 +58,10 @@ public class FragmentPlan extends Fragment {
     private String plantName, startDate, title;
     private Integer water, sun, split;
 
+    private AlarmManager alarmManager;
+    private NotificationManager notificationManager;
+    NotificationCompat.Builder builder;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,6 +72,12 @@ public class FragmentPlan extends Fragment {
         mv = view.findViewById(R.id.plan_cv);
         tv = view.findViewById(R.id.plan_tv);
         rv = view.findViewById(R.id.plan_rv);
+
+        // 알림
+        notificationManager
+                = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        alarmManager
+                = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
         // SharedPreference - 파일명=등록날짜
         listPref = context.getSharedPreferences("listPref", Context.MODE_PRIVATE);
@@ -89,6 +105,8 @@ public class FragmentPlan extends Fragment {
                     try {
                         new AddItem(itemList,
                                 plantName, startDate, "물주기", water);
+
+                        setAlarm(plantName, startDate, "물주기", water);
                     } catch (ParseException e) { e.printStackTrace(); }
                 }
                 // 햇빛 주기가 0 아니면 일정 itemList에 추가
@@ -96,6 +114,8 @@ public class FragmentPlan extends Fragment {
                     try {
                         new AddItem(itemList,
                                 plantName, startDate, "햇빛", sun);
+
+                        setAlarm(plantName, startDate, "햇빛", sun);
                     } catch (ParseException e) { e.printStackTrace(); }
                 }
                 // 분갈이 주기가 0 아니면 일정 itemList에 추가
@@ -103,6 +123,8 @@ public class FragmentPlan extends Fragment {
                     try {
                         new AddItem(itemList,
                                 plantName, startDate, "분갈이", split);
+
+                        setAlarm(plantName, startDate, "분갈이", split);
                     } catch (ParseException e) { e.printStackTrace(); }
                 }
             }
@@ -138,6 +160,25 @@ public class FragmentPlan extends Fragment {
         Decorator();
 
         return view;
+    }
+
+    // 알람 설정
+    private void setAlarm(String plantName, String startDate, String todoWhat, int cycle)
+            throws ParseException {
+
+        Intent receiverIntent = new Intent(context, AlarmRecevier.class);
+        receiverIntent.putExtra("plantName", plantName);
+        receiverIntent.putExtra("todoWhat", todoWhat);
+        PendingIntent pendingIntent =
+                PendingIntent.getBroadcast(context, 0, receiverIntent, 0);
+
+        // Date date = String2Date(startDate);
+        // 테스트 바로 출력
+        Date date = new Date();
+        Long milli = date.getTime();
+
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, milli,
+                cycle * AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
     // 날짜 선택하면 TextView와 RecyclerView에 출력
