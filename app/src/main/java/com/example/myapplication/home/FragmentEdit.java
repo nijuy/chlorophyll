@@ -204,6 +204,7 @@ public class FragmentEdit extends Fragment {
                     boolean res1 = true;
                     boolean res2 = true;
                     boolean res3 = true;
+                    boolean res4 = true;
 
                     if(newWater == -1) {
                         value = waterEdit.getText().toString();
@@ -244,12 +245,17 @@ public class FragmentEdit extends Fragment {
                         editor.putInt("split", newSplit);
                     }
 
-                    if (res1 && res2 && res3) {
-                        species = plantSpecies.getText().toString();
-                        editor.putString("species", species);
-
+                    if ((plantNickname.getText().toString()).equals("")) {
+                        Toast.makeText(getActivity(), "식물의 별칭을 입력해주세요", Toast.LENGTH_SHORT).show();
+                        res4 = false;
+                    } else {
                         nickname = plantNickname.getText().toString();
                         editor.putString("nickname", nickname);
+                    }
+
+                    if (res1 && res2 && res3 && res4) {
+                        species = plantSpecies.getText().toString();
+                        editor.putString("species", species);
 
                         editor.apply(); // 저장
 
