@@ -18,7 +18,7 @@
         app:cardBackgroundColor="#64A68A"
         android:layout_marginStart="1dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="18dp"
         android:layout_marginBottom="15dp">
     </androidx.cardview.widget.CardView>
 
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="40dp"
         android:layout_marginStart="3dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="18dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="15dp">
 
