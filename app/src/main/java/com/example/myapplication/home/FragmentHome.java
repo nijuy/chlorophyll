@@ -265,19 +265,18 @@ public class FragmentHome extends Fragment implements OnItemClick {
         boolean sendFlag = pastHour == -1 | pastHour != hour;
         pastHour = hour; // 요청 보내는 시간 갱신
 
-        if(sendFlag){
-            msg.append("https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?serviceKey=")
-                    .append(serviceKey)
-                    .append("&pageNo=1")
-                    .append("&numOfRows=1000")
-                    .append("&dataType=JSON")
-                    .append("&base_date=").append(date)
-                    .append("&base_time=").append(hr.toString()).append("00")
-                    .append("&nx=").append(x).append("&ny=").append(y);
+        msg.append("https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?serviceKey=")
+                .append(serviceKey)
+                .append("&pageNo=1")
+                .append("&numOfRows=1000")
+                .append("&dataType=JSON")
+                .append("&base_date=").append(date)
+                .append("&base_time=").append(hr.toString()).append("00")
+                .append("&nx=").append(x).append("&ny=").append(y);
 
-            Log.d("@@", msg.toString()); // 요청 메시지 확인용
-            new Thread(() -> { sendRequestMsg(msg); }).start();
-        }
+        Log.d("@@", msg.toString()); // 요청 메시지 확인용
+        new Thread(() -> { sendRequestMsg(msg); }).start();
+
     }
 
     public void sendRequestMsg(StringBuilder msg){
