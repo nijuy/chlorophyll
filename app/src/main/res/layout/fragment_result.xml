@@ -31,7 +31,10 @@
             android:id="@+id/announcementText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="72dp"
+            android:layout_marginTop="85dp"
+            android:textSize="18sp"
+            android:textColor="#64A68A"
+            android:textStyle="bold"
             android:text="@string/announcementText" />
 
     </LinearLayout>
