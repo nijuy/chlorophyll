@@ -53,6 +53,10 @@
     <string name="btn_getResult">결과 보기</string>
     <string name="filteringCondition">최종조건</string>
 
+    <!-- 결과 페이지 -->
+    <string name="announcementText">설정하신 조건에 맞는 식물 목록이에요!</string>
+
+    <!-- 달력 관련 -->
     <string-array name="custom_weekdays">
         <item>일</item>
         <item>월</item>
@@ -78,13 +82,11 @@
         <item>12월</item>
     </string-array>
 
-    <!-- 결과 페이지 -->
-    <string name="announcementText">설정하신 조건에 맞는 식물 목록이에요!</string>
 
     <!-- fragment_home -->
     <string name="location_button">위치 보기</string>
-    <string name="location_text">위~치</string>
-    <string name="weather_text">날~씨</string>
+    <string name="location_text">위치</string>
+    <string name="weather_text">날씨</string>
     <string name="initial_text">아직 식물을 등록하지 않으셨나요?\n식물을 등록해보세요!</string>
 
     <!-- button -->

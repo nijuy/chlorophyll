@@ -9,5 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="light_gray">#c7c7c7</color>
 
-    <color name="teal_500">#A8D6C7</color> <!-- 추천 페이지의 spinner 열었을 때 배경색 -->
+    <color name="green">#64A68A</color>
 </resources>

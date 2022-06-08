@@ -7,7 +7,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -21,7 +20,6 @@ public class LocationTracker implements LocationListener {
     LocationTracker(android.content.Context c){
         this.context = c;
         getLocation();
-
     }
 
     public Location getLocation() {
